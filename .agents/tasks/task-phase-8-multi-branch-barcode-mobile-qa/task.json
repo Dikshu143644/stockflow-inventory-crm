@@ -1,0 +1,7 @@
+{
+  "task_id": "task-phase-8-multi-branch-barcode-mobile-qa",
+  "task_description": "Phase 8: Implement multi-branch management (branch CRUD, selector, data filtering), barcode scanning (camera-based scanner, barcode generation/display), mobile polish (responsive improvements, PWA, mobile bottom nav), and final QA (Vitest setup with component tests)",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null
+}

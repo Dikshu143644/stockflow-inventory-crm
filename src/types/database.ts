@@ -45,8 +45,10 @@ export interface Role {
 export interface Branch {
   id: string;
   name: string;
+  code: string;
   address: string | null;
   city: string | null;
+  state: string | null;
   country: string | null;
   phone: string | null;
   is_active: boolean;

@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-004",
+  "type": "chore",
+  "description": "QA infrastructure setup: Install and configure Vitest + React Testing Library, write unit tests for key new components (BranchContext, BarcodeDisplay, useBranches hook, BranchSelector)",
+  "status": "pending",
+  "steps": [
+    "Install test dependencies: pnpm add -D vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @types/testing-library__jest-dom",
+    "Create vitest.config.ts at project root with: environment 'jsdom', globals true, setupFiles ['./src/test/setup.ts'], coverage provider 'v8', path aliases matching vite.config.ts (@/ -> src/)",
+    "Create src/test/setup.ts that imports '@testing-library/jest-dom' for extended matchers",
+    "Add 'test' and 'test:coverage' scripts to package.json: 'vitest' and 'vitest run --coverage'",
+    "Create src/test/test-utils.tsx with a custom render function that wraps components in necessary providers (QueryClientProvider, BrowserRouter, BranchProvider) for testing",
+    "Create src/contexts/__tests__/BranchContext.test.tsx - tests that BranchProvider stores and retrieves branch selection, persists to localStorage, defaults to 'all'",
+    "Create src/components/shared/__tests__/BarcodeDisplay.test.tsx - tests that BarcodeDisplay renders with a barcode value, shows copy button, and handles empty value gracefully",
+    "Create src/hooks/__tests__/useBranches.test.ts - tests for the useBranches hook mocking supabase, verifying query keys and data transformation",
+    "Create src/components/layout/__tests__/BranchSelector.test.tsx - tests that BranchSelector renders options, responds to selection, and updates context"
+  ],
+  "acceptance_criteria": [
+    "Running 'pnpm test' executes Vitest and all tests pass",
+    "At least 4 test files exist covering BranchContext, BarcodeDisplay, useBranches, and BranchSelector",
+    "Test coverage output is generated when running 'pnpm test:coverage'",
+    "pnpm build still succeeds after test infrastructure is added"
+  ],
+  "verification": [
+    "Run 'pnpm test -- --run' and confirm all tests pass with exit code 0",
+    "Run 'pnpm build' and confirm it succeeds with exit code 0"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

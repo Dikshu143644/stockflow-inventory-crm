@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Multi-branch management: Branch CRUD page, branch context provider, branch selector in TopNav, and data filtering by active branch",
+  "status": "in_progress",
+  "steps": [
+    "Create src/hooks/useBranches.ts with TanStack Query hooks (useBranches, useCreateBranch, useUpdateBranch, useDeleteBranch) following the exact pattern in src/hooks/useProducts.ts but querying the 'branches' table",
+    "Create src/contexts/BranchContext.tsx - a React context that stores the currently selected branch_id (persisted in localStorage), exposes currentBranch and setCurrentBranch, and a 'all branches' option. Follow the pattern in src/contexts/SidebarContext.tsx",
+    "Create src/pages/settings/BranchesPage.tsx - a full CRUD page for branch management with DataTable listing all branches (name, code, city, phone, is_active), a create/edit Dialog with form fields (name, code, address, city, state, country, phone, is_active), and delete confirmation. Follow patterns from src/pages/settings/UsersPage.tsx and src/pages/inventory/Products.tsx. Use react-hook-form + zod for validation.",
+    "Add a BranchSelector dropdown component in src/components/layout/BranchSelector.tsx - a Select dropdown showing all active branches plus an 'All Branches' option, using the BranchContext to read/write selected branch. Style it to match the dark glassmorphism design.",
+    "Integrate BranchSelector into src/components/layout/TopNav.tsx - add it to the left side of the top nav actions area, before the search button",
+    "Wrap the app with BranchProvider in src/main.tsx, placed inside AuthProvider",
+    "Register the BranchesPage route in src/App.tsx at path 'settings/branches' with lazy loading",
+    "Add 'Branches' nav item to the Settings section in src/components/layout/Sidebar.tsx using the Building2 icon from lucide-react, placed after the 'Users' entry",
+    "Create supabase/migrations/008_branch_enhancements.sql that adds a 'branch_id' column to warehouses table (if not already present) with FK to branches, and adds branch_id to products table for branch-specific products (nullable UUID with FK to branches)"
+  ],
+  "acceptance_criteria": [
+    "BranchesPage renders at /settings/branches with a DataTable of branches and a working create/edit dialog",
+    "BranchSelector appears in TopNav and persists selection to localStorage",
+    "Sidebar shows 'Branches' link under Settings section",
+    "pnpm build succeeds with no TypeScript errors",
+    "pnpm lint passes"
+  ],
+  "verification": [
+    "Run 'pnpm build' and confirm it succeeds with exit code 0",
+    "Run 'pnpm lint' and confirm no errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Mobile polish and PWA: Responsive design improvements across all key pages, touch-friendly interactions, PWA manifest, service worker, and mobile-specific optimizations",
+  "status": "pending",
+  "steps": [
+    "Create public/manifest.json (PWA web app manifest) with app name 'StockFlow', short_name 'StockFlow', start_url '/', display 'standalone', theme_color '#10b981', background_color '#0a0a0a', and icons array (192x192 and 512x512 PNG placeholders). Create placeholder icons at public/icons/icon-192x192.png and public/icons/icon-512x512.png (simple green S logo SVG converted or solid colored placeholder).",
+    "Create public/sw.js - a basic service worker with cache-first strategy for static assets and network-first for API calls. Register it in src/main.tsx using navigator.serviceWorker.register.",
+    "Add PWA meta tags to index.html: <link rel='manifest' href='/manifest.json'>, <meta name='theme-color' content='#10b981'>, <meta name='apple-mobile-web-app-capable' content='yes'>, <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>, viewport meta with viewport-fit=cover",
+    "Create src/components/layout/MobileBottomNav.tsx - a fixed bottom navigation bar visible only on mobile (md:hidden) with 5 key icons: Dashboard (LayoutDashboard), Products (Package), Scanner (ScanBarcode), Orders (ShoppingCart), More (Menu that opens sidebar). Use the same active state styling as Sidebar. Only render when user is authenticated.",
+    "Integrate MobileBottomNav into src/components/layout/AppShell.tsx - render it at the bottom of the layout on mobile, and add pb-16 padding to main content area on mobile to account for the bottom nav height",
+    "Add responsive improvements to src/index.css: safe-area-inset padding support for notched devices (env(safe-area-inset-bottom)), touch-action manipulation for faster taps, -webkit-tap-highlight-color transparent, and ensure .bento-grid has a single column on mobile (below 640px)",
+    "Add mobile-specific touch improvements: ensure all buttons have min-h-[44px] min-w-[44px] touch targets in mobile view by adding a utility class .touch-target in index.css that can be applied",
+    "Update src/components/shared/DataTable.tsx to improve mobile experience: on screens < 768px, add horizontal scroll indicator, make first column sticky, and reduce padding on mobile"
+  ],
+  "acceptance_criteria": [
+    "MobileBottomNav appears on viewport width < 768px with 5 navigation icons",
+    "PWA manifest.json is served at /manifest.json with correct metadata",
+    "Service worker registers successfully",
+    "DataTable is horizontally scrollable on mobile with sticky first column",
+    "pnpm build succeeds with no TypeScript errors",
+    "pnpm lint passes"
+  ],
+  "verification": [
+    "Run 'pnpm build' and confirm it succeeds with exit code 0",
+    "Run 'pnpm lint' and confirm no errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

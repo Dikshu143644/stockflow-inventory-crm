@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
 import { Breadcrumbs } from './Breadcrumbs';
+import { BranchSelector } from './BranchSelector';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -42,6 +43,8 @@ export function TopNav() {
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <BranchSelector />
+
         <Button
           variant="outline"
           size="sm"

@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Barcode scanning and generation: Camera-based barcode scanner component for mobile, barcode display/generation for products, and product lookup by barcode",
+  "status": "pending",
+  "steps": [
+    "Install barcode-related packages: 'html5-qrcode' for camera scanning and 'react-barcode' for barcode rendering. Run 'pnpm add html5-qrcode react-barcode'.",
+    "Create src/components/shared/BarcodeScanner.tsx - a modal/dialog component that uses html5-qrcode to access the device camera and scan barcodes (EAN-13, UPC-A, Code-128, QR). It should accept onScan(code: string) callback, have start/stop controls, and show a camera viewfinder UI. Style with the dark glassmorphism theme.",
+    "Create src/components/shared/BarcodeDisplay.tsx - a component that takes a barcode string value and renders it as a visual barcode using react-barcode. Include options for different barcode formats (CODE128 default). Add a 'Copy' button for the barcode value.",
+    "Create src/pages/inventory/BarcodeScanner.tsx - a dedicated page for barcode scanning with: the BarcodeScanner component, a result area showing scanned product details (fetched via barcode from products table), quick actions (view product, adjust stock, add to order). If product not found, show 'Product not found' with option to create new product with that barcode.",
+    "Create src/hooks/useBarcode.ts with a useProductByBarcode(barcode: string) hook that queries supabase products table by barcode field, and a useGenerateBarcode() mutation that updates a product's barcode field",
+    "Update src/pages/inventory/ProductDetail.tsx (or the product detail/edit section) to show BarcodeDisplay when a product has a barcode, and a button to generate/assign a barcode if none exists",
+    "Add the BarcodeScanner page route in src/App.tsx at 'inventory/scanner' with lazy loading",
+    "Add 'Barcode Scanner' nav item to the Inventory section in src/components/layout/Sidebar.tsx using the ScanBarcode icon from lucide-react"
+  ],
+  "acceptance_criteria": [
+    "BarcodeScanner page renders at /inventory/scanner with camera access UI",
+    "BarcodeDisplay component renders a barcode visual from a string value",
+    "Sidebar shows 'Barcode Scanner' link under Inventory section",
+    "pnpm build succeeds with no TypeScript errors",
+    "pnpm lint passes"
+  ],
+  "verification": [
+    "Run 'pnpm build' and confirm it succeeds with exit code 0",
+    "Run 'pnpm lint' and confirm no errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
