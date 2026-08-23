@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "chore",
   "description": "QA infrastructure setup: Install and configure Vitest + React Testing Library, write unit tests for key new components (BranchContext, BarcodeDisplay, useBranches hook, BranchSelector)",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Install test dependencies: pnpm add -D vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @types/testing-library__jest-dom",
     "Create vitest.config.ts at project root with: environment 'jsdom', globals true, setupFiles ['./src/test/setup.ts'], coverage provider 'v8', path aliases matching vite.config.ts (@/ -> src/)",
@@ -25,5 +25,5 @@
     "Run 'pnpm build' and confirm it succeeds with exit code 0"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 22 tests pass across 4 test files. Vitest 4.1.11 with jsdom environment configured. react-barcode mocked since it renders canvas/svg. supabase module mocked with chainable query builder pattern. The BranchSelector test works with Radix Select rendered as combobox role. Build continues to succeed with test infrastructure added."
 }
