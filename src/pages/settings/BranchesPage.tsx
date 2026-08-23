@@ -4,6 +4,7 @@ import { Plus, Building2, Pencil, Trash2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -106,6 +107,9 @@ export default function BranchesPage() {
             setDialogOpen(false);
             form.reset();
           },
+          onError: () => {
+            toast.error('Failed to update branch');
+          },
         }
       );
     } else {
@@ -125,6 +129,9 @@ export default function BranchesPage() {
             setDialogOpen(false);
             form.reset();
           },
+          onError: () => {
+            toast.error('Failed to create branch');
+          },
         }
       );
     }
@@ -136,6 +143,9 @@ export default function BranchesPage() {
       onSuccess: () => {
         setDeleteDialogOpen(false);
         setDeletingBranch(null);
+      },
+      onError: () => {
+        toast.error('Failed to delete branch');
       },
     });
   };

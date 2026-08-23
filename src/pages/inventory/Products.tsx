@@ -15,6 +15,8 @@ import {
 } from '@/components/ui/dialog';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { DataTable } from '@/components/shared/DataTable';
+import { useBranchContext } from '@/contexts/BranchContext';
+import { useProducts } from '@/hooks/useProducts';
 
 const mockProducts = [
   { id: '1', sku: 'SKU-1001', name: 'Circuit Board Pro X1', category: 'Electronics', stock: 145, price: 89.99, status: 'active' },
@@ -49,13 +51,31 @@ export default function ProductsPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
+  const { currentBranchId } = useBranchContext();
+
+  const { data: productsData } = useProducts({
+    branch_id: currentBranchId ?? undefined,
+  });
 
   const form = useForm<ProductFormData>({
     resolver: zodResolver(productSchema),
     defaultValues: { unit: 'pcs', taxRate: '18' },
   });
 
-  const filteredProducts = mockProducts.filter((p) => {
+  // Use hook data when available, fall back to mock data
+  const sourceProducts = productsData?.data?.length
+    ? productsData.data.map((p) => ({
+        id: p.id,
+        sku: p.sku,
+        name: p.name,
+        category: p.category_id ?? 'Uncategorized',
+        stock: 0,
+        price: p.unit_price ?? 0,
+        status: p.is_active ? 'active' : 'inactive',
+      }))
+    : mockProducts;
+
+  const filteredProducts = sourceProducts.filter((p) => {
     if (categoryFilter !== 'all' && p.category !== categoryFilter) return false;
     if (statusFilter !== 'all' && p.status !== statusFilter) return false;
     return true;

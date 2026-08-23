@@ -12,6 +12,8 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { PageHeader } from '@/components/shared/PageHeader';
+import { useBranchContext } from '@/contexts/BranchContext';
+import { useWarehouses } from '@/hooks/useWarehouses';
 
 const mockWarehouses = [
   { id: '1', name: 'Main Warehouse', code: 'WH-MUM', city: 'Mumbai', state: 'Maharashtra', capacity: 10000, used: 7500, products: 1240, manager: 'Rajesh Kumar', isActive: true },
@@ -35,7 +37,27 @@ type WarehouseFormData = z.infer<typeof warehouseSchema>;
 
 export default function WarehousesPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const { currentBranchId } = useBranchContext();
+  const { data: warehousesData } = useWarehouses({
+    branch_id: currentBranchId ?? undefined,
+  });
   const form = useForm<WarehouseFormData>({ resolver: zodResolver(warehouseSchema) });
+
+  // Use hook data when available, fall back to mock data
+  const warehouses = warehousesData?.data?.length
+    ? warehousesData.data.map((wh) => ({
+        id: wh.id,
+        name: wh.name,
+        code: wh.code ?? '',
+        city: wh.city ?? '',
+        state: '',
+        capacity: wh.capacity ?? 0,
+        used: 0,
+        products: 0,
+        manager: '',
+        isActive: wh.is_active,
+      }))
+    : mockWarehouses;
 
   const onSubmit = (data: WarehouseFormData) => {
     console.log('New warehouse:', data);
@@ -67,7 +89,7 @@ export default function WarehousesPage() {
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {mockWarehouses.map((wh, index) => {
+        {warehouses.map((wh, index) => {
           const usagePercent = Math.round((wh.used / wh.capacity) * 100);
           return (
             <motion.div

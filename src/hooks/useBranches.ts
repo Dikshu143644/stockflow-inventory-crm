@@ -20,8 +20,9 @@ export function useBranches(filters: BranchFilters = {}) {
         .select('*', { count: 'exact' });
 
       if (search) {
-        // Sanitize search input: escape PostgREST filter metacharacters
-        const sanitized = search.replace(/[%.,()\\]/g, '');
+        // Escape only the LIKE wildcard character; dots and commas are safe
+        // within the ilike value portion of the PostgREST filter
+        const sanitized = search.replace(/%/g, '\\%');
         if (sanitized) {
           query = query.or(`name.ilike.%${sanitized}%,code.ilike.%${sanitized}%,city.ilike.%${sanitized}%`);
         }
