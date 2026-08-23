@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Barcode scanning and generation: Camera-based barcode scanner component for mobile, barcode display/generation for products, and product lookup by barcode",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Install barcode-related packages: 'html5-qrcode' for camera scanning and 'react-barcode' for barcode rendering. Run 'pnpm add html5-qrcode react-barcode'.",
     "Create src/components/shared/BarcodeScanner.tsx - a modal/dialog component that uses html5-qrcode to access the device camera and scan barcodes (EAN-13, UPC-A, Code-128, QR). It should accept onScan(code: string) callback, have start/stop controls, and show a camera viewfinder UI. Style with the dark glassmorphism theme.",
@@ -25,5 +25,5 @@
     "Run 'pnpm lint' and confirm no errors"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "pnpm build succeeds (exit 0). pnpm lint has 10 pre-existing errors/warnings in unrelated files (netlify/functions/health.ts, sales pages, ai services) - confirmed pre-existing by running lint on base state. No new lint issues introduced. The page file is named BarcodeScannerPage.tsx (not BarcodeScanner.tsx) to avoid naming collision with the shared component."
 }
