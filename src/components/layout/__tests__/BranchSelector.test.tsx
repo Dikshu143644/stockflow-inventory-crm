@@ -1,6 +1,24 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@/test/test-utils';
 import { BranchSelector } from '@/components/layout/BranchSelector';
+
+// Mock the useBranches hook
+vi.mock('@/hooks/useBranches', () => ({
+  useBranches: () => ({
+    data: {
+      data: [
+        { id: '1', name: 'Mumbai HQ', code: 'MUM', is_active: true },
+        { id: '2', name: 'Delhi', code: 'DEL', is_active: true },
+      ],
+      count: 2,
+      page: 1,
+      pageSize: 100,
+      totalPages: 1,
+    },
+    isLoading: false,
+    error: null,
+  }),
+}));
 
 describe('BranchSelector', () => {
   it('renders the select trigger', () => {

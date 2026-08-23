@@ -19,15 +19,8 @@ import {
 } from '@/components/ui/dialog';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { DataTable } from '@/components/shared/DataTable';
-
-const mockBranches = [
-  { id: '1', name: 'Mumbai HQ', code: 'MUM', address: '123 Marine Drive', city: 'Mumbai', state: 'Maharashtra', country: 'India', phone: '+91 22 1234 5678', is_active: true, created_at: '2024-01-01T00:00:00Z', updated_at: '2024-01-01T00:00:00Z' },
-  { id: '2', name: 'Delhi Branch', code: 'DEL', address: '456 Connaught Place', city: 'New Delhi', state: 'Delhi', country: 'India', phone: '+91 11 2345 6789', is_active: true, created_at: '2024-02-01T00:00:00Z', updated_at: '2024-02-01T00:00:00Z' },
-  { id: '3', name: 'Bangalore Tech Park', code: 'BLR', address: '789 Whitefield', city: 'Bangalore', state: 'Karnataka', country: 'India', phone: '+91 80 3456 7890', is_active: true, created_at: '2024-03-01T00:00:00Z', updated_at: '2024-03-01T00:00:00Z' },
-  { id: '4', name: 'Kolkata Office', code: 'KOL', address: '101 Park Street', city: 'Kolkata', state: 'West Bengal', country: 'India', phone: '+91 33 4567 8901', is_active: true, created_at: '2024-04-01T00:00:00Z', updated_at: '2024-04-01T00:00:00Z' },
-  { id: '5', name: 'Ahmedabad Warehouse', code: 'AHM', address: '202 SG Highway', city: 'Ahmedabad', state: 'Gujarat', country: 'India', phone: '+91 79 5678 9012', is_active: false, created_at: '2024-05-01T00:00:00Z', updated_at: '2024-05-01T00:00:00Z' },
-  { id: '6', name: 'Pune Distribution', code: 'PUN', address: '303 Hinjawadi', city: 'Pune', state: 'Maharashtra', country: 'India', phone: '+91 20 6789 0123', is_active: true, created_at: '2024-06-01T00:00:00Z', updated_at: '2024-06-01T00:00:00Z' },
-];
+import { useBranches, useCreateBranch, useUpdateBranch, useDeleteBranch } from '@/hooks/useBranches';
+import type { Branch } from '@/types/database';
 
 const branchSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -45,8 +38,15 @@ type BranchFormData = z.infer<typeof branchSchema>;
 export default function BranchesPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [editingBranch, setEditingBranch] = useState<(typeof mockBranches)[0] | null>(null);
-  const [deletingBranch, setDeletingBranch] = useState<(typeof mockBranches)[0] | null>(null);
+  const [editingBranch, setEditingBranch] = useState<Branch | null>(null);
+  const [deletingBranch, setDeletingBranch] = useState<Branch | null>(null);
+
+  const { data: branchesData } = useBranches();
+  const createBranch = useCreateBranch();
+  const updateBranch = useUpdateBranch();
+  const deleteBranch = useDeleteBranch();
+
+  const branches = branchesData?.data ?? [];
 
   const form = useForm<BranchFormData>({
     resolver: zodResolver(branchSchema),
@@ -77,7 +77,7 @@ export default function BranchesPage() {
     setDialogOpen(true);
   };
 
-  const handleEdit = (branch: (typeof mockBranches)[0]) => {
+  const handleEdit = (branch: Branch) => {
     setEditingBranch(branch);
     form.reset({
       name: branch.name,
@@ -92,21 +92,52 @@ export default function BranchesPage() {
     setDialogOpen(true);
   };
 
-  const handleDelete = (branch: (typeof mockBranches)[0]) => {
+  const handleDelete = (branch: Branch) => {
     setDeletingBranch(branch);
     setDeleteDialogOpen(true);
   };
 
-  const onSubmit = (_data: BranchFormData) => {
-    // In production, this would call useCreateBranch or useUpdateBranch
-    setDialogOpen(false);
-    form.reset();
+  const onSubmit = (data: BranchFormData) => {
+    if (editingBranch) {
+      updateBranch.mutate(
+        { id: editingBranch.id, ...data },
+        {
+          onSuccess: () => {
+            setDialogOpen(false);
+            form.reset();
+          },
+        }
+      );
+    } else {
+      createBranch.mutate(
+        {
+          name: data.name,
+          code: data.code,
+          address: data.address || null,
+          city: data.city || null,
+          state: data.state || null,
+          country: data.country || null,
+          phone: data.phone || null,
+          is_active: data.is_active,
+        },
+        {
+          onSuccess: () => {
+            setDialogOpen(false);
+            form.reset();
+          },
+        }
+      );
+    }
   };
 
   const confirmDelete = () => {
-    // In production, this would call useDeleteBranch
-    setDeleteDialogOpen(false);
-    setDeletingBranch(null);
+    if (!deletingBranch) return;
+    deleteBranch.mutate(deletingBranch.id, {
+      onSuccess: () => {
+        setDeleteDialogOpen(false);
+        setDeletingBranch(null);
+      },
+    });
   };
 
   const columns = [
@@ -146,7 +177,7 @@ export default function BranchesPage() {
             variant="ghost"
             size="icon"
             className="h-8 w-8"
-            onClick={() => handleEdit(row as unknown as (typeof mockBranches)[0])}
+            onClick={() => handleEdit(row as unknown as Branch)}
           >
             <Pencil className="h-4 w-4" />
           </Button>
@@ -154,7 +185,7 @@ export default function BranchesPage() {
             variant="ghost"
             size="icon"
             className="h-8 w-8 text-destructive hover:text-destructive"
-            onClick={() => handleDelete(row as unknown as (typeof mockBranches)[0])}
+            onClick={() => handleDelete(row as unknown as Branch)}
           >
             <Trash2 className="h-4 w-4" />
           </Button>
@@ -182,7 +213,7 @@ export default function BranchesPage() {
 
       <DataTable
         columns={columns}
-        data={mockBranches as unknown as Record<string, unknown>[]}
+        data={branches as unknown as Record<string, unknown>[]}
         searchPlaceholder="Search branches..."
       />
 
@@ -281,7 +312,10 @@ export default function BranchesPage() {
               <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit">
+              <Button
+                type="submit"
+                disabled={createBranch.isPending || updateBranch.isPending}
+              >
                 {editingBranch ? 'Update Branch' : 'Create Branch'}
               </Button>
             </DialogFooter>
@@ -296,7 +330,7 @@ export default function BranchesPage() {
             <DialogTitle>Delete Branch</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete &quot;{deletingBranch?.name}&quot;? This action cannot
-              be undone and will remove all associated data.
+              be undone. Associated records will have their branch reference set to null.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -306,6 +340,7 @@ export default function BranchesPage() {
             <Button
               variant="destructive"
               onClick={confirmDelete}
+              disabled={deleteBranch.isPending}
             >
               Delete
             </Button>

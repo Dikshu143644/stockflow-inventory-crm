@@ -5,16 +5,17 @@ import type { Product } from '@/types/database';
 export interface ProductFilters {
   search?: string;
   category_id?: string;
+  branch_id?: string | null;
   is_active?: boolean;
   page?: number;
   pageSize?: number;
 }
 
 export function useProducts(filters: ProductFilters = {}) {
-  const { page = 1, pageSize = 20, search, category_id, is_active } = filters;
+  const { page = 1, pageSize = 20, search, category_id, branch_id, is_active } = filters;
 
   return useQuery({
-    queryKey: ['products', { page, pageSize, search, category_id, is_active }],
+    queryKey: ['products', { page, pageSize, search, category_id, branch_id, is_active }],
     queryFn: async () => {
       let query = supabase
         .from('products')
@@ -25,6 +26,9 @@ export function useProducts(filters: ProductFilters = {}) {
       }
       if (category_id) {
         query = query.eq('category_id', category_id);
+      }
+      if (branch_id) {
+        query = query.eq('branch_id', branch_id);
       }
       if (is_active !== undefined) {
         query = query.eq('is_active', is_active);

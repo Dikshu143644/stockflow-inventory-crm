@@ -20,7 +20,11 @@ export function useBranches(filters: BranchFilters = {}) {
         .select('*', { count: 'exact' });
 
       if (search) {
-        query = query.or(`name.ilike.%${search}%,code.ilike.%${search}%,city.ilike.%${search}%`);
+        // Sanitize search input: escape PostgREST filter metacharacters
+        const sanitized = search.replace(/[%.,()\\]/g, '');
+        if (sanitized) {
+          query = query.or(`name.ilike.%${sanitized}%,code.ilike.%${sanitized}%,city.ilike.%${sanitized}%`);
+        }
       }
       if (is_active !== undefined) {
         query = query.eq('is_active', is_active);

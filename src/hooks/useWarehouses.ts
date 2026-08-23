@@ -4,6 +4,7 @@ import type { Warehouse } from '@/types/database';
 
 export interface WarehouseFilters {
   search?: string;
+  branch_id?: string | null;
   is_active?: boolean;
   page?: number;
   pageSize?: number;
@@ -15,10 +16,10 @@ export interface WarehouseWithStock extends Warehouse {
 }
 
 export function useWarehouses(filters: WarehouseFilters = {}) {
-  const { page = 1, pageSize = 20, search, is_active } = filters;
+  const { page = 1, pageSize = 20, search, branch_id, is_active } = filters;
 
   return useQuery({
-    queryKey: ['warehouses', { page, pageSize, search, is_active }],
+    queryKey: ['warehouses', { page, pageSize, search, branch_id, is_active }],
     queryFn: async () => {
       let query = supabase
         .from('warehouses')
@@ -26,6 +27,9 @@ export function useWarehouses(filters: WarehouseFilters = {}) {
 
       if (search) {
         query = query.or(`name.ilike.%${search}%,code.ilike.%${search}%`);
+      }
+      if (branch_id) {
+        query = query.eq('branch_id', branch_id);
       }
       if (is_active !== undefined) {
         query = query.eq('is_active', is_active);

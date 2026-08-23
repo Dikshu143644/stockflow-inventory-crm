@@ -15,7 +15,15 @@ export function useProductByBarcode(barcode: string) {
       return data as Product;
     },
     enabled: !!barcode,
-    retry: false,
+    retry: (failureCount, error) => {
+      // Don't retry on 404 (PGRST116 = row not found) - product genuinely doesn't exist
+      if (error && typeof error === 'object' && 'code' in error && (error as { code: string }).code === 'PGRST116') {
+        return false;
+      }
+      // Retry up to 2 times on transient/network errors
+      return failureCount < 2;
+    },
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 5000),
   });
 }
 
