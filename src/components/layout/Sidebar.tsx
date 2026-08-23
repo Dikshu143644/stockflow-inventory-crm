@@ -31,6 +31,7 @@ import {
   RotateCcw,
   CreditCard,
   Building2,
+  ScanBarcode,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -58,6 +59,7 @@ const navSections: NavSection[] = [
       { title: 'Receiving', href: '/inventory/receiving', icon: PackageCheck },
       { title: 'Adjustments', href: '/inventory/adjustments', icon: SlidersHorizontal },
       { title: 'Low Stock', href: '/inventory/low-stock', icon: AlertTriangle },
+      { title: 'Barcode Scanner', href: '/inventory/scanner', icon: ScanBarcode },
     ],
   },
   {

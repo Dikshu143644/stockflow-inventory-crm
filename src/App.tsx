@@ -15,6 +15,7 @@ const Transfers = lazy(() => import('@/pages/inventory/Transfers'));
 const Receiving = lazy(() => import('@/pages/inventory/Receiving'));
 const Adjustments = lazy(() => import('@/pages/inventory/Adjustments'));
 const LowStock = lazy(() => import('@/pages/inventory/LowStock'));
+const BarcodeScannerPage = lazy(() => import('@/pages/inventory/BarcodeScannerPage'));
 const Customers = lazy(() => import('@/pages/crm/Customers'));
 const Leads = lazy(() => import('@/pages/crm/Leads'));
 const Deals = lazy(() => import('@/pages/crm/Deals'));
@@ -68,6 +69,7 @@ function App() {
           <Route path="inventory/receiving" element={<Receiving />} />
           <Route path="inventory/adjustments" element={<Adjustments />} />
           <Route path="inventory/low-stock" element={<LowStock />} />
+          <Route path="inventory/scanner" element={<BarcodeScannerPage />} />
           <Route path="crm/customers" element={<Customers />} />
           <Route path="crm/leads" element={<Leads />} />
           <Route path="crm/deals" element={<Deals />} />

@@ -1,10 +1,11 @@
 import { motion } from 'motion/react';
-import { ArrowLeft, Edit, Package, AlertTriangle, Warehouse, ArrowDownLeft, ArrowUpRight, ArrowLeftRight, Pencil, Repeat2, SlidersHorizontal } from 'lucide-react';
+import { ArrowLeft, Edit, Package, AlertTriangle, Warehouse, ArrowDownLeft, ArrowUpRight, ArrowLeftRight, Pencil, Repeat2, SlidersHorizontal, ScanBarcode } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { BarcodeDisplay } from '@/components/shared/BarcodeDisplay';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, ReferenceLine, Tooltip, Cell } from 'recharts';
 import { format } from 'date-fns';
 
@@ -23,6 +24,7 @@ const mockProduct = {
   maxStockLevel: 500,
   reorderPoint: 50,
   isActive: true,
+  barcode: '5901234123457',
   createdAt: '2024-01-15T10:30:00Z',
 };
 
@@ -191,6 +193,28 @@ export default function ProductDetailPage() {
                 <span className="text-muted-foreground">Margin</span>
                 <span className="text-primary font-medium">{margin}%</span>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Barcode */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ScanBarcode className="h-4 w-4 text-primary" /> Barcode
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {mockProduct.barcode ? (
+                <BarcodeDisplay value={mockProduct.barcode} />
+              ) : (
+                <div className="flex flex-col items-center gap-3 py-4">
+                  <p className="text-sm text-muted-foreground">No barcode assigned</p>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <ScanBarcode className="h-3.5 w-3.5" />
+                    Generate Barcode
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
