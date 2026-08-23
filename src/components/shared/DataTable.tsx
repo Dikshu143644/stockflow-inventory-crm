@@ -102,7 +102,7 @@ export function DataTable<T extends Record<string, unknown>>({
         />
       )}
 
-      <div className="rounded-[16px] border border-border overflow-hidden">
+      <div className="data-table-wrapper rounded-[16px] border border-border overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>

@@ -128,3 +128,72 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+@media (max-width: 639px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile touch improvements */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Safe area support for notched devices */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Touch optimizations */
+@media (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+}
+
+/* DataTable mobile improvements */
+@media (max-width: 767px) {
+  .data-table-wrapper {
+    position: relative;
+  }
+
+  .data-table-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 24px;
+    background: linear-gradient(to right, transparent, rgba(10, 10, 10, 0.8));
+    pointer-events: none;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .data-table-wrapper table th,
+  .data-table-wrapper table td {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .data-table-wrapper table th:first-child,
+  .data-table-wrapper table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--background);
+  }
+
+  .data-table-wrapper table thead th:first-child {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
