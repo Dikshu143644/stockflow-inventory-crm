@@ -9,6 +9,6 @@
     "tests": "pass",
     "test_quality": "pass",
     "docker_build": "skipped",
-    "summary": "pnpm build succeeds, all 22 tests pass across 4 test files. Review fixes applied: BranchSelector uses useBranches hook, BranchesPage wired to real CRUD mutations, useBranches sanitizes search input, sw.js has cache versioning and size limits, useProductByBarcode retries on transient failures, useProducts and useWarehouses accept branch_id filter."
+    "summary": "pnpm build succeeds, all 22 tests pass across 4 test files. All v2 review issues resolved: (1) Products and Warehouses pages now pass currentBranchId to useProducts/useWarehouses hooks, (2) BranchesPage mutations have onError toast callbacks via Sonner, (3) useBranches search sanitization only escapes % wildcard instead of stripping dots/commas."
   }
 }
