@@ -14,31 +14,45 @@ interface KPICardProps {
   description?: string;
   className?: string;
   bgImage?: string;
+  size?: 'default' | 'wide' | 'tall';
 }
 
-export function KPICard({ label, value, icon: Icon, trend, description, className, bgImage }: KPICardProps) {
+const sizeClasses: Record<NonNullable<KPICardProps['size']>, string> = {
+  default: '',
+  wide: 'md:col-span-2',
+  tall: 'md:row-span-2',
+};
+
+export function KPICard({ label, value, icon: Icon, trend, description, className, bgImage, size = 'default' }: KPICardProps) {
   return (
-    <Card className={cn('relative overflow-hidden group bg-white border border-slate-200/90 shadow-xs hover:border-orange-400/80 hover:shadow-md transition-all rounded-[22px]', className)}>
-      {/* Ambient Subtle Background Overlay */}
+    <Card
+      className={cn(
+        'relative overflow-hidden group border border-white/60 shadow-lg hover:shadow-xl hover:border-orange-400/80 transition-all rounded-[22px]',
+        'backdrop-blur-xl bg-white/40',
+        sizeClasses[size],
+        className
+      )}
+    >
+      {/* Background Image with Glassmorphism */}
       {bgImage && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
             src={bgImage}
             alt=""
-            className="w-full h-full object-cover opacity-25 filter saturate-150 group-hover:scale-110 transition-transform duration-700"
+            className="w-full h-full object-cover opacity-60 filter saturate-125 group-hover:scale-110 transition-transform duration-700"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = 'none';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/30 to-transparent" />
         </div>
       )}
 
-      <CardContent className="p-6 relative z-10">
-        <div className="flex items-start justify-between">
+      <CardContent className={cn('p-6 relative z-10', size === 'tall' && 'flex flex-col justify-between h-full')}>
+        <div className="flex items-start justify-between rounded-xl bg-white/40 backdrop-blur-sm p-3 -m-3">
           <div className="space-y-1.5">
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-500">{label}</p>
-            <p className="text-2xl font-black text-slate-900 tracking-tight">{value}</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-700" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{label}</p>
+            <p className="text-2xl font-black text-slate-900 tracking-tight" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{value}</p>
             {trend && (
               <div className="flex items-center gap-1 pt-0.5">
                 {trend.isPositive ? (
@@ -56,12 +70,15 @@ export function KPICard({ label, value, icon: Icon, trend, description, classNam
                   {trend.value}%
                 </span>
                 {description && (
-                  <span className="text-xs text-slate-400 ml-1">{description}</span>
+                  <span className="text-xs text-slate-600 ml-1" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{description}</span>
                 )}
               </div>
             )}
+            {!trend && description && (
+              <p className="text-xs text-slate-600" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{description}</p>
+            )}
           </div>
-          <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-orange-50 border border-orange-200/80 group-hover:border-orange-400 shadow-xs transition-colors">
+          <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-orange-50/80 border border-orange-200/80 group-hover:border-orange-400 shadow-sm backdrop-blur-sm transition-colors">
             <Icon className="h-5 w-5 text-orange-500" />
           </div>
         </div>

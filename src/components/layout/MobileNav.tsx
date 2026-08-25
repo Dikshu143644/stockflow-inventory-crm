@@ -5,11 +5,11 @@ import { cn } from '@/lib/utils';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const tabs = [
-  { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
-  { label: 'Inventory', icon: Package, path: '/inventory' },
-  { label: 'CRM', icon: Users, path: '/crm' },
-  { label: 'Sales', icon: ShoppingCart, path: '/sales' },
-  { label: 'AI', icon: Bot, path: '/ai' },
+  { label: 'Dashboard', icon: LayoutDashboard, path: '/', matchPrefix: '/' },
+  { label: 'Inventory', icon: Package, path: '/inventory/products', matchPrefix: '/inventory' },
+  { label: 'CRM', icon: Users, path: '/crm/customers', matchPrefix: '/crm' },
+  { label: 'Sales', icon: ShoppingCart, path: '/sales/orders', matchPrefix: '/sales' },
+  { label: 'AI', icon: Bot, path: '/ai', matchPrefix: '/ai' },
 ];
 
 export function MobileNav() {
@@ -42,8 +42,8 @@ export function MobileNav() {
   if (!isMobile) return null;
 
   const activeTab = tabs.find((tab) => {
-    if (tab.path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(tab.path);
+    if (tab.matchPrefix === '/') return location.pathname === '/';
+    return location.pathname.startsWith(tab.matchPrefix);
   });
 
   return (

@@ -149,12 +149,12 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 4 Main KPI Cards in White/Orange style */}
+      {/* 4 Main KPI Cards - Bento Grid Layout */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         <KPICard
           label="Total Revenue"
@@ -163,6 +163,7 @@ export default function Dashboard() {
           trend={{ value: 18.4, isPositive: true }}
           description="vs last month"
           bgImage="/images/cards/card-revenue-bg.jpg"
+          size="wide"
         />
         <KPICard
           label="Total Orders"
@@ -187,15 +188,16 @@ export default function Dashboard() {
           trend={{ value: 4.8, isPositive: true }}
           description="1,266 products active"
           bgImage="/images/cards/card-products-bg.jpg"
+          size="wide"
         />
       </motion.div>
 
-      {/* CRM Widgets */}
+      {/* CRM Widgets - Bento Grid Layout */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.05 }}
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         <KPICard
           label="Hot Leads"
@@ -210,6 +212,7 @@ export default function Dashboard() {
           icon={TrendingUp}
           description="weighted total"
           bgImage="/images/cards/card-pipeline-bg.jpg"
+          size="wide"
         />
         <KPICard
           label="Overdue Follow-ups"
@@ -228,12 +231,12 @@ export default function Dashboard() {
         />
       </motion.div>
 
-      {/* Sales Widgets */}
+      {/* Sales Widgets - Bento Grid Layout */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.07 }}
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         <KPICard
           label="Revenue This Month"
@@ -242,6 +245,7 @@ export default function Dashboard() {
           trend={{ value: 14, isPositive: true }}
           description="from paid invoices"
           bgImage="/images/cards/card-finance-bg.jpg"
+          size="wide"
         />
         <KPICard
           label="Outstanding Payments"
@@ -265,6 +269,7 @@ export default function Dashboard() {
           trend={{ value: 18, isPositive: true }}
           description="vs last month"
           bgImage="/images/cards/card-analytics-bg.jpg"
+          size="wide"
         />
       </motion.div>
 
