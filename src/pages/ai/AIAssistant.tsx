@@ -421,7 +421,17 @@ export default function AIAssistantPage() {
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-1">
+        <div
+          className="flex-1 overflow-y-auto space-y-4 mb-4 pr-1"
+          style={{
+            backgroundImage: 'url(/images/ai/ai-chat-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundBlendMode: 'overlay',
+            backgroundColor: 'rgba(255,255,255,0.92)',
+          }}
+        >
           {messages.length === 0 && !stream.isStreaming && (
             <div className="flex flex-col items-center justify-center h-full text-center px-4">
               <motion.div

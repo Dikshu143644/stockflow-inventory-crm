@@ -264,11 +264,12 @@ export default function ConversionFunnelPage() {
                       <YAxis dataKey="source" type="category" tick={{ fill: '#a1a1aa', fontSize: 11 }} width={80} />
                       <Tooltip
                         contentStyle={{
-                          background: 'rgba(10,10,10,0.9)',
+                          background: '#FFFFFF',
                           border: '1px solid #E2E8F0',
                           borderRadius: '8px',
+                          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
                         }}
-                        labelStyle={{ color: '#f4f4f4' }}
+                        labelStyle={{ color: '#374151' }}
                       />
                       <Bar dataKey="conversion" fill="#F97316" radius={[0, 4, 4, 0]} name="Conversion %" />
                     </BarChart>
@@ -291,11 +292,12 @@ export default function ConversionFunnelPage() {
                       <YAxis tick={{ fill: '#a1a1aa', fontSize: 11 }} />
                       <Tooltip
                         contentStyle={{
-                          background: 'rgba(10,10,10,0.9)',
+                          background: '#FFFFFF',
                           border: '1px solid #E2E8F0',
                           borderRadius: '8px',
+                          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
                         }}
-                        labelStyle={{ color: '#f4f4f4' }}
+                        labelStyle={{ color: '#374151' }}
                       />
                       <Area
                         type="monotone"

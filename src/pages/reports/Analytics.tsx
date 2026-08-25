@@ -47,7 +47,7 @@ const pipelineData = [
   { stage: 'Won', value: 890000, count: 14 },
 ];
 
-const pipelineColors = ['#71717a', '#3b82f6', '#f59e0b', '#f97316', '#F97316'];
+const pipelineColors = ['#71717a', '#3b82f6', '#f59e0b', '#f97316', '#12B76A'];
 
 const GlassTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number; dataKey: string; color?: string }>; label?: string }) => {
   if (active && payload?.length) {
