@@ -1,11 +1,26 @@
+#!/usr/bin/env python3
+"""
+Seed demo data into a Supabase project via the Management API.
+
+Usage:
+  export SUPABASE_PROJECT_REF="your-project-ref"   # e.g. "abcdefghijklmnopqrst"
+  export SUPABASE_ACCESS_TOKEN="your-access-token"  # from supabase.com/dashboard/account/tokens
+  python scripts/seed_supabase.py
+
+Both environment variables are REQUIRED. The script will exit with an error
+if SUPABASE_PROJECT_REF is empty or looks like a placeholder value.
+"""
+
 import os
+import sys
 import json
 import urllib.request
 import urllib.error
 
-PROJECT_REF = os.getenv("SUPABASE_PROJECT_REF", "dkypdrocnebusgdlndhn")
+PROJECT_REF = os.getenv("SUPABASE_PROJECT_REF", "")
 ACCESS_TOKEN = os.getenv("SUPABASE_ACCESS_TOKEN", "")
 API_URL = f"https://api.supabase.com/v1/projects/{PROJECT_REF}/database/query"
+
 
 def run_sql(query: str):
     req = urllib.request.Request(
@@ -25,6 +40,7 @@ def run_sql(query: str):
         error_body = e.read().decode("utf-8")
         print(f"HTTP Error {e.code}: {error_body}")
         return None
+
 
 SEED_SQL = """
 -- Insert Default Roles
@@ -126,13 +142,34 @@ INSERT INTO suppliers (id, company_name, contact_person, email, phone, is_active
 ON CONFLICT (id) DO NOTHING;
 """
 
+
 def main():
-    print("Seeding demo data into Supabase...")
+    # Validate required environment variables
+    if not PROJECT_REF or PROJECT_REF.strip() == "":
+        print("ERROR: SUPABASE_PROJECT_REF environment variable is not set.")
+        print("Usage:")
+        print('  export SUPABASE_PROJECT_REF="your-project-ref"')
+        print('  export SUPABASE_ACCESS_TOKEN="your-access-token"')
+        print("  python scripts/seed_supabase.py")
+        sys.exit(1)
+
+    if "placeholder" in PROJECT_REF or "your-project" in PROJECT_REF or "example" in PROJECT_REF:
+        print(f"ERROR: SUPABASE_PROJECT_REF looks like a placeholder value: '{PROJECT_REF}'")
+        print("Please set it to your actual Supabase project reference.")
+        sys.exit(1)
+
+    if not ACCESS_TOKEN:
+        print("ERROR: SUPABASE_ACCESS_TOKEN environment variable is not set.")
+        print("Get your token from: https://supabase.com/dashboard/account/tokens")
+        sys.exit(1)
+
+    print(f"Seeding demo data into Supabase project: {PROJECT_REF}...")
     res = run_sql(SEED_SQL)
     print("Seed result:", res)
     print("Verification of products:")
     prod_check = run_sql("SELECT name, sku, selling_price FROM products;")
     print("Products in Supabase:", prod_check)
+
 
 if __name__ == "__main__":
     main()
