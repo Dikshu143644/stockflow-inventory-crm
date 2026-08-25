@@ -2,8 +2,9 @@ import os
 import json
 import urllib.request
 import urllib.error
+import sys
 
-PROJECT_REF = os.getenv("SUPABASE_PROJECT_REF", "dkypdrocnebusgdlndhn")
+PROJECT_REF = os.getenv("SUPABASE_PROJECT_REF", "")
 ACCESS_TOKEN = os.getenv("SUPABASE_ACCESS_TOKEN", "")
 API_URL = f"https://api.supabase.com/v1/projects/{PROJECT_REF}/database/query"
 
@@ -127,6 +128,15 @@ ON CONFLICT (id) DO NOTHING;
 """
 
 def main():
+    if not PROJECT_REF:
+        print("ERROR: SUPABASE_PROJECT_REF environment variable is required.")
+        print("Set it to your Supabase project reference (found in project settings URL).")
+        sys.exit(1)
+    if not ACCESS_TOKEN:
+        print("ERROR: SUPABASE_ACCESS_TOKEN environment variable is required.")
+        print("Generate a service role key from your Supabase project API settings.")
+        sys.exit(1)
+
     print("Seeding demo data into Supabase...")
     res = run_sql(SEED_SQL)
     print("Seed result:", res)

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Plus, Package, ScanLine, LayoutGrid, List, ArrowUpRight, AlertTriangle, CheckCircle2 } from 'lucide-react';
@@ -17,7 +17,9 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { DataTable } from '@/components/shared/DataTable';
 import { BarcodeScanner } from '@/components/shared/BarcodeScanner';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { useProducts } from '@/hooks/useProducts';
 import type { ScanResult } from '@/services/barcode/types';
+import type { Product } from '@/types/database';
 
 export interface ProductItem {
   id: string;
@@ -242,6 +244,21 @@ const productSchema = z.object({
 
 type ProductFormData = z.infer<typeof productSchema>;
 
+function mapProductToItem(p: Product): ProductItem {
+  return {
+    id: p.id,
+    sku: p.sku,
+    name: p.name,
+    category: p.category_id ?? 'Uncategorized',
+    stock: 0, // Stock is not on the Product type; requires inventory join
+    price: p.unit_price ?? 0,
+    reorderPoint: p.reorder_point ?? 0,
+    image: p.image_url ?? '/images/products/placeholder.jpg',
+    status: p.is_active ? 'active' : 'inactive',
+    description: p.description ?? '',
+  };
+}
+
 export default function ProductsPage() {
   useDocumentTitle('Products');
   const navigate = useNavigate();
@@ -252,13 +269,22 @@ export default function ProductsPage() {
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
 
+  // Fetch products from Supabase via hook, fall back to mock data
+  const { data: productsData } = useProducts();
+  const products: ProductItem[] = useMemo(() => {
+    if (productsData?.data && productsData.data.length > 0) {
+      return productsData.data.map(mapProductToItem);
+    }
+    return mockProducts;
+  }, [productsData]);
+
   const form = useForm<ProductFormData>({
     resolver: zodResolver(productSchema),
     defaultValues: { unit: 'pcs', taxRate: '18' },
   });
 
   const handleBarcodeScan = (result: ScanResult) => {
-    const product = mockProducts.find(
+    const product = products.find(
       (p) => p.sku === result.value || p.name.toLowerCase().includes(result.value.toLowerCase())
     );
     setScannerOpen(false);
@@ -267,7 +293,7 @@ export default function ProductsPage() {
     }
   };
 
-  const filteredProducts = mockProducts.filter((p) => {
+  const filteredProducts = products.filter((p) => {
     if (categoryFilter !== 'all' && p.category !== categoryFilter) return false;
     if (statusFilter !== 'all' && p.status !== statusFilter) return false;
     if (searchQuery.trim() && !p.name.toLowerCase().includes(searchQuery.toLowerCase()) && !p.sku.toLowerCase().includes(searchQuery.toLowerCase())) {

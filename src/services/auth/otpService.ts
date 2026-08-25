@@ -39,9 +39,27 @@ export interface VerifyOtpResponse {
   };
 }
 
-const ADK_API_URL = import.meta.env.VITE_ADK_URL || 'http://localhost:8081';
+const ADK_API_URL = import.meta.env.VITE_ADK_URL || '';
+const IS_MOCK_MODE = !import.meta.env.VITE_ADK_URL;
+
+if (IS_MOCK_MODE) {
+  console.warn('VITE_ADK_URL not configured - OTP service running in mock mode');
+}
 
 export async function sendOtp(payload: SendOtpPayload): Promise<SendOtpResponse> {
+  // If no ADK URL configured, return mock response immediately
+  if (IS_MOCK_MODE) {
+    const mockOtp = `${Math.floor(100000 + Math.random() * 900000)}`;
+    return {
+      status: 'success',
+      message: `OTP sent successfully via ${(payload.channel || 'SMS').toUpperCase()} (mock mode)`,
+      phone: payload.phone,
+      expires_in_seconds: 300,
+      otp_code: mockOtp,
+      channel: payload.channel || 'sms',
+    };
+  }
+
   try {
     const res = await fetch(`${ADK_API_URL}/api/v1/auth/send-otp`, {
       method: 'POST',
@@ -68,6 +86,28 @@ export async function sendOtp(payload: SendOtpPayload): Promise<SendOtpResponse>
 }
 
 export async function verifyOtp(payload: VerifyOtpPayload): Promise<VerifyOtpResponse> {
+  // If no ADK URL configured, return mock response immediately
+  if (IS_MOCK_MODE) {
+    if (payload.otp_code.length >= 4) {
+      return {
+        status: 'success',
+        message: 'OTP verified successfully (mock mode)',
+        phone: payload.phone,
+        verified: true,
+        auth_session: {
+          role: 'admin',
+          user: 'DOS-APP',
+          email: 'admin@stockflow.com',
+          token_type: 'Bearer',
+        },
+      };
+    }
+    return {
+      status: 'error',
+      message: 'Invalid OTP code. Please verify and enter 6 digits.',
+    };
+  }
+
   try {
     const res = await fetch(`${ADK_API_URL}/api/v1/auth/verify-otp`, {
       method: 'POST',
