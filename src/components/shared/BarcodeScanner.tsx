@@ -147,7 +147,7 @@ export function BarcodeScanner({
             {/* Scanning line animation */}
             {scanning && !lastResult && (
               <motion.div
-                className="absolute left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-emerald-500 to-transparent shadow-[0_0_8px_#10b981]"
+                className="absolute left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent shadow-[0_0_8px_#F97316]"
                 animate={{ top: ['15%', '85%', '15%'] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               />
@@ -156,10 +156,10 @@ export function BarcodeScanner({
             {/* Corner brackets */}
             {scanning && !lastResult && (
               <>
-                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-emerald-500 rounded-tl-lg" />
-                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-emerald-500 rounded-tr-lg" />
-                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-emerald-500 rounded-bl-lg" />
-                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-emerald-500 rounded-br-lg" />
+                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-orange-500 rounded-tl-lg" />
+                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-orange-500 rounded-tr-lg" />
+                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-orange-500 rounded-bl-lg" />
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-orange-500 rounded-br-lg" />
               </>
             )}
 

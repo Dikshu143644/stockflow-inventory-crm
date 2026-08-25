@@ -43,7 +43,7 @@ const monthlyCollections = [
 const paymentMethodBreakdown = [
   { name: 'Bank Transfer', value: 45, color: '#14b8a6' },
   { name: 'UPI', value: 25, color: '#06d6a0' },
-  { name: 'Cash', value: 15, color: '#10b981' },
+  { name: 'Cash', value: 15, color: '#F97316' },
   { name: 'Cheque', value: 10, color: '#0d9488' },
   { name: 'Razorpay', value: 5, color: '#34d399' },
 ];
@@ -244,7 +244,7 @@ export default function PaymentsPage() {
             <div className="h-[220px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={monthlyCollections}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
                   <YAxis stroke="#71717a" fontSize={12} tickFormatter={(v) => `$${v / 1000}K`} />
                   <Tooltip
@@ -258,7 +258,7 @@ export default function PaymentsPage() {
                       ) : null
                     }
                   />
-                  <Bar dataKey="amount" fill="#10b981" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="amount" fill="#F97316" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -447,7 +447,7 @@ export default function PaymentsPage() {
                   }, 650);
                 }
               }}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium"
+              className="bg-primary hover:bg-orange-600 text-white font-medium"
             >
               Record Payment
             </Button>

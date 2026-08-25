@@ -29,7 +29,7 @@ import { useLeadsByStage, useHotLeads, useConvertLead } from '@/hooks/useLeadPip
 import { useAuth } from '@/hooks/useAuth';
 import type { Lead } from '@/types/database';
 
-const FUNNEL_COLORS = ['#10b981', '#14b8a6', '#06b6d4', '#0ea5e9', '#6366f1'];
+const FUNNEL_COLORS = ['#F97316', '#FB923C', '#FDBA74', '#FED7AA', '#FFEDD5'];
 
 function ScoreBadge({ score }: { score: number | null }) {
   if (score === null || score === undefined) return null;
@@ -258,18 +258,18 @@ export default function ConversionFunnelPage() {
                 {sourceChartData.length > 0 ? (
                   <ResponsiveContainer width="100%" height={200}>
                     <BarChart data={sourceChartData} layout="vertical">
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                       <XAxis type="number" domain={[0, 100]} tick={{ fill: '#a1a1aa', fontSize: 11 }} />
                       <YAxis dataKey="source" type="category" tick={{ fill: '#a1a1aa', fontSize: 11 }} width={80} />
                       <Tooltip
                         contentStyle={{
-                          background: 'rgba(10,10,10,0.9)',
-                          border: '1px solid rgba(255,255,255,0.06)',
+                          background: '#FFFFFF',
+                          border: '1px solid #E2E8F0',
                           borderRadius: '8px',
                         }}
-                        labelStyle={{ color: '#f4f4f4' }}
+                        labelStyle={{ color: '#0F172A' }}
                       />
-                      <Bar dataKey="conversion" fill="#10b981" radius={[0, 4, 4, 0]} name="Conversion %" />
+                      <Bar dataKey="conversion" fill="#F97316" radius={[0, 4, 4, 0]} name="Conversion %" />
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
@@ -285,30 +285,30 @@ export default function ConversionFunnelPage() {
                 {trendData.length > 0 ? (
                   <ResponsiveContainer width="100%" height={200}>
                     <AreaChart data={trendData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                       <XAxis dataKey="month" tick={{ fill: '#a1a1aa', fontSize: 11 }} />
                       <YAxis tick={{ fill: '#a1a1aa', fontSize: 11 }} />
                       <Tooltip
                         contentStyle={{
-                          background: 'rgba(10,10,10,0.9)',
-                          border: '1px solid rgba(255,255,255,0.06)',
+                          background: '#FFFFFF',
+                          border: '1px solid #E2E8F0',
                           borderRadius: '8px',
                         }}
-                        labelStyle={{ color: '#f4f4f4' }}
+                        labelStyle={{ color: '#0F172A' }}
                       />
                       <Area
                         type="monotone"
                         dataKey="created"
-                        stroke="#10b981"
-                        fill="#10b981"
+                        stroke="#F97316"
+                        fill="#F97316"
                         fillOpacity={0.2}
                         name="Created"
                       />
                       <Area
                         type="monotone"
                         dataKey="converted"
-                        stroke="#14b8a6"
-                        fill="#14b8a6"
+                        stroke="#FB923C"
+                        fill="#FB923C"
                         fillOpacity={0.2}
                         name="Converted"
                       />

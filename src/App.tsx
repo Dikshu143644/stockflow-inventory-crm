@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
-// AuthGuard disabled during development — login bypassed
-// import { AuthGuard } from '@/components/auth/AuthGuard';
+import { AuthGuard } from '@/components/auth/AuthGuard';
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton';
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
 
@@ -56,8 +55,8 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/staff-login" element={<StaffLogin />} />
 
-        {/* All routes accessible without auth during development */}
-        <Route element={<AppShell />}>
+        {/* Protected routes - AuthGuard wraps AppShell */}
+        <Route element={<AuthGuard><AppShell /></AuthGuard>}>
           <Route index element={<ErrorBoundary><Dashboard /></ErrorBoundary>} />
           <Route path="inventory/products" element={<ErrorBoundary><Products /></ErrorBoundary>} />
           <Route path="inventory/products/:id" element={<ErrorBoundary><ProductDetail /></ErrorBoundary>} />

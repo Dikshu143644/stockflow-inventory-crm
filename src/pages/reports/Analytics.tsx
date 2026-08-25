@@ -47,7 +47,7 @@ const pipelineData = [
   { stage: 'Won', value: 890000, count: 14 },
 ];
 
-const pipelineColors = ['#71717a', '#3b82f6', '#f59e0b', '#f97316', '#10b981'];
+const pipelineColors = ['#71717a', '#3b82f6', '#f59e0b', '#f97316', '#F97316'];
 
 const GlassTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number; dataKey: string; color?: string }>; label?: string }) => {
   if (active && payload?.length) {
@@ -95,15 +95,15 @@ export default function AnalyticsPage() {
               <AreaChart data={revenueData}>
                 <defs>
                   <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#F97316" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#F97316" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                 <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
                 <YAxis stroke="#71717a" fontSize={12} tickFormatter={(v) => `$${v / 1000}K`} />
                 <Tooltip content={<GlassTooltip />} />
-                <Area type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={2} fill="url(#revGrad)" />
+                <Area type="monotone" dataKey="revenue" stroke="#F97316" strokeWidth={2} fill="url(#revGrad)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -118,11 +118,11 @@ export default function AnalyticsPage() {
             <div className="h-[320px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={topProductsData} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis type="number" stroke="#71717a" fontSize={11} tickFormatter={(v) => `$${v / 1000}K`} />
                   <YAxis type="category" dataKey="name" stroke="#71717a" fontSize={10} width={130} />
                   <Tooltip content={<GlassTooltip />} />
-                  <Bar dataKey="revenue" fill="#10b981" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="revenue" fill="#F97316" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -135,7 +135,7 @@ export default function AnalyticsPage() {
             <div className="h-[320px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={pipelineData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis dataKey="stage" stroke="#71717a" fontSize={11} />
                   <YAxis stroke="#71717a" fontSize={11} tickFormatter={(v) => `$${v / 1000}K`} />
                   <Tooltip content={<GlassTooltip />} />
@@ -159,14 +159,14 @@ export default function AnalyticsPage() {
             <div className="h-[280px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={warehouseStock}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis dataKey="name" stroke="#71717a" fontSize={12} />
                   <YAxis stroke="#71717a" fontSize={12} />
                   <Tooltip content={<GlassTooltip />} />
-                  <Bar dataKey="electronics" stackId="a" fill="#10b981" />
-                  <Bar dataKey="industrial" stackId="a" fill="#14b8a6" />
-                  <Bar dataKey="materials" stackId="a" fill="#06d6a0" />
-                  <Bar dataKey="office" stackId="a" fill="#0d9488" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="electronics" stackId="a" fill="#F97316" />
+                  <Bar dataKey="industrial" stackId="a" fill="#FB923C" />
+                  <Bar dataKey="materials" stackId="a" fill="#FDBA74" />
+                  <Bar dataKey="office" stackId="a" fill="#FED7AA" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -179,11 +179,11 @@ export default function AnalyticsPage() {
             <div className="h-[280px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={customerAcquisition}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
                   <YAxis stroke="#71717a" fontSize={12} />
                   <Tooltip content={<GlassTooltip />} />
-                  <Line type="monotone" dataKey="newCustomers" stroke="#10b981" strokeWidth={2} dot={false} />
+                  <Line type="monotone" dataKey="newCustomers" stroke="#F97316" strokeWidth={2} dot={false} />
                   <Line type="monotone" dataKey="churned" stroke="#ef4444" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
