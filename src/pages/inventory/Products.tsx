@@ -245,13 +245,15 @@ const productSchema = z.object({
 type ProductFormData = z.infer<typeof productSchema>;
 
 function mapProductToItem(p: Product): ProductItem {
+  // Handle both TS type field names and actual DB column names
+  const record = p as unknown as Record<string, unknown>;
   return {
     id: p.id,
     sku: p.sku,
     name: p.name,
     category: p.category_id ?? 'Uncategorized',
     stock: 0, // Stock is not on the Product type; requires inventory join
-    price: p.unit_price ?? 0,
+    price: (record.selling_price as number) ?? p.unit_price ?? 0,
     reorderPoint: p.reorder_point ?? 0,
     image: p.image_url ?? '/images/products/placeholder.jpg',
     status: p.is_active ? 'active' : 'inactive',
@@ -430,7 +432,7 @@ export default function ProductsPage() {
                 key={p.id}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 onClick={() => navigate(`/inventory/products/${p.id}`)}
-                className="group relative flex flex-col glass rounded-2xl border border-border overflow-hidden cursor-pointer hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all"
+                className="group relative flex flex-col glass rounded-2xl border border-border overflow-hidden cursor-pointer hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all"
               >
                 {/* Product Realistic Image Box */}
                 <div className="relative w-full h-52 overflow-hidden bg-black/40">
@@ -471,7 +473,7 @@ export default function ProductsPage() {
 
                   {/* Quick Action Button */}
                   <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-500 text-white shadow-lg">
                       <ArrowUpRight className="h-4 w-4" />
                     </div>
                   </div>
@@ -481,7 +483,7 @@ export default function ProductsPage() {
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                   <div>
                     <div className="text-xs text-muted-foreground font-mono tracking-wider">{p.sku}</div>
-                    <h3 className="font-semibold text-base text-foreground group-hover:text-emerald-400 transition-colors line-clamp-1">
+                    <h3 className="font-semibold text-base text-foreground group-hover:text-orange-500 transition-colors line-clamp-1">
                       {p.name}
                     </h3>
                     <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
@@ -499,7 +501,7 @@ export default function ProductsPage() {
                     </div>
                     <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${isLowStock ? 'bg-amber-400' : 'bg-emerald-500'}`}
+                        className={`h-full rounded-full ${isLowStock ? 'bg-amber-400' : 'bg-orange-500'}`}
                         style={{ width: `${Math.min(100, (p.stock / (p.reorderPoint * 3)) * 100)}%` }}
                       />
                     </div>

@@ -38,12 +38,14 @@ const mockSuppliers: SupplierDisplay[] = [
 ];
 
 function mapSupplierToDisplay(s: Supplier): SupplierDisplay {
+  // Handle both TS type field names and actual DB column names
+  const record = s as unknown as Record<string, unknown>;
   return {
     id: s.id,
-    company_name: s.name ?? '',
+    company_name: (record.company_name as string) ?? s.name ?? '',
     contact_person: s.contact_person ?? '',
     city: s.city ?? '',
-    state: s.country ?? '',
+    state: (record.state as string) ?? s.country ?? '',
     phone: s.phone ?? '',
     rating: s.rating ?? 0,
     payment_terms: s.payment_terms ?? 'Net 30',

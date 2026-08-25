@@ -35,7 +35,7 @@ function ScoreBadge({ score }: { score: number | null }) {
   if (score === null || score === undefined) return null;
   const color =
     score > 70
-      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+      ? 'bg-orange-500/20 text-orange-500 border-orange-500/30'
       : score > 40
         ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
         : 'bg-red-500/20 text-red-400 border-red-500/30';
@@ -197,8 +197,8 @@ export default function ConversionFunnelPage() {
             </Card>
             <Card>
               <CardContent className="p-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20">
-                  <Award className="h-5 w-5 text-emerald-400" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500/20">
+                  <Award className="h-5 w-5 text-orange-500" />
                 </div>
                 <div>
                   <p className="text-xl font-bold text-foreground">{winRate}%</p>

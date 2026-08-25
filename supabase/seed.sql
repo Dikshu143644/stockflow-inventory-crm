@@ -207,17 +207,17 @@ ON CONFLICT (id) DO NOTHING;
 -- =====================
 -- SUPPLIERS
 -- =====================
-INSERT INTO suppliers (id, company_name, contact_person, email, phone, is_active, rating, payment_terms, city, country) VALUES
-('70000000-0000-0000-0000-000000000001', 'MicroChip Supplies Ltd', 'Raman Iyer', 'orders@microchipsupplies.com', '+91 80 4567 8901', true, 5, 'Net 30', 'Bangalore', 'India'),
-('70000000-0000-0000-0000-000000000002', 'TechComponents Global', 'David Ng', 'sales@techcomponents.hk', '+91 22 3456 7890', true, 4, 'Net 45', 'Mumbai', 'India'),
-('70000000-0000-0000-0000-000000000003', 'Steel Masters India', 'Suresh Agarwal', 'commercial@steelmasters.in', '+91 657 234 5678', true, 4, 'Net 30', 'Jamshedpur', 'India'),
-('70000000-0000-0000-0000-000000000004', 'Global Electronics Corp', 'Chen Wei', 'sourcing@globalelec.cn', '+91 11 2345 6789', true, 5, 'Net 60', 'Delhi', 'India'),
-('70000000-0000-0000-0000-000000000005', 'PackRight Solutions', 'Anand Verma', 'orders@packright.co.in', '+91 20 6789 0123', true, 3, 'Net 15', 'Pune', 'India'),
-('70000000-0000-0000-0000-000000000006', 'HydroTech Systems', 'Kiran Bhatt', 'sales@hydrotechsys.com', '+91 79 8901 2345', true, 4, 'Net 30', 'Ahmedabad', 'India'),
-('70000000-0000-0000-0000-000000000007', 'LED World Distributors', 'Prashant Kumar', 'wholesale@ledworld.in', '+91 44 5678 9012', false, 3, 'Net 30', 'Chennai', 'India'),
-('70000000-0000-0000-0000-000000000008', 'CopperLine Industries', 'Ramesh Gupta', 'trade@copperline.co.in', '+91 33 4567 8901', true, 4, 'Net 45', 'Kolkata', 'India'),
-('70000000-0000-0000-0000-000000000009', 'SafetyFirst Equipment Co', 'Meena Sharma', 'sales@safetyfirst.in', '+91 141 555 6789', true, 5, 'Net 30', 'Jaipur', 'India'),
-('70000000-0000-0000-0000-000000000010', 'Pacific Bearings Ltd', 'Takeshi Mori', 'export@pacificbearings.jp', '+81 3 5555 1234', true, 5, 'Net 60', 'Osaka', 'Japan')
+INSERT INTO suppliers (id, company_name, contact_person, email, phone, is_active, rating, payment_terms, city, state) VALUES
+('70000000-0000-0000-0000-000000000001', 'MicroChip Supplies Ltd', 'Raman Iyer', 'orders@microchipsupplies.com', '+91 80 4567 8901', true, 5, 'Net 30', 'Bangalore', 'Karnataka'),
+('70000000-0000-0000-0000-000000000002', 'TechComponents Global', 'David Ng', 'sales@techcomponents.hk', '+91 22 3456 7890', true, 4, 'Net 45', 'Mumbai', 'Maharashtra'),
+('70000000-0000-0000-0000-000000000003', 'Steel Masters India', 'Suresh Agarwal', 'commercial@steelmasters.in', '+91 657 234 5678', true, 4, 'Net 30', 'Jamshedpur', 'Jharkhand'),
+('70000000-0000-0000-0000-000000000004', 'Global Electronics Corp', 'Chen Wei', 'sourcing@globalelec.cn', '+91 11 2345 6789', true, 5, 'Net 60', 'Delhi', 'Delhi NCR'),
+('70000000-0000-0000-0000-000000000005', 'PackRight Solutions', 'Anand Verma', 'orders@packright.co.in', '+91 20 6789 0123', true, 3, 'Net 15', 'Pune', 'Maharashtra'),
+('70000000-0000-0000-0000-000000000006', 'HydroTech Systems', 'Kiran Bhatt', 'sales@hydrotechsys.com', '+91 79 8901 2345', true, 4, 'Net 30', 'Ahmedabad', 'Gujarat'),
+('70000000-0000-0000-0000-000000000007', 'LED World Distributors', 'Prashant Kumar', 'wholesale@ledworld.in', '+91 44 5678 9012', false, 3, 'Net 30', 'Chennai', 'Tamil Nadu'),
+('70000000-0000-0000-0000-000000000008', 'CopperLine Industries', 'Ramesh Gupta', 'trade@copperline.co.in', '+91 33 4567 8901', true, 4, 'Net 45', 'Kolkata', 'West Bengal'),
+('70000000-0000-0000-0000-000000000009', 'SafetyFirst Equipment Co', 'Meena Sharma', 'sales@safetyfirst.in', '+91 141 555 6789', true, 5, 'Net 30', 'Jaipur', 'Rajasthan'),
+('70000000-0000-0000-0000-000000000010', 'Pacific Bearings Ltd', 'Takeshi Mori', 'export@pacificbearings.jp', '+81 3 5555 1234', true, 5, 'Net 60', 'Osaka', 'Kansai')
 ON CONFLICT (id) DO NOTHING;
 
 -- =====================
