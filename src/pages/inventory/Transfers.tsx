@@ -132,7 +132,7 @@ const statusConfig: Record<TransferStatus, { color: string; label: string }> = {
   pending: { color: 'bg-amber-500/20 text-amber-400', label: 'Pending' },
   approved: { color: 'bg-blue-500/20 text-blue-400', label: 'Approved' },
   in_transit: { color: 'bg-purple-500/20 text-purple-400', label: 'In Transit' },
-  completed: { color: 'bg-orange-500/20 text-orange-400', label: 'Completed' },
+  completed: { color: 'bg-green-500/20 text-green-500', label: 'Completed' },
   rejected: { color: 'bg-red-500/20 text-red-400', label: 'Rejected' },
 };
 

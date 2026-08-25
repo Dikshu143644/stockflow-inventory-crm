@@ -25,7 +25,7 @@ const mockMovements = [
 ];
 
 const typeConfig: Record<string, { color: string; icon: typeof ArrowDownLeft; label: string }> = {
-  in: { color: 'bg-orange-500/20 text-orange-400', icon: ArrowDownLeft, label: 'Stock In' },
+  in: { color: 'bg-green-500/20 text-green-500', icon: ArrowDownLeft, label: 'Stock In' },
   out: { color: 'bg-red-500/20 text-red-400', icon: ArrowUpRight, label: 'Stock Out' },
   transfer: { color: 'bg-blue-500/20 text-blue-400', icon: ArrowLeftRight, label: 'Transfer' },
   adjustment: { color: 'bg-amber-500/20 text-amber-400', icon: Pencil, label: 'Adjustment' },

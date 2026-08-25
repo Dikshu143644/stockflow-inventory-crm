@@ -153,7 +153,8 @@ function DealDetailPanel({ deal, onClose }: { deal: Deal; onClose: () => void })
               <div
                 className={`h-2 w-full rounded-full ${
                   idx <= stageIndex && stageIndex < 4
-                    ? 'bg-gradient-to-r from-orange-500 to-amber-500'                    : 'bg-secondary'
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-500'
+                    : 'bg-secondary'
                 }`}
               />
               <span className="text-[10px] text-muted-foreground">{stageLabels[stage].split(' ')[0]}</span>
