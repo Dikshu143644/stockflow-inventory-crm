@@ -32,7 +32,7 @@ import { supabase } from '@/lib/supabase';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 const agents = [
-  { type: 'inventory' as AgentType, name: 'Inventory', icon: Package, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+  { type: 'inventory' as AgentType, name: 'Inventory', icon: Package, color: 'text-[#FF7A00]', bg: 'bg-[#FFF1E6]' },
   { type: 'sales' as AgentType, name: 'Sales & CRM', icon: Users, color: 'text-blue-400', bg: 'bg-blue-500/10' },
   { type: 'procurement' as AgentType, name: 'Procurement', icon: Truck, color: 'text-amber-400', bg: 'bg-amber-500/10' },
   { type: 'finance' as AgentType, name: 'Finance', icon: TrendingUp, color: 'text-purple-400', bg: 'bg-purple-500/10' },
@@ -295,7 +295,7 @@ export default function AIAssistantPage() {
     >
       {/* LEFT PANEL - Conversation History */}
       <div className="hidden w-64 flex-shrink-0 lg:flex lg:flex-col">
-        <div className="glass rounded-[24px] h-full flex flex-col overflow-hidden">
+        <div className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm h-full flex flex-col overflow-hidden">
           <div className="p-4 border-b border-border">
             <Button
               onClick={handleNewConversation}
@@ -467,8 +467,8 @@ export default function AIAssistantPage() {
                 className={cn('flex gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}
               >
                 {msg.role === 'assistant' && (
-                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                    <Bot className="h-3.5 w-3.5 text-emerald-400" />
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[#FF7A00]/15">
+                    <Bot className="h-3.5 w-3.5 text-[#FF7A00]" />
                   </div>
                 )}
                 <div className={cn('max-w-[75%] space-y-2')}>
@@ -476,7 +476,7 @@ export default function AIAssistantPage() {
                   {msg.toolCalls && msg.toolCalls.length > 0 && (
                     <div className="space-y-1.5">
                       {msg.toolCalls.map((tc, i) => (
-                        <div key={i} className="glass rounded-[12px] px-3 py-2 flex items-center gap-2">
+                        <div key={i} className="bg-white border border-[#E7E5E4] rounded-[12px] shadow-sm px-3 py-2 flex items-center gap-2">
                           <Wrench className="h-3 w-3 text-primary" />
                           <span className="text-[11px] text-muted-foreground">
                             {toolDisplayNames[tc.name] || `Running ${tc.name}...`}
@@ -494,7 +494,7 @@ export default function AIAssistantPage() {
                       'rounded-[16px] px-4 py-3 text-sm',
                       msg.role === 'user'
                         ? 'bg-primary/20 text-foreground'
-                        : 'glass'
+                        : 'bg-white border border-[#E7E5E4] shadow-sm'
                     )}
                   >
                     {msg.role === 'assistant' ? (
@@ -542,15 +542,15 @@ export default function AIAssistantPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                <Bot className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[#FF7A00]/15">
+                <Bot className="h-3.5 w-3.5 text-[#FF7A00]" />
               </div>
               <div className="max-w-[75%] space-y-2">
                 {/* Active Tool Calls */}
                 {stream.toolCalls.length > 0 && (
                   <div className="space-y-1.5">
                     {stream.toolCalls.map((tc, i) => (
-                      <div key={i} className="glass rounded-[12px] px-3 py-2 flex items-center gap-2">
+                      <div key={i} className="bg-white border border-[#E7E5E4] rounded-[12px] shadow-sm px-3 py-2 flex items-center gap-2">
                         {tc.status === 'running' ? (
                           <Loader2 className="h-3 w-3 text-primary animate-spin" />
                         ) : (
@@ -570,7 +570,7 @@ export default function AIAssistantPage() {
                 )}
                 {/* Streamed Content */}
                 {stream.streamedContent && (
-                  <div className="glass rounded-[16px] px-4 py-3 text-sm">
+                  <div className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm px-4 py-3 text-sm">
                     <div className="prose prose-invert prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-headings:text-foreground prose-strong:text-foreground prose-code:text-primary prose-code:bg-primary/10 prose-code:rounded prose-code:px-1">
                       <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {stream.streamedContent}
@@ -580,7 +580,7 @@ export default function AIAssistantPage() {
                 )}
                 {/* Typing indicator when no content yet */}
                 {!stream.streamedContent && stream.toolCalls.length === 0 && (
-                  <div className="glass rounded-[16px] px-4 py-3">
+                  <div className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm px-4 py-3">
                     <div className="flex gap-1.5">
                       <span className="h-2 w-2 rounded-full bg-muted-foreground animate-bounce [animation-delay:0ms]" />
                       <span className="h-2 w-2 rounded-full bg-muted-foreground animate-bounce [animation-delay:150ms]" />
@@ -596,7 +596,7 @@ export default function AIAssistantPage() {
         </div>
 
         {/* Input Area */}
-        <div className="glass rounded-[16px] p-3">
+        <div className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm p-3">
           <div className="flex items-end gap-2">
             <Textarea
               ref={textareaRef}
@@ -644,7 +644,7 @@ export default function AIAssistantPage() {
             transition={{ duration: 0.2 }}
             className="hidden lg:block flex-shrink-0 overflow-hidden"
           >
-            <div className="glass rounded-[24px] h-full flex flex-col overflow-hidden w-[280px]">
+            <div className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm h-full flex flex-col overflow-hidden w-[280px]">
               <div className="p-4 border-b border-border">
                 <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <BookOpen className="h-4 w-4 text-primary" />
@@ -667,7 +667,7 @@ export default function AIAssistantPage() {
                           <span className="text-[11px] font-medium text-foreground">{tc.name}</span>
                         </div>
                         {tc.input && Object.keys(tc.input).length > 0 && (
-                          <pre className="text-[10px] text-muted-foreground bg-black/20 rounded-[8px] p-1.5 overflow-x-auto">
+                          <pre className="text-[10px] text-muted-foreground bg-[#F5F5F4] rounded-[8px] p-1.5 overflow-x-auto">
                             {JSON.stringify(tc.input, null, 2)}
                           </pre>
                         )}

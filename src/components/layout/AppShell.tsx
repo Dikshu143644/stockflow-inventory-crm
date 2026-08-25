@@ -7,12 +7,7 @@ import { FloatingAIWidget } from '@/components/ai/FloatingAIWidget';
 
 export function AppShell() {
   return (
-    <div className="relative flex h-screen w-full overflow-hidden bg-background">
-      {/* Decorative gradient orbs */}
-      <div className="gradient-orb absolute top-[-20%] left-[-10%] h-[500px] w-[500px]" />
-      <div className="gradient-orb absolute bottom-[-15%] right-[-5%] h-[400px] w-[400px]" />
-      <div className="gradient-orb absolute top-[50%] right-[20%] h-[300px] w-[300px] opacity-10" />
-
+    <div className="relative flex h-screen w-full overflow-hidden bg-[#F8F7F3]">
       {/* Sidebar */}
       <Sidebar />
 

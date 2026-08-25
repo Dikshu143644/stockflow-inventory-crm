@@ -404,10 +404,10 @@ export default function ProductsPage() {
                 key={p.id}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 onClick={() => navigate(`/inventory/products/${p.id}`)}
-                className="group relative flex flex-col glass rounded-2xl border border-border overflow-hidden cursor-pointer hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all"
+                className="group relative flex flex-col rounded-2xl border border-[#E7E5E4] overflow-hidden cursor-pointer hover:border-[#FF7A00]/50 hover:shadow-xl transition-all bg-white"
               >
                 {/* Product Realistic Image Box */}
-                <div className="relative w-full h-52 overflow-hidden bg-black/40">
+                <div className="relative w-full h-52 overflow-hidden bg-[#F5F5F4]">
                   <img
                     src={p.image}
                     alt={p.name}
@@ -418,7 +418,7 @@ export default function ProductsPage() {
                   
                   {/* Category Pill */}
                   <div className="absolute top-3 left-3">
-                    <Badge variant="secondary" className="glass text-xs font-semibold px-2.5 py-0.5 border border-white/10">
+                    <Badge variant="secondary" className="text-xs font-semibold px-2.5 py-0.5 border border-[#E7E5E4] bg-white">
                       {p.category}
                     </Badge>
                   </div>
@@ -430,7 +430,7 @@ export default function ProductsPage() {
                         <AlertTriangle className="h-3 w-3" /> Low Stock
                       </Badge>
                     ) : (
-                      <Badge className="bg-emerald-500/90 text-white font-medium flex items-center gap-1 text-[11px] px-2 py-0.5 shadow-md">
+                      <Badge className="bg-[#12B76A] text-white font-medium flex items-center gap-1 text-[11px] px-2 py-0.5 shadow-md">
                         <CheckCircle2 className="h-3 w-3" /> In Stock
                       </Badge>
                     )}
@@ -438,14 +438,14 @@ export default function ProductsPage() {
 
                   {/* Price Tag */}
                   <div className="absolute bottom-3 left-3">
-                    <span className="text-xl font-bold text-white tracking-tight drop-shadow-md">
+                    <span className="text-xl font-bold text-[#101828] tracking-tight">
                       ${p.price.toFixed(2)}
                     </span>
                   </div>
 
                   {/* Quick Action Button */}
                   <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FF7A00] text-white shadow-lg">
                       <ArrowUpRight className="h-4 w-4" />
                     </div>
                   </div>
@@ -455,7 +455,7 @@ export default function ProductsPage() {
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                   <div>
                     <div className="text-xs text-muted-foreground font-mono tracking-wider">{p.sku}</div>
-                    <h3 className="font-semibold text-base text-foreground group-hover:text-emerald-400 transition-colors line-clamp-1">
+                    <h3 className="font-semibold text-base text-foreground group-hover:text-[#FF7A00] transition-colors line-clamp-1">
                       {p.name}
                     </h3>
                     <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
@@ -473,7 +473,7 @@ export default function ProductsPage() {
                     </div>
                     <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${isLowStock ? 'bg-amber-400' : 'bg-emerald-500'}`}
+                        className={`h-full rounded-full ${isLowStock ? 'bg-amber-400' : 'bg-[#FF7A00]'}`}
                         style={{ width: `${Math.min(100, (p.stock / (p.reorderPoint * 3)) * 100)}%` }}
                       />
                     </div>

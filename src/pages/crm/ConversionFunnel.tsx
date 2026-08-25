@@ -29,13 +29,13 @@ import { useLeadsByStage, useHotLeads, useConvertLead } from '@/hooks/useLeadPip
 import { useAuth } from '@/hooks/useAuth';
 import type { Lead } from '@/types/database';
 
-const FUNNEL_COLORS = ['#10b981', '#14b8a6', '#06b6d4', '#0ea5e9', '#6366f1'];
+const FUNNEL_COLORS = ['#FF7A00', '#FF9A3C', '#06b6d4', '#0ea5e9', '#6366f1'];
 
 function ScoreBadge({ score }: { score: number | null }) {
   if (score === null || score === undefined) return null;
   const color =
     score > 70
-      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+      ? 'bg-[#FF7A00]/15 text-[#FF7A00] border-[#FF7A00]/30'
       : score > 40
         ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
         : 'bg-red-500/20 text-red-400 border-red-500/30';
@@ -197,8 +197,8 @@ export default function ConversionFunnelPage() {
             </Card>
             <Card>
               <CardContent className="p-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20">
-                  <Award className="h-5 w-5 text-emerald-400" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FF7A00]/15">
+                  <Award className="h-5 w-5 text-[#FF7A00]" />
                 </div>
                 <div>
                   <p className="text-xl font-bold text-foreground">{winRate}%</p>
@@ -231,7 +231,7 @@ export default function ConversionFunnelPage() {
                             background: `linear-gradient(135deg, ${stage.fill}, ${stage.fill}80)`,
                           }}
                         >
-                          <span className="text-xs font-medium text-white whitespace-nowrap">
+                          <span className="text-xs font-medium text-[#101828] whitespace-nowrap">
                             {stage.name}: {stage.value}
                           </span>
                         </div>
@@ -269,7 +269,7 @@ export default function ConversionFunnelPage() {
                         }}
                         labelStyle={{ color: '#f4f4f4' }}
                       />
-                      <Bar dataKey="conversion" fill="#10b981" radius={[0, 4, 4, 0]} name="Conversion %" />
+                      <Bar dataKey="conversion" fill="#FF7A00" radius={[0, 4, 4, 0]} name="Conversion %" />
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
@@ -299,16 +299,16 @@ export default function ConversionFunnelPage() {
                       <Area
                         type="monotone"
                         dataKey="created"
-                        stroke="#10b981"
-                        fill="#10b981"
+                        stroke="#FF7A00"
+                        fill="#FF7A00"
                         fillOpacity={0.2}
                         name="Created"
                       />
                       <Area
                         type="monotone"
                         dataKey="converted"
-                        stroke="#14b8a6"
-                        fill="#14b8a6"
+                        stroke="#FF9A3C"
+                        fill="#FF9A3C"
                         fillOpacity={0.2}
                         name="Converted"
                       />

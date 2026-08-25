@@ -62,7 +62,7 @@ const activityIcons: Record<string, typeof Phone> = {
 const activityColors: Record<string, string> = {
   call: 'bg-blue-500/20 text-blue-400',
   email: 'bg-purple-500/20 text-purple-400',
-  meeting: 'bg-emerald-500/20 text-emerald-400',
+  meeting: 'bg-[#FF7A00]/15 text-[#FF7A00]',
   note: 'bg-amber-500/20 text-amber-400',
   task: 'bg-cyan-500/20 text-cyan-400',
   follow_up: 'bg-orange-500/20 text-orange-400',

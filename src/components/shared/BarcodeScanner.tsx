@@ -147,7 +147,7 @@ export function BarcodeScanner({
             {/* Scanning line animation */}
             {scanning && !lastResult && (
               <motion.div
-                className="absolute left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-emerald-500 to-transparent shadow-[0_0_8px_#10b981]"
+                className="absolute left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-[#FF7A00] to-transparent shadow-[0_0_8px_#FF7A00]"
                 animate={{ top: ['15%', '85%', '15%'] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               />
@@ -156,10 +156,10 @@ export function BarcodeScanner({
             {/* Corner brackets */}
             {scanning && !lastResult && (
               <>
-                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-emerald-500 rounded-tl-lg" />
-                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-emerald-500 rounded-tr-lg" />
-                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-emerald-500 rounded-bl-lg" />
-                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-emerald-500 rounded-br-lg" />
+                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#FF7A00] rounded-tl-lg" />
+                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#FF7A00] rounded-tr-lg" />
+                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#FF7A00] rounded-bl-lg" />
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#FF7A00] rounded-br-lg" />
               </>
             )}
 
@@ -200,11 +200,11 @@ export function BarcodeScanner({
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="w-full max-w-sm rounded-[16px] border border-emerald-500/30 bg-emerald-500/10 p-4 space-y-3"
+                className="w-full max-w-sm rounded-[16px] border border-[#FF7A00]/30 bg-[#FFF1E6] p-4 space-y-3"
               >
                 <div className="flex items-center gap-2">
-                  <Package className="h-5 w-5 text-emerald-400" />
-                  <span className="text-sm font-medium text-emerald-300">Scan Successful</span>
+                  <Package className="h-5 w-5 text-[#FF7A00]" />
+                  <span className="text-sm font-medium text-[#FF7A00]">Scan Successful</span>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">

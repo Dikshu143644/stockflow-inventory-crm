@@ -16,50 +16,41 @@ interface KPICardProps {
   bgImage?: string;
 }
 
-export function KPICard({ label, value, icon: Icon, trend, description, className, bgImage }: KPICardProps) {
+export function KPICard({ label, value, icon: Icon, trend, description, className }: KPICardProps) {
   return (
-    <Card className={cn('relative overflow-hidden group border border-border hover:border-emerald-500/40 transition-all', className)}>
-      {/* Ambient Glassmorphic Background Overlay */}
-      {bgImage && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <img
-            src={bgImage}
-            alt=""
-            className="w-full h-full object-cover opacity-15 filter saturate-150 group-hover:scale-110 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-card via-card/90 to-card/70" />
-        </div>
-      )}
-
+    <Card className={cn('relative overflow-hidden group border border-[#E7E5E4] hover:border-[#FF7A00]/40 transition-all bg-white', className)}>
       <CardContent className="p-6 relative z-10">
         <div className="flex items-start justify-between">
           <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">{label}</p>
-            <p className="text-2xl font-bold text-foreground tracking-tight">{value}</p>
+            <p className="text-sm font-medium text-[#667085]">{label}</p>
+            <p className="text-2xl font-bold text-[#101828] tracking-tight">{value}</p>
             {trend && (
               <div className="flex items-center gap-1">
                 {trend.isPositive ? (
-                  <TrendingUp className="h-3.5 w-3.5 text-primary" />
+                  <TrendingUp className="h-3.5 w-3.5 text-[#12B76A]" />
                 ) : (
-                  <TrendingDown className="h-3.5 w-3.5 text-destructive" />
+                  <TrendingDown className="h-3.5 w-3.5 text-[#F04438]" />
                 )}
                 <span
                   className={cn(
                     'text-xs font-medium',
-                    trend.isPositive ? 'text-primary' : 'text-destructive'
+                    trend.isPositive ? 'text-[#12B76A]' : 'text-[#F04438]'
                   )}
                 >
                   {trend.isPositive ? '+' : ''}
                   {trend.value}%
                 </span>
                 {description && (
-                  <span className="text-xs text-muted-foreground ml-1">{description}</span>
+                  <span className="text-xs text-[#667085] ml-1">{description}</span>
                 )}
               </div>
             )}
+            {!trend && description && (
+              <p className="text-xs text-[#667085]">{description}</p>
+            )}
           </div>
-          <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-primary/10 border border-primary/20 group-hover:border-primary/50 shadow-sm transition-colors">
-            <Icon className="h-5 w-5 text-primary" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#FFF1E6] border border-[#FF7A00]/20 group-hover:border-[#FF7A00]/50 shadow-sm transition-colors">
+            <Icon className="h-5 w-5 text-[#FF7A00]" />
           </div>
         </div>
       </CardContent>

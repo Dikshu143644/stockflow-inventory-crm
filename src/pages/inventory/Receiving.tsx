@@ -259,7 +259,7 @@ export default function ReceivingPage() {
       key: 'status',
       title: 'Status',
       render: () => (
-        <Badge className="bg-emerald-500/20 text-emerald-400 border-0">Completed</Badge>
+        <Badge className="bg-[#FF7A00]/15 text-[#FF7A00] border-0">Completed</Badge>
       ),
     },
   ];

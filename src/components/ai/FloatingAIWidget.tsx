@@ -113,7 +113,7 @@ export function FloatingAIWidget() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/25 animate-pulse hover:animate-none transition-all"
+            className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#FF7A00] to-[#E06800] shadow-lg shadow-[#FF7A00]/25 animate-pulse hover:animate-none transition-all"
           >
             <Bot className="h-6 w-6 text-white" />
           </motion.button>
@@ -128,12 +128,12 @@ export function FloatingAIWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] h-[500px] flex flex-col glass rounded-[24px] border border-border shadow-2xl overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[380px] h-[500px] flex flex-col bg-white rounded-[14px] border border-[#E7E5E4] shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
               <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[#FF7A00] to-[#E06800]">
                   <Bot className="h-3.5 w-3.5 text-white" />
                 </div>
                 <Select value={agent} onValueChange={(val) => setAgent(val as AgentType)}>
@@ -189,8 +189,8 @@ export function FloatingAIWidget() {
                     className={cn('flex gap-2', msg.role === 'user' ? 'justify-end' : 'justify-start')}
                   >
                     {msg.role === 'assistant' && (
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                        <Bot className="h-3 w-3 text-emerald-400" />
+                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FFF1E6]">
+                        <Bot className="h-3 w-3 text-[#FF7A00]" />
                       </div>
                     )}
                     <div
@@ -217,8 +217,8 @@ export function FloatingAIWidget() {
                 {/* Streaming */}
                 {stream.isStreaming && (
                   <div className="flex gap-2 justify-start">
-                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                      <Bot className="h-3 w-3 text-emerald-400" />
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FFF1E6]">
+                      <Bot className="h-3 w-3 text-[#FF7A00]" />
                     </div>
                     <div className="max-w-[80%] rounded-[12px] px-3 py-2 text-xs bg-white/5 border border-border">
                       {stream.streamedContent ? (

@@ -100,7 +100,7 @@ export function DataTable<T extends Record<string, unknown>>({
   const renderCardView = () => (
     <div className="space-y-3">
       {paginatedData.length === 0 ? (
-        <div className="rounded-[16px] border border-border p-8 text-center text-muted-foreground">
+        <div className="rounded-[16px] border border-[#E7E5E4] p-8 text-center text-muted-foreground bg-white">
           No results found
         </div>
       ) : (
@@ -110,14 +110,14 @@ export function DataTable<T extends Record<string, unknown>>({
             <div
               key={id}
               className={cn(
-                'rounded-[16px] border border-border p-4 space-y-2 transition-colors',
-                'bg-card/50 hover:bg-secondary/30',
+                'rounded-[16px] border border-[#E7E5E4] p-4 space-y-2 transition-colors',
+                'bg-white hover:bg-[#F9FAFB]',
                 onRowClick && 'cursor-pointer'
               )}
               onClick={() => onRowClick?.(row)}
             >
               {selectable && (
-                <div className="flex items-center gap-2 pb-2 border-b border-border" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center gap-2 pb-2 border-b border-[#E7E5E4]" onClick={(e) => e.stopPropagation()}>
                   <Checkbox
                     checked={selected.has(id)}
                     onCheckedChange={() => toggleRow(id)}
@@ -144,11 +144,11 @@ export function DataTable<T extends Record<string, unknown>>({
 
   // Desktop/Tablet table view
   const renderTableView = () => (
-    <div className="rounded-[16px] border border-border overflow-hidden">
-      <div className={cn('overflow-x-auto', isTablet && '[&_td:first-child]:sticky [&_td:first-child]:left-0 [&_td:first-child]:z-10 [&_td:first-child]:bg-background [&_th:first-child]:sticky [&_th:first-child]:left-0 [&_th:first-child]:z-10 [&_th:first-child]:bg-secondary/80')}>
+    <div className="rounded-[14px] border border-[#E7E5E4] overflow-hidden bg-white">
+      <div className={cn('overflow-x-auto', isTablet && '[&_td:first-child]:sticky [&_td:first-child]:left-0 [&_td:first-child]:z-10 [&_td:first-child]:bg-white [&_th:first-child]:sticky [&_th:first-child]:left-0 [&_th:first-child]:z-10 [&_th:first-child]:bg-[#F9FAFB]')}>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-secondary/50">
+            <tr className="border-b border-[#E7E5E4] bg-[#F9FAFB]">
               {selectable && (
                 <th className="w-12 px-4 py-3">
                   <Checkbox
@@ -161,8 +161,8 @@ export function DataTable<T extends Record<string, unknown>>({
                 <th
                   key={col.key}
                   className={cn(
-                    'px-4 py-3 text-left font-medium text-muted-foreground whitespace-nowrap',
-                    col.sortable && 'cursor-pointer select-none hover:text-foreground',
+                    'px-4 py-3 text-left font-medium text-[#667085] whitespace-nowrap',
+                    col.sortable && 'cursor-pointer select-none hover:text-[#101828]',
                     col.className
                   )}
                   onClick={() => col.sortable && handleSort(col.key)}
@@ -198,7 +198,7 @@ export function DataTable<T extends Record<string, unknown>>({
                   <tr
                     key={id}
                     className={cn(
-                      'border-b border-border last:border-0 transition-colors hover:bg-secondary/30',
+                      'border-b border-[#E7E5E4] last:border-0 transition-colors hover:bg-[#F9FAFB]',
                       onRowClick && 'cursor-pointer'
                     )}
                     onClick={() => onRowClick?.(row)}

@@ -20,8 +20,6 @@ export function MobileNav() {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
-    // The main scroll container is a Radix ScrollArea viewport, not window.
-    // Query for the viewport element which Radix renders with data-radix-scroll-area-viewport.
     const viewport = document.querySelector('[data-radix-scroll-area-viewport]');
     if (!viewport) return;
 
@@ -50,7 +48,7 @@ export function MobileNav() {
     <nav
       className={cn(
         'fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300',
-        'glass border-t border-border',
+        'bg-white border-t border-[#E7E5E4] shadow-sm',
         'pb-[env(safe-area-inset-bottom)]',
         visible ? 'translate-y-0' : 'translate-y-full'
       )}
@@ -67,11 +65,11 @@ export function MobileNav() {
                 'flex flex-col items-center justify-center gap-1 flex-1 h-full relative',
                 'min-h-[44px] min-w-[44px]',
                 'transition-colors duration-200',
-                isActive ? 'text-primary' : 'text-muted-foreground'
+                isActive ? 'text-[#FF7A00]' : 'text-[#667085]'
               )}
             >
               {isActive && (
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-primary" />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-[#FF7A00]" />
               )}
               <Icon className="h-5 w-5" />
               <span className="text-[10px] font-medium">{tab.label}</span>

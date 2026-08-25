@@ -297,21 +297,21 @@ export default function LowStockPage() {
                 transition={{ duration: 0.25, delay: idx * 0.04 }}
               >
                 <Card className={cn(
-                  "relative overflow-hidden rounded-[24px] border glass transition-all duration-300 group hover:shadow-xl",
+                  "relative overflow-hidden rounded-[24px] border bg-white transition-all duration-300 group hover:shadow-xl",
                   severity === 'out_of_stock' ? "border-red-500/30 hover:border-red-500/60" :
                   severity === 'critical' ? "border-amber-500/30 hover:border-amber-500/60" :
-                  "border-emerald-500/30 hover:border-emerald-500/60"
+                  "border-[#FF7A00]/30 hover:border-[#FF7A00]/60"
                 )}>
                   {/* Subtle Background Glow Vignette */}
                   <div className={cn(
                     "absolute -right-16 -top-16 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-20",
                     severity === 'out_of_stock' ? "bg-red-500" :
-                    severity === 'critical' ? "bg-amber-500" : "bg-emerald-500"
+                    severity === 'critical' ? "bg-amber-500" : "bg-[#FF7A00]"
                   )} />
 
                   <div className="flex flex-col sm:flex-row items-stretch gap-5 p-5 relative z-10">
                     {/* Left: Full High-Clarity Square Product Photo */}
-                    <div className="relative w-full sm:w-44 h-48 sm:h-auto rounded-[18px] overflow-hidden bg-black/60 border border-border/50 flex-shrink-0">
+                    <div className="relative w-full sm:w-44 h-48 sm:h-auto rounded-[18px] overflow-hidden bg-[#F5F5F4] border border-[#E7E5E4] flex-shrink-0">
                       {product.image && (
                         <img
                           src={product.image}
@@ -322,9 +322,9 @@ export default function LowStockPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent sm:hidden" />
                       
                       {/* Warehouse Badge */}
-                      <div className="absolute bottom-2.5 left-2.5 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-md">
-                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-[11px] font-mono font-medium text-white">{product.warehouse}</span>
+                      <div className="absolute bottom-2.5 left-2.5 bg-white  px-2.5 py-1 rounded-full border border-[#E7E5E4] flex items-center gap-1.5 shadow-md">
+                        <span className="h-2 w-2 rounded-full bg-[#FF7A00] animate-pulse" />
+                        <span className="text-[11px] font-mono font-medium text-[#101828]">{product.warehouse}</span>
                       </div>
                     </div>
 
@@ -334,7 +334,7 @@ export default function LowStockPage() {
                         {/* Title & Severity Badge */}
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <h3 className="font-bold text-base text-foreground group-hover:text-emerald-400 transition-colors leading-tight">
+                            <h3 className="font-bold text-base text-foreground group-hover:text-[#FF7A00] transition-colors leading-tight">
                               {product.product_name}
                             </h3>
                             <p className="text-xs font-mono text-muted-foreground mt-0.5">{product.sku}</p>
@@ -346,21 +346,21 @@ export default function LowStockPage() {
 
                         {/* Telemetry Metrics Bento Row */}
                         <div className="grid grid-cols-3 gap-2 mt-3 text-center">
-                          <div className="bg-secondary/40 border border-border/50 rounded-[12px] p-2.5">
+                          <div className="bg-secondary/40 border border-[#E7E5E4] rounded-[12px] p-2.5">
                             <p className="text-[11px] text-muted-foreground">Current</p>
                             <p className={cn("text-xl font-extrabold tracking-tight", getSeverityColor(severity))}>
                               {product.current_stock}
                             </p>
                           </div>
-                          <div className="bg-secondary/40 border border-border/50 rounded-[12px] p-2.5">
+                          <div className="bg-secondary/40 border border-[#E7E5E4] rounded-[12px] p-2.5">
                             <p className="text-[11px] text-muted-foreground">Reorder At</p>
                             <p className="text-xl font-bold text-foreground">
                               {product.reorder_point}
                             </p>
                           </div>
-                          <div className="bg-secondary/40 border border-border/50 rounded-[12px] p-2.5">
+                          <div className="bg-secondary/40 border border-[#E7E5E4] rounded-[12px] p-2.5">
                             <p className="text-[11px] text-muted-foreground">Reorder Val</p>
-                            <p className="text-sm font-bold text-emerald-400 mt-1">
+                            <p className="text-sm font-bold text-[#FF7A00] mt-1">
                               ₹{(estimatedValue / 1000).toFixed(0)}K
                             </p>
                           </div>
@@ -380,7 +380,7 @@ export default function LowStockPage() {
                       <div className="flex items-center gap-2 pt-1">
                         <Button
                           size="sm"
-                          className="flex-1 gap-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-md shadow-emerald-500/20"
+                          className="flex-1 gap-1.5 bg-[#FF7A00] hover:bg-[#E06800] text-[#101828] font-medium shadow-md shadow-[#FF7A00]/20"
                           onClick={() => handleCreatePO(product.product_name)}
                         >
                           <ShoppingCart className="h-3.5 w-3.5" />

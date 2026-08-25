@@ -41,10 +41,10 @@ const monthlyCollections = [
 ];
 
 const paymentMethodBreakdown = [
-  { name: 'Bank Transfer', value: 45, color: '#14b8a6' },
-  { name: 'UPI', value: 25, color: '#06d6a0' },
-  { name: 'Cash', value: 15, color: '#10b981' },
-  { name: 'Cheque', value: 10, color: '#0d9488' },
+  { name: 'Bank Transfer', value: 45, color: '#FF9A3C' },
+  { name: 'UPI', value: 25, color: '#FFB366' },
+  { name: 'Cash', value: 15, color: '#FF7A00' },
+  { name: 'Cheque', value: 10, color: '#E06800' },
   { name: 'Razorpay', value: 5, color: '#34d399' },
 ];
 
@@ -250,7 +250,7 @@ export default function PaymentsPage() {
                   <Tooltip
                     content={({ active, payload }) =>
                       active && payload?.length ? (
-                        <div className="glass rounded-[12px] px-3 py-2 text-xs">
+                        <div className="bg-white border border-[#E7E5E4] rounded-[12px] px-3 py-2 text-xs shadow-sm">
                           <p className="text-foreground">
                             ${(payload[0].value as number).toLocaleString()}
                           </p>
@@ -258,7 +258,7 @@ export default function PaymentsPage() {
                       ) : null
                     }
                   />
-                  <Bar dataKey="amount" fill="#10b981" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="amount" fill="#FF7A00" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -290,7 +290,7 @@ export default function PaymentsPage() {
                   <Tooltip
                     content={({ active, payload }) =>
                       active && payload?.length ? (
-                        <div className="glass rounded-[12px] px-3 py-2 text-xs">
+                        <div className="bg-white border border-[#E7E5E4] rounded-[12px] px-3 py-2 text-xs shadow-sm">
                           <p className="text-foreground">
                             {payload[0].name}: {payload[0].value}%
                           </p>
@@ -447,7 +447,7 @@ export default function PaymentsPage() {
                   }, 650);
                 }
               }}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium"
+              className="bg-[#FF7A00] hover:bg-[#E06800] text-white font-medium"
             >
               Record Payment
             </Button>

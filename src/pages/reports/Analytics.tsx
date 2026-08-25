@@ -47,12 +47,12 @@ const pipelineData = [
   { stage: 'Won', value: 890000, count: 14 },
 ];
 
-const pipelineColors = ['#71717a', '#3b82f6', '#f59e0b', '#f97316', '#10b981'];
+const pipelineColors = ['#71717a', '#3b82f6', '#f59e0b', '#f97316', '#FF7A00'];
 
 const GlassTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number; dataKey: string; color?: string }>; label?: string }) => {
   if (active && payload?.length) {
     return (
-      <div className="glass rounded-[12px] px-3 py-2 text-xs">
+      <div className="bg-white border border-[#E7E5E4] rounded-[12px] px-3 py-2 text-xs shadow-sm">
         <p className="text-foreground font-medium mb-1">{label}</p>
         {payload.map((p, i) => (
           <p key={i} className="text-muted-foreground">
@@ -95,15 +95,15 @@ export default function AnalyticsPage() {
               <AreaChart data={revenueData}>
                 <defs>
                   <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#FF7A00" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#FF7A00" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
                 <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
                 <YAxis stroke="#71717a" fontSize={12} tickFormatter={(v) => `$${v / 1000}K`} />
                 <Tooltip content={<GlassTooltip />} />
-                <Area type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={2} fill="url(#revGrad)" />
+                <Area type="monotone" dataKey="revenue" stroke="#FF7A00" strokeWidth={2} fill="url(#revGrad)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -122,7 +122,7 @@ export default function AnalyticsPage() {
                   <XAxis type="number" stroke="#71717a" fontSize={11} tickFormatter={(v) => `$${v / 1000}K`} />
                   <YAxis type="category" dataKey="name" stroke="#71717a" fontSize={10} width={130} />
                   <Tooltip content={<GlassTooltip />} />
-                  <Bar dataKey="revenue" fill="#10b981" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="revenue" fill="#FF7A00" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -163,10 +163,10 @@ export default function AnalyticsPage() {
                   <XAxis dataKey="name" stroke="#71717a" fontSize={12} />
                   <YAxis stroke="#71717a" fontSize={12} />
                   <Tooltip content={<GlassTooltip />} />
-                  <Bar dataKey="electronics" stackId="a" fill="#10b981" />
-                  <Bar dataKey="industrial" stackId="a" fill="#14b8a6" />
-                  <Bar dataKey="materials" stackId="a" fill="#06d6a0" />
-                  <Bar dataKey="office" stackId="a" fill="#0d9488" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="electronics" stackId="a" fill="#FF7A00" />
+                  <Bar dataKey="industrial" stackId="a" fill="#FF9A3C" />
+                  <Bar dataKey="materials" stackId="a" fill="#FFB366" />
+                  <Bar dataKey="office" stackId="a" fill="#E06800" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -183,7 +183,7 @@ export default function AnalyticsPage() {
                   <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
                   <YAxis stroke="#71717a" fontSize={12} />
                   <Tooltip content={<GlassTooltip />} />
-                  <Line type="monotone" dataKey="newCustomers" stroke="#10b981" strokeWidth={2} dot={false} />
+                  <Line type="monotone" dataKey="newCustomers" stroke="#FF7A00" strokeWidth={2} dot={false} />
                   <Line type="monotone" dataKey="churned" stroke="#ef4444" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>

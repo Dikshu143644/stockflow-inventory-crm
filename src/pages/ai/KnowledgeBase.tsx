@@ -39,7 +39,7 @@ const categories: { key: CategoryKey; label: string; icon: typeof BookOpen; colo
   { key: 'all', label: 'All', icon: Layers, color: 'text-gray-400' },
   { key: 'faq', label: 'FAQ', icon: Lightbulb, color: 'text-yellow-400' },
   { key: 'sop', label: 'SOP', icon: FileText, color: 'text-blue-400' },
-  { key: 'product_info', label: 'Product Info', icon: Package, color: 'text-emerald-400' },
+  { key: 'product_info', label: 'Product Info', icon: Package, color: 'text-[#FF7A00]' },
   { key: 'policy', label: 'Policy', icon: ShieldCheck, color: 'text-red-400' },
   { key: 'guide', label: 'Guide', icon: BookMarked, color: 'text-purple-400' },
   { key: 'custom', label: 'Custom', icon: Tag, color: 'text-cyan-400' },
@@ -48,7 +48,7 @@ const categories: { key: CategoryKey; label: string; icon: typeof BookOpen; colo
 const categoryColors: Record<string, string> = {
   faq: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
   sop: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  product_info: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  product_info: 'bg-[#FFF1E6] text-[#FF7A00] border-[#FF7A00]/20',
   policy: 'bg-red-500/10 text-red-400 border-red-500/20',
   guide: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
   custom: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
@@ -273,7 +273,7 @@ export default function KnowledgeBasePage() {
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="glass rounded-[24px] p-5 animate-pulse">
+            <div key={i} className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm p-5 animate-pulse">
               <div className="h-4 w-24 bg-white/5 rounded mb-3" />
               <div className="h-3 w-full bg-white/5 rounded mb-2" />
               <div className="h-3 w-3/4 bg-white/5 rounded" />
@@ -290,7 +290,7 @@ export default function KnowledgeBasePage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 layout
-                className="glass rounded-[24px] p-5 flex flex-col group"
+                className="bg-white border border-[#E7E5E4] rounded-[14px] shadow-sm p-5 flex flex-col group"
               >
                 <div className="flex items-start justify-between mb-3">
                   <Badge

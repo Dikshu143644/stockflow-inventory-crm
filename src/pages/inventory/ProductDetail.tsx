@@ -62,7 +62,7 @@ const recentMovements = [
 ];
 
 const typeColors: Record<string, string> = {
-  in: 'bg-emerald-500/20 text-emerald-400',
+  in: 'bg-[#FF7A00]/15 text-[#FF7A00]',
   out: 'bg-red-500/20 text-red-400',
   transfer: 'bg-blue-500/20 text-blue-400',
   adjustment: 'bg-amber-500/20 text-amber-400',
@@ -298,7 +298,7 @@ export default function ProductDetailPage() {
                     <Tooltip
                       content={({ active, payload }) =>
                         active && payload?.length ? (
-                          <div className="glass rounded-[12px] px-3 py-2 text-xs">
+                          <div className="bg-white border border-[#E7E5E4] rounded-[12px] shadow-sm px-3 py-2 text-xs">
                             <p className="text-foreground font-medium">{payload[0].payload.name}</p>
                             <p className="text-muted-foreground">Quantity: {payload[0].value}</p>
                           </div>
@@ -310,7 +310,7 @@ export default function ProductDetailPage() {
                       {warehouseChartData.map((entry, index) => (
                         <Cell
                           key={index}
-                          fill={entry.quantity < mockProduct.reorderPoint ? '#ef4444' : '#10b981'}
+                          fill={entry.quantity < mockProduct.reorderPoint ? '#ef4444' : '#FF7A00'}
                         />
                       ))}
                     </Bar>
@@ -377,13 +377,13 @@ export default function ProductDetailPage() {
                     <div key={i} className="flex items-center justify-between rounded-[12px] bg-secondary/30 p-3">
                       <div className="flex items-center gap-3">
                         <div className={`flex h-8 w-8 items-center justify-center rounded-full ${
-                          m.type === 'in' ? 'bg-emerald-500/10' :
+                          m.type === 'in' ? 'bg-[#FFF1E6]' :
                           m.type === 'out' ? 'bg-red-500/10' :
                           m.type === 'transfer' ? 'bg-blue-500/10' :
                           'bg-amber-500/10'
                         }`}>
                           <TypeIcon className={`h-4 w-4 ${
-                            m.type === 'in' ? 'text-emerald-400' :
+                            m.type === 'in' ? 'text-[#FF7A00]' :
                             m.type === 'out' ? 'text-red-400' :
                             m.type === 'transfer' ? 'text-blue-400' :
                             'text-amber-400'

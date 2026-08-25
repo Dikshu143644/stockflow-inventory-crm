@@ -55,7 +55,7 @@ const statusColumns: LeadStatus[] = ['new', 'contacted', 'qualified', 'proposal'
 const statusColors: Record<LeadStatus, string> = {
   new: 'border-l-blue-400',
   contacted: 'border-l-cyan-400',
-  qualified: 'border-l-emerald-400',
+  qualified: 'border-l-[#FF7A00]',
   proposal: 'border-l-amber-400',
   negotiation: 'border-l-orange-400',
   won: 'border-l-green-400',
@@ -74,7 +74,7 @@ const statusLabels: Record<LeadStatus, string> = {
 
 const sourceColors: Record<string, string> = {
   website: 'bg-blue-500/20 text-blue-400',
-  referral: 'bg-emerald-500/20 text-emerald-400',
+  referral: 'bg-[#FF7A00]/15 text-[#FF7A00]',
   cold_call: 'bg-amber-500/20 text-amber-400',
   trade_show: 'bg-purple-500/20 text-purple-400',
   social_media: 'bg-pink-500/20 text-pink-400',
@@ -99,7 +99,7 @@ function ScoreBadge({ score }: { score: number | null }) {
   if (score === null || score === undefined) return null;
   const color =
     score > 70
-      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+      ? 'bg-[#FF7A00]/15 text-[#FF7A00] border-[#FF7A00]/30'
       : score > 40
         ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
         : 'bg-red-500/20 text-red-400 border-red-500/30';
@@ -181,7 +181,7 @@ function LeadDetailPanel({ lead, onClose }: { lead: Lead; onClose: () => void })
                 </div>
                 <div className="h-2 rounded-full bg-secondary overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                    className="h-full rounded-full bg-gradient-to-r from-[#FF7A00] to-[#FF9A3C]"
                     style={{ width: `${Math.min(value * 5, 100)}%` }}
                   />
                 </div>

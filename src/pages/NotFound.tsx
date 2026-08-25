@@ -15,10 +15,7 @@ export default function NotFoundPage() {
   useDocumentTitle('Page Not Found');
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
-      <div className="gradient-orb absolute -top-32 -left-32 h-96 w-96" />
-      <div className="gradient-orb absolute -bottom-32 -right-32 h-80 w-80 opacity-10" />
-
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F8F7F3] px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -29,7 +26,7 @@ export default function NotFoundPage() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="bg-gradient-to-r from-primary to-[#14b8a6] bg-clip-text text-[120px] font-bold leading-none text-transparent sm:text-[180px]"
+          className="bg-gradient-to-r from-[#FF7A00] to-[#FF9A3C] bg-clip-text text-[120px] font-bold leading-none text-transparent sm:text-[180px]"
         >
           404
         </motion.h1>
@@ -39,8 +36,8 @@ export default function NotFoundPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
         >
-          <h2 className="mt-4 text-2xl font-bold text-foreground">Page Not Found</h2>
-          <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
+          <h2 className="mt-4 text-2xl font-bold text-[#101828]">Page Not Found</h2>
+          <p className="mt-2 text-sm text-[#667085] max-w-md mx-auto">
             The page you are looking for does not exist or has been moved.
             Let us get you back to familiar territory.
           </p>
@@ -66,7 +63,7 @@ export default function NotFoundPage() {
           transition={{ duration: 0.4, delay: 0.7 }}
           className="mt-10"
         >
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
+          <p className="text-xs text-[#667085] uppercase tracking-wider mb-4">
             Or try one of these
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -74,9 +71,9 @@ export default function NotFoundPage() {
               <Link
                 key={item.href}
                 to={item.href}
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 backdrop-blur-sm px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-primary/10 hover:border-primary/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[#E7E5E4] bg-white px-4 py-2.5 text-sm font-medium text-[#101828] transition-colors hover:bg-[#FFF1E6] hover:border-[#FF7A00]/30"
               >
-                <item.icon className="h-4 w-4 text-primary" />
+                <item.icon className="h-4 w-4 text-[#FF7A00]" />
                 {item.label}
               </Link>
             ))}

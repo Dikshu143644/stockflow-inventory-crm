@@ -69,7 +69,7 @@ const stageColors: Record<DealStage, string> = {
   needs_analysis: 'border-l-blue-400',
   proposal: 'border-l-amber-400',
   negotiation: 'border-l-orange-400',
-  closed_won: 'border-l-emerald-400',
+  closed_won: 'border-l-[#FF7A00]',
   closed_lost: 'border-l-red-400',
 };
 
@@ -153,7 +153,7 @@ function DealDetailPanel({ deal, onClose }: { deal: Deal; onClose: () => void })
               <div
                 className={`h-2 w-full rounded-full ${
                   idx <= stageIndex && stageIndex < 4
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500'
+                    ? 'bg-gradient-to-r from-[#FF7A00] to-[#FF9A3C]'
                     : 'bg-secondary'
                 }`}
               />
@@ -341,7 +341,7 @@ export default function DealsPage() {
                 <List className="h-4 w-4" />
               </button>
             </div>
-            <Button onClick={() => setDialogOpen(true)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium">
+            <Button onClick={() => setDialogOpen(true)} className="bg-[#FF7A00] hover:bg-[#E06800] text-white font-medium">
               <Plus className="mr-2 h-4 w-4" /> Add Deal
             </Button>
           </div>
@@ -371,7 +371,7 @@ export default function DealsPage() {
               .map((stage) => (
                 <div
                   key={stage.stage}
-                  className="bg-gradient-to-r from-emerald-500 to-teal-500 opacity-80 hover:opacity-100 transition-opacity relative group"
+                  className="bg-gradient-to-r from-[#FF7A00] to-[#FF9A3C] opacity-80 hover:opacity-100 transition-opacity relative group"
                   style={{
                     width: `${(stage.total_value / pipelineValue.total_value) * 100}%`,
                   }}

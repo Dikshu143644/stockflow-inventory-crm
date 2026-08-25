@@ -180,7 +180,7 @@ function CustomerDetailPanel({ customer }: { customer: Customer }) {
           </Badge>
         </div>
         {companyName && (
-          <p className="text-sm text-emerald-400 font-medium flex items-center gap-1.5">
+          <p className="text-sm text-[#FF7A00] font-medium flex items-center gap-1.5">
             <Building2 className="h-4 w-4" /> {companyName}
           </p>
         )}
@@ -193,17 +193,17 @@ function CustomerDetailPanel({ customer }: { customer: Customer }) {
         <div className="space-y-2 text-sm text-foreground">
           {customer.email && (
             <p className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-emerald-400" /> {customer.email}
+              <Mail className="h-4 w-4 text-[#FF7A00]" /> {customer.email}
             </p>
           )}
           {customer.phone && (
             <p className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-emerald-400" /> {customer.phone}
+              <Phone className="h-4 w-4 text-[#FF7A00]" /> {customer.phone}
             </p>
           )}
           {(customer.address || customer.city || customer.country) && (
             <p className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-emerald-400" />
+              <MapPin className="h-4 w-4 text-[#FF7A00]" />
               {[customer.address, customer.city, customer.country].filter(Boolean).join(', ')}
             </p>
           )}
@@ -215,14 +215,14 @@ function CustomerDetailPanel({ customer }: { customer: Customer }) {
         <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Purchase Telemetry</h4>
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-[16px] bg-secondary/40 border border-border p-4 text-center">
-            <DollarSign className="h-5 w-5 text-emerald-400 mx-auto mb-1" />
+            <DollarSign className="h-5 w-5 text-[#FF7A00] mx-auto mb-1" />
             <p className="text-xl font-extrabold text-foreground">
               ${(customer.total_spent || 0).toLocaleString()}
             </p>
             <p className="text-[11px] text-muted-foreground">Lifetime Revenue</p>
           </div>
           <div className="rounded-[16px] bg-secondary/40 border border-border p-4 text-center">
-            <ShoppingBag className="h-5 w-5 text-emerald-400 mx-auto mb-1" />
+            <ShoppingBag className="h-5 w-5 text-[#FF7A00] mx-auto mb-1" />
             <p className="text-xl font-extrabold text-foreground">{customer.total_orders || 0}</p>
             <p className="text-[11px] text-muted-foreground">Fulfilled Orders</p>
           </div>
@@ -380,7 +380,7 @@ export default function CustomersPage() {
         description="Manage enterprise client accounts, lifetime contract values, and relationship pipelines"
         bannerImage="/images/pages/banner-customers.jpg"
         actions={
-          <Button onClick={() => setDialogOpen(true)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium">
+          <Button onClick={() => setDialogOpen(true)} className="bg-[#FF7A00] hover:bg-[#E06800] text-white font-medium">
             <Plus className="mr-2 h-4 w-4" /> Add Customer
           </Button>
         }
@@ -451,7 +451,7 @@ export default function CustomersPage() {
           <Button
             size="sm"
             variant={viewMode === 'bento' ? 'secondary' : 'ghost'}
-            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'bento' && "bg-card text-emerald-400 font-semibold shadow-sm")}
+            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'bento' && "bg-card text-[#FF7A00] font-semibold shadow-sm")}
             onClick={() => setViewMode('bento')}
           >
             <LayoutGrid className="h-3.5 w-3.5" /> Bento Grid
@@ -459,7 +459,7 @@ export default function CustomersPage() {
           <Button
             size="sm"
             variant={viewMode === 'table' ? 'secondary' : 'ghost'}
-            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'table' && "bg-card text-emerald-400 font-semibold shadow-sm")}
+            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'table' && "bg-card text-[#FF7A00] font-semibold shadow-sm")}
             onClick={() => setViewMode('table')}
           >
             <TableIcon className="h-3.5 w-3.5" /> Table
@@ -488,24 +488,24 @@ export default function CustomersPage() {
               >
                 <Card
                   onClick={() => setSelectedCustomer(cust)}
-                  className="rounded-[24px] glass border border-border hover:border-emerald-500/40 transition-all duration-300 p-5 group cursor-pointer relative overflow-hidden hover:shadow-xl"
+                  className="rounded-[14px] bg-white border border-[#E7E5E4] shadow-sm hover:border-[#FF7A00]/40 transition-all duration-300 p-5 group cursor-pointer relative overflow-hidden hover:shadow-xl"
                 >
                   {/* Ambient Glow */}
-                  <div className="absolute -right-12 -top-12 w-36 h-36 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none group-hover:bg-emerald-500/20 transition-colors" />
+                  <div className="absolute -right-12 -top-12 w-36 h-36 rounded-full bg-[#FFF1E6] blur-2xl pointer-events-none group-hover:bg-[#FF7A00]/15 transition-colors" />
 
                   {/* Header Row: Avatar & Company */}
                   <div className="flex items-start justify-between gap-3 relative z-10">
                     <div className="flex items-center gap-3">
-                      <div className="h-12 w-12 rounded-[16px] bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+                      <div className="h-12 w-12 rounded-[16px] bg-gradient-to-br from-[#FF7A00]/20 via-[#FF7A00]/10 to-transparent border border-[#FF7A00]/30 flex items-center justify-center text-[#FF7A00] font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
                         {(cust.name || 'C').charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <h3 className="font-bold text-foreground text-base group-hover:text-emerald-400 transition-colors leading-tight">
+                        <h3 className="font-bold text-foreground text-base group-hover:text-[#FF7A00] transition-colors leading-tight">
                           {cust.name || 'Unnamed Client'}
                         </h3>
                         {cust.company && (
                           <p className="text-xs text-muted-foreground font-medium flex items-center gap-1 mt-0.5">
-                            <Building2 className="h-3 w-3 text-emerald-400/80" /> {cust.company}
+                            <Building2 className="h-3 w-3 text-[#FF7A00]/80" /> {cust.company}
                           </p>
                         )}
                       </div>
@@ -519,19 +519,19 @@ export default function CustomersPage() {
                   <div className="space-y-1.5 my-4 text-xs text-muted-foreground relative z-10">
                     {cust.email && (
                       <p className="flex items-center gap-2 truncate">
-                        <Mail className="h-3.5 w-3.5 text-emerald-400/70 shrink-0" />
+                        <Mail className="h-3.5 w-3.5 text-[#FF7A00]/70 shrink-0" />
                         <span className="truncate">{cust.email}</span>
                       </p>
                     )}
                     {cust.phone && (
                       <p className="flex items-center gap-2">
-                        <Phone className="h-3.5 w-3.5 text-emerald-400/70 shrink-0" />
+                        <Phone className="h-3.5 w-3.5 text-[#FF7A00]/70 shrink-0" />
                         <span>{cust.phone}</span>
                       </p>
                     )}
                     {cust.city && (
                       <p className="flex items-center gap-2">
-                        <MapPin className="h-3.5 w-3.5 text-emerald-400/70 shrink-0" />
+                        <MapPin className="h-3.5 w-3.5 text-[#FF7A00]/70 shrink-0" />
                         <span>{cust.city}, {cust.country}</span>
                       </p>
                     )}
@@ -541,7 +541,7 @@ export default function CustomersPage() {
                   <div className="grid grid-cols-2 gap-2 pt-3 border-t border-border/40 text-center relative z-10">
                     <div className="bg-secondary/40 border border-border/40 rounded-[12px] p-2.5">
                       <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground">Lifetime Value</p>
-                      <p className="text-base font-extrabold text-emerald-400 font-mono mt-0.5">
+                      <p className="text-base font-extrabold text-[#FF7A00] font-mono mt-0.5">
                         ${(cust.total_spent || 0).toLocaleString()}
                       </p>
                     </div>
@@ -554,7 +554,7 @@ export default function CustomersPage() {
                   </div>
 
                   {/* Footer Action */}
-                  <div className="mt-3 flex items-center justify-between text-xs text-emerald-400 font-medium pt-2 group-hover:translate-x-1 transition-transform">
+                  <div className="mt-3 flex items-center justify-between text-xs text-[#FF7A00] font-medium pt-2 group-hover:translate-x-1 transition-transform">
                     <span>View Client Profile</span>
                     <ArrowUpRight className="h-4 w-4" />
                   </div>
@@ -592,7 +592,7 @@ export default function CustomersPage() {
         <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-emerald-400" /> Add New Customer
+              <Users className="h-5 w-5 text-[#FF7A00]" /> Add New Customer
             </DialogTitle>
             <DialogDescription>Add an enterprise client account to your CRM directory.</DialogDescription>
           </DialogHeader>
@@ -661,7 +661,7 @@ export default function CustomersPage() {
               <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={createCustomer.isPending} className="bg-emerald-500 hover:bg-emerald-600 text-white">
+              <Button type="submit" disabled={createCustomer.isPending} className="bg-[#FF7A00] hover:bg-[#E06800] text-white">
                 {createCustomer.isPending ? 'Creating...' : 'Save Client'}
               </Button>
             </DialogFooter>

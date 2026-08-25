@@ -159,18 +159,18 @@ function SidebarContent() {
     <TooltipProvider delayDuration={0}>
       <div className="flex h-full flex-col">
         {/* Logo */}
-        <div className={cn('flex h-16 items-center border-b border-border px-4', isCollapsed && 'justify-center px-2')}>
+        <div className={cn('flex h-16 items-center border-b border-[#E7E5E4] px-4', isCollapsed && 'justify-center px-2')}>
           {isCollapsed ? (
-            <div className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-primary">
-              <span className="text-sm font-bold text-primary-foreground">S</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#FF7A00]">
+              <span className="text-sm font-bold text-white">S</span>
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-primary">
-                <span className="text-sm font-bold text-primary-foreground">S</span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#FF7A00]">
+                <span className="text-sm font-bold text-white">S</span>
               </div>
-              <span className="text-lg font-bold text-foreground">
-                Stock<span className="text-primary">Flow</span>
+              <span className="text-lg font-bold text-[#101828]">
+                Stock<span className="text-[#FF7A00]">Flow</span>
               </span>
             </div>
           )}
@@ -182,7 +182,7 @@ function SidebarContent() {
             {filteredSections.map((section) => (
               <div key={section.title} className="space-y-1">
                 {!isCollapsed && (
-                  <p className="px-3 text-xs font-medium uppercase tracking-wider text-muted-foreground mb-2">
+                  <p className="px-3 text-xs font-medium uppercase tracking-wider text-[#667085] mb-2">
                     {section.title}
                   </p>
                 )}
@@ -192,14 +192,14 @@ function SidebarContent() {
                     <Link
                       to={item.href}
                       className={cn(
-                        'flex items-center gap-3 rounded-[12px] px-3 py-2 text-sm font-medium transition-all duration-200',
+                        'flex items-center gap-3 rounded-[8px] px-3 py-2 text-sm font-medium transition-all duration-200',
                         active
-                          ? 'bg-primary/15 text-primary'
-                          : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
+                          ? 'bg-[#FFF1E6] text-[#FF7A00]'
+                          : 'text-[#667085] hover:bg-[#F5F5F4] hover:text-[#101828]',
                         isCollapsed && 'justify-center px-2'
                       )}
                     >
-                      <item.icon className={cn('h-4 w-4 shrink-0', active && 'text-primary')} />
+                      <item.icon className={cn('h-4 w-4 shrink-0', active && 'text-[#FF7A00]')} />
                       {!isCollapsed && <span>{item.title}</span>}
                     </Link>
                   );
@@ -221,15 +221,15 @@ function SidebarContent() {
         </ScrollArea>
 
         {/* User profile & collapse toggle */}
-        <div className="border-t border-border p-3">
+        <div className="border-t border-[#E7E5E4] p-3">
           {!isCollapsed && (
-            <div className="flex items-center gap-3 rounded-[12px] px-3 py-2 mb-2">
+            <div className="flex items-center gap-3 rounded-[8px] px-3 py-2 mb-2">
               <Avatar className="h-8 w-8">
-                <AvatarFallback className="text-xs bg-primary/20 text-primary">{initials}</AvatarFallback>
+                <AvatarFallback className="text-xs bg-[#FFF1E6] text-[#FF7A00]">{initials}</AvatarFallback>
               </Avatar>
               <div className="flex-1 overflow-hidden">
-                <p className="text-sm font-medium text-foreground truncate">{displayName}</p>
-                <p className="text-xs text-muted-foreground truncate">{roleName}</p>
+                <p className="text-sm font-medium text-[#101828] truncate">{displayName}</p>
+                <p className="text-xs text-[#667085] truncate">{roleName}</p>
               </div>
             </div>
           )}
@@ -262,7 +262,7 @@ export function Sidebar() {
   if (isMobile) {
     return (
       <Sheet open={isMobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="w-64 p-0 bg-sidebar-background backdrop-blur-xl">
+        <SheetContent side="left" className="w-64 p-0 bg-white border-r border-[#E7E5E4]">
           <SidebarContent />
         </SheetContent>
       </Sheet>
@@ -272,7 +272,7 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'hidden md:flex flex-col h-screen border-r border-border bg-sidebar-background backdrop-blur-xl transition-all duration-300',
+        'hidden md:flex flex-col h-screen border-r border-[#E7E5E4] bg-white transition-all duration-300',
         isCollapsed ? 'w-[68px]' : 'w-64'
       )}
     >

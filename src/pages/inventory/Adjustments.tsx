@@ -203,11 +203,11 @@ export default function AdjustmentsPage() {
         return (
           <div className="flex items-center gap-1.5">
             {isPositive ? (
-              <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+              <TrendingUp className="h-3.5 w-3.5 text-[#FF7A00]" />
             ) : (
               <TrendingDown className="h-3.5 w-3.5 text-red-400" />
             )}
-            <span className={`font-medium ${isPositive ? 'text-emerald-400' : 'text-red-400'}`}>
+            <span className={`font-medium ${isPositive ? 'text-[#FF7A00]' : 'text-red-400'}`}>
               {isPositive ? '+' : ''}{qty}
             </span>
           </div>
