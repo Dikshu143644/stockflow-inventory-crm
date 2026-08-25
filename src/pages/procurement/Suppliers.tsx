@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Plus, Star, Truck } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -11,8 +11,22 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { DataTable } from '@/components/shared/DataTable';
+import { useSuppliers } from '@/hooks/useSuppliers';
+import type { Supplier } from '@/types/database';
 
-const mockSuppliers = [
+interface SupplierDisplay {
+  id: string;
+  company_name: string;
+  contact_person: string;
+  city: string;
+  state: string;
+  phone: string;
+  rating: number;
+  payment_terms: string;
+  status: string;
+}
+
+const mockSuppliers: SupplierDisplay[] = [
   { id: '1', company_name: 'MicroChip Supplies Ltd', contact_person: 'Raman Iyer', city: 'Bangalore', state: 'Karnataka', phone: '+91 80 4567 8901', rating: 5, payment_terms: 'Net 30', status: 'active' },
   { id: '2', company_name: 'TechComponents Global', contact_person: 'David Ng', city: 'Mumbai', state: 'Maharashtra', phone: '+91 22 3456 7890', rating: 4, payment_terms: 'Net 45', status: 'active' },
   { id: '3', company_name: 'Steel Masters India', contact_person: 'Suresh Agarwal', city: 'Jamshedpur', state: 'Jharkhand', phone: '+91 657 234 5678', rating: 4, payment_terms: 'Net 30', status: 'active' },
@@ -22,6 +36,22 @@ const mockSuppliers = [
   { id: '7', company_name: 'LED World Distributors', contact_person: 'Prashant Kumar', city: 'Chennai', state: 'Tamil Nadu', phone: '+91 44 5678 9012', rating: 3, payment_terms: 'Net 30', status: 'inactive' },
   { id: '8', company_name: 'CopperLine Industries', contact_person: 'Ramesh Gupta', city: 'Kolkata', state: 'West Bengal', phone: '+91 33 4567 8901', rating: 4, payment_terms: 'Net 45', status: 'active' },
 ];
+
+function mapSupplierToDisplay(s: Supplier): SupplierDisplay {
+  // Handle both TS type field names and actual DB column names
+  const record = s as unknown as Record<string, unknown>;
+  return {
+    id: s.id,
+    company_name: (record.company_name as string) ?? s.name ?? '',
+    contact_person: s.contact_person ?? '',
+    city: s.city ?? '',
+    state: (record.state as string) ?? s.country ?? '',
+    phone: s.phone ?? '',
+    rating: s.rating ?? 0,
+    payment_terms: s.payment_terms ?? 'Net 30',
+    status: s.is_active ? 'active' : 'inactive',
+  };
+}
 
 const supplierSchema = z.object({
   companyName: z.string().min(2, 'Company name is required'),
@@ -39,6 +69,15 @@ type SupplierFormData = z.infer<typeof supplierSchema>;
 export default function SuppliersPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const form = useForm<SupplierFormData>({ resolver: zodResolver(supplierSchema) });
+
+  // Fetch suppliers from Supabase via hook, fall back to mock data
+  const { data: suppliersData } = useSuppliers();
+  const suppliers: SupplierDisplay[] = useMemo(() => {
+    if (suppliersData?.data && suppliersData.data.length > 0) {
+      return suppliersData.data.map(mapSupplierToDisplay);
+    }
+    return mockSuppliers;
+  }, [suppliersData]);
 
   const columns = [
     { key: 'company_name', title: 'Company', sortable: true },
@@ -100,7 +139,7 @@ export default function SuppliersPage() {
 
       <DataTable
         columns={columns}
-        data={mockSuppliers as unknown as Record<string, unknown>[]}
+        data={suppliers as unknown as Record<string, unknown>[]}
         selectable
         searchPlaceholder="Search suppliers..."
       />

@@ -60,16 +60,18 @@ export default function StaffLoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 py-8">
-      {/* Background gradient orbs */}
-      <div className="gradient-orb absolute -top-40 -right-40 h-[500px] w-[500px] opacity-20" />
-      <div className="gradient-orb absolute -bottom-40 -left-40 h-[400px] w-[400px] opacity-15" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#FDFBF7] px-4 py-8">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-orange-100/60 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-amber-100/50 blur-3xl" />
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="glass w-full max-w-lg rounded-[24px] p-6 sm:p-8"
+        className="relative w-full max-w-lg rounded-[24px] bg-white/95 backdrop-blur-2xl border border-white/60 shadow-[0_25px_80px_rgba(0,0,0,0.15)] p-6 sm:p-8 text-slate-900"
       >
         {/* Staff portal branding */}
         <motion.div
@@ -78,20 +80,20 @@ export default function StaffLoginPage() {
           transition={{ delay: 0.1, duration: 0.4 }}
           className="mb-6 text-center"
         >
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-[16px] bg-primary/20 border border-primary/30 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-[16px] bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-orange-500/20">
+            <ShieldCheck className="h-7 w-7 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Staff & Operations Portal</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <h1 className="text-2xl font-bold text-slate-900">Staff & Operations Portal</h1>
+          <p className="mt-1 text-sm text-slate-500">
             StockFlow internal operations & management access
           </p>
         </motion.div>
 
         {/* 1-Click Fast Roles */}
-        <div className="mb-6 rounded-[16px] border border-primary/20 bg-primary/5 p-4">
+        <div className="mb-6 rounded-[16px] border border-orange-200 bg-orange-50/80 p-4">
           <div className="mb-2.5 flex items-center justify-between">
-            <span className="text-xs font-semibold text-primary">1-CLICK STAFF ACCESS</span>
-            <span className="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-medium text-primary">
+            <span className="text-xs font-semibold text-orange-600">1-CLICK STAFF ACCESS</span>
+            <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-medium text-orange-600">
               Instant
             </span>
           </div>
@@ -99,29 +101,29 @@ export default function StaffLoginPage() {
             <button
               type="button"
               onClick={() => handleQuickDemo('admin')}
-              className="flex flex-col items-center justify-center rounded-[10px] border border-primary/30 bg-primary/10 hover:bg-primary/20 py-2.5 px-2 text-center transition-all cursor-pointer hover:scale-102"
+              className="flex flex-col items-center justify-center rounded-[10px] border border-orange-200 bg-orange-50 hover:bg-orange-100 py-2.5 px-2 text-center transition-all cursor-pointer hover:scale-102"
             >
-              <Shield className="h-4 w-4 text-emerald-400 mb-1" />
-              <span className="text-xs font-semibold text-foreground">Admin</span>
-              <span className="text-[10px] text-muted-foreground">Master</span>
+              <Shield className="h-4 w-4 text-orange-500 mb-1" />
+              <span className="text-xs font-semibold text-slate-900">Admin</span>
+              <span className="text-[10px] text-slate-500">Master</span>
             </button>
             <button
               type="button"
               onClick={() => handleQuickDemo('manager')}
-              className="flex flex-col items-center justify-center rounded-[10px] border border-border bg-secondary/40 hover:bg-secondary py-2.5 px-2 text-center transition-all cursor-pointer hover:scale-102"
+              className="flex flex-col items-center justify-center rounded-[10px] border border-slate-200 bg-slate-50 hover:bg-slate-100 py-2.5 px-2 text-center transition-all cursor-pointer hover:scale-102"
             >
-              <Briefcase className="h-4 w-4 text-teal-400 mb-1" />
-              <span className="text-xs font-semibold text-foreground">Manager</span>
-              <span className="text-[10px] text-muted-foreground">CRM & Stock</span>
+              <Briefcase className="h-4 w-4 text-orange-500 mb-1" />
+              <span className="text-xs font-semibold text-slate-900">Manager</span>
+              <span className="text-[10px] text-slate-500">CRM & Stock</span>
             </button>
             <button
               type="button"
               onClick={() => handleQuickDemo('staff')}
-              className="flex flex-col items-center justify-center rounded-[10px] border border-border bg-secondary/40 hover:bg-secondary py-2.5 px-2 text-center transition-all cursor-pointer hover:scale-102"
+              className="flex flex-col items-center justify-center rounded-[10px] border border-slate-200 bg-slate-50 hover:bg-slate-100 py-2.5 px-2 text-center transition-all cursor-pointer hover:scale-102"
             >
-              <Package className="h-4 w-4 text-cyan-400 mb-1" />
-              <span className="text-xs font-semibold text-foreground">Staff</span>
-              <span className="text-[10px] text-muted-foreground">Inventory</span>
+              <Package className="h-4 w-4 text-orange-500 mb-1" />
+              <span className="text-xs font-semibold text-slate-900">Staff</span>
+              <span className="text-[10px] text-slate-500">Inventory</span>
             </button>
           </div>
         </div>
@@ -130,32 +132,32 @@ export default function StaffLoginPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <Label htmlFor="staff-email">Staff Email</Label>
+              <Label htmlFor="staff-email" className="text-slate-700">Staff Email</Label>
               <div className="flex gap-1.5">
                 <button
                   type="button"
                   onClick={() => setFillCredentials('staff@stockflow.com', 'password123')}
-                  className="text-[11px] text-primary/80 hover:text-primary underline cursor-pointer"
+                  className="text-[11px] text-orange-500/80 hover:text-orange-600 underline cursor-pointer"
                 >
                   Fill Staff
                 </button>
-                <span className="text-muted-foreground text-[11px]">&middot;</span>
+                <span className="text-slate-400 text-[11px]">&middot;</span>
                 <button
                   type="button"
                   onClick={() => setFillCredentials('manager@stockflow.com', 'password123')}
-                  className="text-[11px] text-primary/80 hover:text-primary underline cursor-pointer"
+                  className="text-[11px] text-orange-500/80 hover:text-orange-600 underline cursor-pointer"
                 >
                   Fill Manager
                 </button>
               </div>
             </div>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <Input
                 id="staff-email"
                 type="email"
                 placeholder="you@stockflow.com"
-                className="pl-10 bg-secondary/40"
+                className="pl-10 bg-slate-50 border-slate-200"
                 {...register('email')}
               />
             </div>
@@ -165,20 +167,20 @@ export default function StaffLoginPage() {
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="staff-password">Password</Label>
+            <Label htmlFor="staff-password" className="text-slate-700">Password</Label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <Input
                 id="staff-password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Enter your password"
-                className="pl-10 pr-10 bg-secondary/40"
+                className="pl-10 pr-10 bg-slate-50 border-slate-200"
                 {...register('password')}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -188,10 +190,10 @@ export default function StaffLoginPage() {
             )}
           </div>
 
-          <Button type="submit" className="w-full h-11 text-base font-semibold" disabled={buttonDisabled}>
+          <Button type="submit" className="w-full h-11 text-base font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white" disabled={buttonDisabled}>
             {isLoading ? (
               <span className="flex items-center gap-2">
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                 Signing in...
               </span>
             ) : rateLimitCountdown > 0 ? (
@@ -205,15 +207,15 @@ export default function StaffLoginPage() {
             type="button"
             variant="outline"
             onClick={() => handleQuickDemo('staff')}
-            className="w-full border-primary/30 text-primary hover:bg-primary/10 gap-2"
+            className="w-full border-orange-200 text-orange-600 hover:bg-orange-50 gap-2"
           >
             <Zap className="h-4 w-4" /> Quick Staff Direct Access
           </Button>
         </form>
 
         {/* Back to customer login */}
-        <p className="mt-5 text-center text-xs text-muted-foreground">
-          <Link to="/login" className="text-muted-foreground hover:text-primary transition-colors">
+        <p className="mt-5 text-center text-xs text-slate-500">
+          <Link to="/login" className="text-slate-500 hover:text-orange-500 transition-colors">
             &larr; Back to customer login
           </Link>
         </p>

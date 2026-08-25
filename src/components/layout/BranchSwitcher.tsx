@@ -24,7 +24,7 @@ export function BranchSwitcher() {
         <Button
           variant="outline"
           size="sm"
-          className="hidden sm:flex gap-2 text-muted-foreground border-border/50 bg-background/40 backdrop-blur-sm hover:bg-secondary/50 max-w-[200px]"
+          className="hidden sm:flex gap-2 text-muted-foreground border-border/50 bg-white hover:bg-secondary/50 max-w-[200px]"
         >
           <Building2 className="h-4 w-4 shrink-0 text-primary" />
           <span className="truncate text-xs">
@@ -43,7 +43,7 @@ export function BranchSwitcher() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-64 bg-background/95 backdrop-blur-xl border-border/50"
+        className="w-64 bg-white border-border/50"
       >
         <DropdownMenuLabel className="text-xs text-muted-foreground font-normal">
           Switch Branch

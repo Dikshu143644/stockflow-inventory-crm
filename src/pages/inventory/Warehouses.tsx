@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Plus, MapPin, User } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -12,8 +12,24 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { PageHeader } from '@/components/shared/PageHeader';
+import { useWarehouses } from '@/hooks/useWarehouses';
+import type { Warehouse } from '@/types/database';
 
-const mockWarehouses = [
+interface WarehouseDisplay {
+  id: string;
+  name: string;
+  code: string;
+  city: string;
+  state: string;
+  capacity: number;
+  used: number;
+  products: number;
+  manager: string;
+  isActive: boolean;
+  image: string;
+}
+
+const mockWarehouses: WarehouseDisplay[] = [
   { id: '1', name: 'Main Warehouse', code: 'WH-MUM', city: 'Mumbai', state: 'Maharashtra', capacity: 10000, used: 7500, products: 1240, manager: 'Rajesh Kumar', isActive: true, image: '/images/warehouses/warehouse-mumbai.jpg' },
   { id: '2', name: 'North Distribution Hub', code: 'WH-DEL', city: 'Delhi', state: 'Delhi NCR', capacity: 8000, used: 5200, products: 890, manager: 'Vikram Singh', isActive: true, image: '/images/warehouses/warehouse-delhi.jpg' },
   { id: '3', name: 'South Tech Center', code: 'WH-BLR', city: 'Bangalore', state: 'Karnataka', capacity: 6000, used: 4800, products: 720, manager: 'Anita Sharma', isActive: true, image: '/images/warehouses/warehouse-bangalore.jpg' },
@@ -21,6 +37,24 @@ const mockWarehouses = [
   { id: '5', name: 'West Port Facility', code: 'WH-AHM', city: 'Ahmedabad', state: 'Gujarat', capacity: 7000, used: 6300, products: 680, manager: 'Mehul Patel', isActive: true, image: '/images/warehouses/warehouse-ahmedabad.jpg' },
   { id: '6', name: 'Overflow Storage B2', code: 'WH-PUN', city: 'Pune', state: 'Maharashtra', capacity: 3000, used: 450, products: 110, manager: 'Deepak Joshi', isActive: false, image: '/images/warehouses/warehouse-pune.jpg' },
 ];
+
+function mapWarehouseToDisplay(w: Warehouse): WarehouseDisplay {
+  // Handle both TS type field names and actual DB column names
+  const record = w as unknown as Record<string, unknown>;
+  return {
+    id: w.id,
+    name: w.name,
+    code: w.code,
+    city: w.city ?? 'Unknown',
+    state: (record.state as string) ?? w.country ?? '',
+    capacity: w.capacity ?? 10000,
+    used: 0,
+    products: 0,
+    manager: 'Unassigned',
+    isActive: w.is_active,
+    image: '/images/warehouses/warehouse-default.jpg',
+  };
+}
 
 const warehouseSchema = z.object({
   name: z.string().min(2, 'Name is required'),
@@ -36,6 +70,15 @@ type WarehouseFormData = z.infer<typeof warehouseSchema>;
 export default function WarehousesPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const form = useForm<WarehouseFormData>({ resolver: zodResolver(warehouseSchema) });
+
+  // Fetch warehouses from Supabase via hook, fall back to mock data
+  const { data: warehousesData } = useWarehouses();
+  const warehouses: WarehouseDisplay[] = useMemo(() => {
+    if (warehousesData?.data && warehousesData.data.length > 0) {
+      return warehousesData.data.map(mapWarehouseToDisplay);
+    }
+    return mockWarehouses;
+  }, [warehousesData]);
 
   const onSubmit = (_data: WarehouseFormData) => {
     setDialogOpen(false);
@@ -67,7 +110,7 @@ export default function WarehousesPage() {
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {mockWarehouses.map((wh, index) => {
+        {warehouses.map((wh, index) => {
           const usagePercent = Math.round((wh.used / wh.capacity) * 100);
           return (
             <motion.div
@@ -76,7 +119,7 @@ export default function WarehousesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
-              <Card className="hover:border-emerald-500/40 transition-all cursor-pointer glass border border-border overflow-hidden group">
+              <Card className="hover:border-orange-500/40 transition-all cursor-pointer glass border border-border overflow-hidden group">
                 {/* Facility Photographic Banner */}
                 <div className="relative h-44 w-full overflow-hidden bg-black/50">
                   <img
@@ -95,14 +138,14 @@ export default function WarehousesPage() {
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                     <div>
                       <h3 className="font-bold text-base text-white drop-shadow-md">{wh.name}</h3>
-                      <p className="text-xs text-emerald-400 font-mono font-medium">{wh.code}</p>
+                      <p className="text-xs text-orange-500 font-mono font-medium">{wh.code}</p>
                     </div>
                   </div>
                 </div>
 
                 <CardContent className="p-5 space-y-3">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <MapPin className="h-3.5 w-3.5 text-emerald-400" />
+                    <MapPin className="h-3.5 w-3.5 text-orange-500" />
                     {wh.city}, {wh.state}
                   </div>
 

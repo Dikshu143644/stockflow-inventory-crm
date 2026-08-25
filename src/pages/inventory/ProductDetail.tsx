@@ -292,7 +292,7 @@ export default function ProductDetailPage() {
               <div className="h-[220px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={warehouseChartData} layout="vertical">
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                     <XAxis type="number" stroke="#71717a" fontSize={12} />
                     <YAxis type="category" dataKey="name" stroke="#71717a" fontSize={12} width={70} />
                     <Tooltip
@@ -310,7 +310,7 @@ export default function ProductDetailPage() {
                       {warehouseChartData.map((entry, index) => (
                         <Cell
                           key={index}
-                          fill={entry.quantity < mockProduct.reorderPoint ? '#ef4444' : '#10b981'}
+                          fill={entry.quantity < mockProduct.reorderPoint ? '#ef4444' : '#F97316'}
                         />
                       ))}
                     </Bar>
