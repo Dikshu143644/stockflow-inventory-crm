@@ -17,10 +17,10 @@ interface KPICardProps {
   size?: 'default' | 'wide' | 'tall';
 }
 
-const sizeClasses: Record<string, string> = {
+const sizeClasses: Record<NonNullable<KPICardProps['size']>, string> = {
   default: '',
-  wide: 'col-span-2',
-  tall: 'row-span-2',
+  wide: 'md:col-span-2',
+  tall: 'md:row-span-2',
 };
 
 export function KPICard({ label, value, icon: Icon, trend, description, className, bgImage, size = 'default' }: KPICardProps) {
@@ -44,15 +44,15 @@ export function KPICard({ label, value, icon: Icon, trend, description, classNam
               (e.target as HTMLImageElement).style.display = 'none';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/30 to-transparent" />
         </div>
       )}
 
       <CardContent className={cn('p-6 relative z-10', size === 'tall' && 'flex flex-col justify-between h-full')}>
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between rounded-xl bg-white/40 backdrop-blur-sm p-3 -m-3">
           <div className="space-y-1.5">
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-700 drop-shadow-sm">{label}</p>
-            <p className="text-2xl font-black text-slate-900 tracking-tight drop-shadow-sm">{value}</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-700" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{label}</p>
+            <p className="text-2xl font-black text-slate-900 tracking-tight" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{value}</p>
             {trend && (
               <div className="flex items-center gap-1 pt-0.5">
                 {trend.isPositive ? (
@@ -70,12 +70,12 @@ export function KPICard({ label, value, icon: Icon, trend, description, classNam
                   {trend.value}%
                 </span>
                 {description && (
-                  <span className="text-xs text-slate-600 ml-1 drop-shadow-sm">{description}</span>
+                  <span className="text-xs text-slate-600 ml-1" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{description}</span>
                 )}
               </div>
             )}
             {!trend && description && (
-              <p className="text-xs text-slate-600 drop-shadow-sm">{description}</p>
+              <p className="text-xs text-slate-600" style={{ textShadow: '0 1px 3px rgb(255 255 255 / 80%)' }}>{description}</p>
             )}
           </div>
           <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-orange-50/80 border border-orange-200/80 group-hover:border-orange-400 shadow-sm backdrop-blur-sm transition-colors">
