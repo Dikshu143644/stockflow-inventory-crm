@@ -79,7 +79,7 @@ export default function CategoriesPage() {
         description="Organize your product hierarchy, subcategories, and catalog inventory"
         bannerImage="/images/pages/banner-categories.jpg"
         actions={
-          <Button onClick={() => setDialogOpen(true)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium">
+          <Button onClick={() => setDialogOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-medium">
             <Plus className="mr-2 h-4 w-4" /> Add Category
           </Button>
         }
@@ -90,7 +90,7 @@ export default function CategoriesPage() {
         <Card className="lg:col-span-4 rounded-[24px] glass border border-border overflow-hidden h-fit">
           <CardHeader className="pb-3 border-b border-border/40">
             <CardTitle className="flex items-center gap-2 text-base font-bold">
-              <FolderTree className="h-4 w-4 text-emerald-400" /> Category Tree
+              <FolderTree className="h-4 w-4 text-orange-400" /> Category Tree
             </CardTitle>
           </CardHeader>
           <CardContent className="p-3 space-y-1">
@@ -103,24 +103,24 @@ export default function CategoriesPage() {
                     className={cn(
                       'w-full flex items-center justify-between rounded-[14px] px-3.5 py-3 text-left text-sm transition-all group',
                       isSelected
-                        ? 'bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 shadow-sm font-semibold'
+                        ? 'bg-orange-500/15 border border-orange-500/40 text-orange-400 shadow-sm font-semibold'
                         : 'text-foreground hover:bg-secondary/60 hover:text-white border border-transparent'
                     )}
                   >
                     <div className="flex items-center gap-2.5">
                       <div className={cn(
                         "h-2 w-2 rounded-full transition-all",
-                        isSelected ? "bg-emerald-400 scale-125" : "bg-muted-foreground/40 group-hover:bg-emerald-400"
+                        isSelected ? "bg-orange-400 scale-125" : "bg-muted-foreground/40 group-hover:bg-orange-400"
                       )} />
                       <span className="truncate">{cat.name}</span>
                     </div>
-                    <Badge variant="secondary" className={cn("text-xs font-mono px-2 py-0.5", isSelected && "bg-emerald-500/20 text-emerald-300")}>
+                    <Badge variant="secondary" className={cn("text-xs font-mono px-2 py-0.5", isSelected && "bg-orange-500/20 text-orange-300")}>
                       {cat.productCount}
                     </Badge>
                   </button>
 
                   {cat.children && isSelected && (
-                    <div className="ml-5 pl-2 border-l border-emerald-500/30 space-y-1 my-1">
+                    <div className="ml-5 pl-2 border-l border-orange-500/30 space-y-1 my-1">
                       {cat.children.map((child) => (
                         <button
                           key={child.id}
@@ -128,7 +128,7 @@ export default function CategoriesPage() {
                           className={cn(
                             'w-full flex items-center justify-between rounded-[10px] px-3 py-2 text-left text-xs transition-colors',
                             selectedCategory?.id === child.id
-                              ? 'bg-emerald-500/20 text-emerald-300 font-medium'
+                              ? 'bg-orange-500/20 text-orange-300 font-medium'
                               : 'text-muted-foreground hover:bg-secondary/40 hover:text-foreground'
                           )}
                         >
@@ -169,7 +169,7 @@ export default function CategoriesPage() {
                       <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
                         {selectedCategory.name}
                       </h2>
-                      <p className="text-xs font-mono text-emerald-400 font-medium mt-0.5">
+                      <p className="text-xs font-mono text-orange-400 font-medium mt-0.5">
                         slug: /{selectedCategory.slug}
                       </p>
                     </div>
@@ -181,7 +181,7 @@ export default function CategoriesPage() {
                       </div>
                       <div className="bg-background/80 backdrop-blur-md px-3.5 py-1.5 rounded-[12px] border border-white/10 text-center">
                         <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Sub-Types</p>
-                        <p className="text-base font-bold text-emerald-400 font-mono">{selectedCategory.children?.length || 0}</p>
+                        <p className="text-base font-bold text-orange-400 font-mono">{selectedCategory.children?.length || 0}</p>
                       </div>
                     </div>
                   </div>
@@ -203,15 +203,15 @@ export default function CategoriesPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: idx * 0.05 }}
                       >
-                        <Card className="rounded-[18px] glass border border-border hover:border-emerald-500/40 transition-all p-4 group">
+                        <Card className="rounded-[18px] glass border border-border hover:border-orange-500/40 transition-all p-4 group">
                           <div className="flex items-start justify-between">
                             <div>
-                              <h4 className="font-semibold text-foreground text-sm group-hover:text-emerald-400 transition-colors">
+                              <h4 className="font-semibold text-foreground text-sm group-hover:text-orange-400 transition-colors">
                                 {sub.name}
                               </h4>
                               <p className="text-xs font-mono text-muted-foreground mt-0.5">/{sub.slug}</p>
                             </div>
-                            <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                            <span className="text-xs font-mono font-bold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded-full border border-orange-500/20">
                               {sub.productCount} items
                             </span>
                           </div>
@@ -249,7 +249,7 @@ export default function CategoriesPage() {
                 </div>
                 <div className="flex justify-end gap-2 pt-2">
                   <Button variant="outline" size="sm">Reset</Button>
-                  <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">Save Changes</Button>
+                  <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">Save Changes</Button>
                 </div>
               </Card>
             </>

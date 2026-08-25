@@ -199,6 +199,7 @@ export default function FollowUpsPage() {
       <PageHeader
         title="Follow-ups"
         description="Manage your follow-up schedule and automation rules"
+        bannerImage="/images/pages/banner-follow-ups.jpg"
       />
 
       {/* Stats */}
@@ -229,8 +230,8 @@ export default function FollowUpsPage() {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20">
-              <BarChart3 className="h-5 w-5 text-emerald-400" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500/20">
+              <BarChart3 className="h-5 w-5 text-orange-400" />
             </div>
             <div>
               <p className="text-xl font-bold text-foreground">{completionRate}%</p>

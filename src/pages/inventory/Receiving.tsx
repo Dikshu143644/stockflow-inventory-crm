@@ -259,7 +259,7 @@ export default function ReceivingPage() {
       key: 'status',
       title: 'Status',
       render: () => (
-        <Badge className="bg-emerald-500/20 text-emerald-400 border-0">Completed</Badge>
+        <Badge className="bg-green-500/20 text-green-500 border-0">Completed</Badge>
       ),
     },
   ];
@@ -288,6 +288,7 @@ export default function ReceivingPage() {
       <PageHeader
         title="Receiving"
         description="Receive goods against purchase orders and generate GRNs"
+        bannerImage="/images/pages/banner-receiving.jpg"
         actions={
           <Button variant="outline" onClick={() => setScannerOpen(true)}>
             <ScanLine className="mr-2 h-4 w-4" /> Scan to Verify
@@ -323,7 +324,7 @@ export default function ReceivingPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Card className="bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.06)] rounded-[24px] hover:border-primary/30 transition-colors">
+                  <Card className="bg-white border-slate-200 rounded-[24px] hover:border-primary/30 transition-colors">
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <CardTitle className="text-base font-semibold">{po.order_number}</CardTitle>

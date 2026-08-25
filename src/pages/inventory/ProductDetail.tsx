@@ -62,7 +62,7 @@ const recentMovements = [
 ];
 
 const typeColors: Record<string, string> = {
-  in: 'bg-emerald-500/20 text-emerald-400',
+  in: 'bg-green-500/20 text-green-500',
   out: 'bg-red-500/20 text-red-400',
   transfer: 'bg-blue-500/20 text-blue-400',
   adjustment: 'bg-amber-500/20 text-amber-400',
@@ -292,7 +292,7 @@ export default function ProductDetailPage() {
               <div className="h-[220px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={warehouseChartData} layout="vertical">
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                     <XAxis type="number" stroke="#71717a" fontSize={12} />
                     <YAxis type="category" dataKey="name" stroke="#71717a" fontSize={12} width={70} />
                     <Tooltip
@@ -310,7 +310,7 @@ export default function ProductDetailPage() {
                       {warehouseChartData.map((entry, index) => (
                         <Cell
                           key={index}
-                          fill={entry.quantity < mockProduct.reorderPoint ? '#ef4444' : '#10b981'}
+                          fill={entry.quantity < mockProduct.reorderPoint ? '#ef4444' : '#F97316'}
                         />
                       ))}
                     </Bar>
@@ -377,13 +377,13 @@ export default function ProductDetailPage() {
                     <div key={i} className="flex items-center justify-between rounded-[12px] bg-secondary/30 p-3">
                       <div className="flex items-center gap-3">
                         <div className={`flex h-8 w-8 items-center justify-center rounded-full ${
-                          m.type === 'in' ? 'bg-emerald-500/10' :
+                          m.type === 'in' ? 'bg-green-500/10' :
                           m.type === 'out' ? 'bg-red-500/10' :
                           m.type === 'transfer' ? 'bg-blue-500/10' :
                           'bg-amber-500/10'
                         }`}>
                           <TypeIcon className={`h-4 w-4 ${
-                            m.type === 'in' ? 'text-emerald-400' :
+                            m.type === 'in' ? 'text-green-500' :
                             m.type === 'out' ? 'text-red-400' :
                             m.type === 'transfer' ? 'text-blue-400' :
                             'text-amber-400'

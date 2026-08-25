@@ -203,11 +203,11 @@ export default function AdjustmentsPage() {
         return (
           <div className="flex items-center gap-1.5">
             {isPositive ? (
-              <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+              <TrendingUp className="h-3.5 w-3.5 text-green-500" />
             ) : (
               <TrendingDown className="h-3.5 w-3.5 text-red-400" />
             )}
-            <span className={`font-medium ${isPositive ? 'text-emerald-400' : 'text-red-400'}`}>
+            <span className={`font-medium ${isPositive ? 'text-green-500' : 'text-red-400'}`}>
               {isPositive ? '+' : ''}{qty}
             </span>
           </div>
@@ -285,6 +285,7 @@ export default function AdjustmentsPage() {
       <PageHeader
         title="Stock Adjustments"
         description="Manage inventory adjustments and track stock corrections"
+        bannerImage="/images/pages/banner-adjustments.jpg"
         actions={
           <Button onClick={() => { resetForm(); setDialogOpen(true); }} className="gap-2">
             <Plus className="h-4 w-4" />
@@ -384,7 +385,7 @@ export default function AdjustmentsPage() {
             </div>
 
             {selectedProduct && (
-              <div className="rounded-[12px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] p-4">
+              <div className="rounded-[12px] bg-slate-50 border border-slate-200 p-4">
                 <p className="text-xs text-muted-foreground mb-1">Current Stock</p>
                 <p className="text-2xl font-bold text-foreground">{selectedProduct.current_stock}</p>
                 <p className="text-xs text-muted-foreground mt-1">{selectedProduct.name}</p>

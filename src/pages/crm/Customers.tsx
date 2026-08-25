@@ -180,7 +180,7 @@ function CustomerDetailPanel({ customer }: { customer: Customer }) {
           </Badge>
         </div>
         {companyName && (
-          <p className="text-sm text-emerald-400 font-medium flex items-center gap-1.5">
+          <p className="text-sm text-orange-500 font-medium flex items-center gap-1.5">
             <Building2 className="h-4 w-4" /> {companyName}
           </p>
         )}
@@ -193,17 +193,17 @@ function CustomerDetailPanel({ customer }: { customer: Customer }) {
         <div className="space-y-2 text-sm text-foreground">
           {customer.email && (
             <p className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-emerald-400" /> {customer.email}
+              <Mail className="h-4 w-4 text-orange-500" /> {customer.email}
             </p>
           )}
           {customer.phone && (
             <p className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-emerald-400" /> {customer.phone}
+              <Phone className="h-4 w-4 text-orange-500" /> {customer.phone}
             </p>
           )}
           {(customer.address || customer.city || customer.country) && (
             <p className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-emerald-400" />
+              <MapPin className="h-4 w-4 text-orange-500" />
               {[customer.address, customer.city, customer.country].filter(Boolean).join(', ')}
             </p>
           )}
@@ -215,14 +215,14 @@ function CustomerDetailPanel({ customer }: { customer: Customer }) {
         <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Purchase Telemetry</h4>
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-[16px] bg-secondary/40 border border-border p-4 text-center">
-            <DollarSign className="h-5 w-5 text-emerald-400 mx-auto mb-1" />
+            <DollarSign className="h-5 w-5 text-orange-500 mx-auto mb-1" />
             <p className="text-xl font-extrabold text-foreground">
               ${(customer.total_spent || 0).toLocaleString()}
             </p>
             <p className="text-[11px] text-muted-foreground">Lifetime Revenue</p>
           </div>
           <div className="rounded-[16px] bg-secondary/40 border border-border p-4 text-center">
-            <ShoppingBag className="h-5 w-5 text-emerald-400 mx-auto mb-1" />
+            <ShoppingBag className="h-5 w-5 text-orange-500 mx-auto mb-1" />
             <p className="text-xl font-extrabold text-foreground">{customer.total_orders || 0}</p>
             <p className="text-[11px] text-muted-foreground">Fulfilled Orders</p>
           </div>
@@ -380,7 +380,7 @@ export default function CustomersPage() {
         description="Manage enterprise client accounts, lifetime contract values, and relationship pipelines"
         bannerImage="/images/pages/banner-customers.jpg"
         actions={
-          <Button onClick={() => setDialogOpen(true)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium">
+          <Button onClick={() => setDialogOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-medium">
             <Plus className="mr-2 h-4 w-4" /> Add Customer
           </Button>
         }
@@ -451,7 +451,7 @@ export default function CustomersPage() {
           <Button
             size="sm"
             variant={viewMode === 'bento' ? 'secondary' : 'ghost'}
-            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'bento' && "bg-card text-emerald-400 font-semibold shadow-sm")}
+            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'bento' && "bg-card text-orange-500 font-semibold shadow-sm")}
             onClick={() => setViewMode('bento')}
           >
             <LayoutGrid className="h-3.5 w-3.5" /> Bento Grid
@@ -459,7 +459,7 @@ export default function CustomersPage() {
           <Button
             size="sm"
             variant={viewMode === 'table' ? 'secondary' : 'ghost'}
-            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'table' && "bg-card text-emerald-400 font-semibold shadow-sm")}
+            className={cn("h-8 px-3 text-xs gap-1.5", viewMode === 'table' && "bg-card text-orange-500 font-semibold shadow-sm")}
             onClick={() => setViewMode('table')}
           >
             <TableIcon className="h-3.5 w-3.5" /> Table
@@ -488,7 +488,7 @@ export default function CustomersPage() {
               >
                 <Card
                   onClick={() => setSelectedCustomer(cust)}
-                  className="rounded-[24px] glass border border-border hover:border-emerald-500/40 transition-all duration-300 p-5 group cursor-pointer relative overflow-hidden hover:shadow-xl"
+                  className="rounded-[24px] glass border border-border hover:border-orange-500/40 transition-all duration-300 p-5 group cursor-pointer relative overflow-hidden hover:shadow-xl"
                 >
                   {/* Ambient Glow */}
                   <div className="absolute -right-12 -top-12 w-36 h-36 rounded-full bg-orange-500/10 blur-2xl pointer-events-none group-hover:bg-orange-500/20 transition-colors" />
@@ -592,7 +592,7 @@ export default function CustomersPage() {
         <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-emerald-400" /> Add New Customer
+              <Users className="h-5 w-5 text-orange-500" /> Add New Customer
             </DialogTitle>
             <DialogDescription>Add an enterprise client account to your CRM directory.</DialogDescription>
           </DialogHeader>
@@ -661,7 +661,7 @@ export default function CustomersPage() {
               <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={createCustomer.isPending} className="bg-emerald-500 hover:bg-emerald-600 text-white">
+              <Button type="submit" disabled={createCustomer.isPending} className="bg-orange-500 hover:bg-orange-600 text-white">
                 {createCustomer.isPending ? 'Creating...' : 'Save Client'}
               </Button>
             </DialogFooter>

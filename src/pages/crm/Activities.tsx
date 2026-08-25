@@ -62,7 +62,7 @@ const activityIcons: Record<string, typeof Phone> = {
 const activityColors: Record<string, string> = {
   call: 'bg-blue-500/20 text-blue-400',
   email: 'bg-purple-500/20 text-purple-400',
-  meeting: 'bg-emerald-500/20 text-emerald-400',
+  meeting: 'bg-orange-500/20 text-orange-400',
   note: 'bg-amber-500/20 text-amber-400',
   task: 'bg-cyan-500/20 text-cyan-400',
   follow_up: 'bg-orange-500/20 text-orange-400',
@@ -152,6 +152,7 @@ export default function ActivitiesPage() {
       <PageHeader
         title="Activities"
         description="Track all interactions and tasks related to customers and leads"
+        bannerImage="/images/pages/banner-activities.jpg"
         actions={
           <Button onClick={() => setDialogOpen(true)}>
             <Plus className="mr-2 h-4 w-4" /> Log Activity

@@ -27,11 +27,11 @@ const revenueData = Array.from({ length: 12 }, (_, i) => {
 });
 
 const categoryData = [
-  { name: 'Electronics', value: 38, color: '#10b981' },
-  { name: 'Industrial Parts', value: 24, color: '#14b8a6' },
-  { name: 'Office Supplies', value: 18, color: '#06d6a0' },
-  { name: 'Raw Materials', value: 12, color: '#0d9488' },
-  { name: 'Packaging', value: 8, color: '#047857' },
+  { name: 'Electronics', value: 38, color: '#F97316' },
+  { name: 'Industrial Parts', value: 24, color: '#FB923C' },
+  { name: 'Office Supplies', value: 18, color: '#FDBA74' },
+  { name: 'Raw Materials', value: 12, color: '#F59E0B' },
+  { name: 'Packaging', value: 8, color: '#D97706' },
 ];
 
 const topProducts = [
@@ -81,7 +81,7 @@ const recentStockMovements = [
 ];
 
 const movementTypeConfig: Record<string, { icon: typeof ArrowDownLeft; color: string; bg: string }> = {
-  in: { icon: ArrowDownLeft, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+  in: { icon: ArrowDownLeft, color: 'text-green-500', bg: 'bg-green-500/10' },
   out: { icon: ArrowUpRight, color: 'text-red-400', bg: 'bg-red-500/10' },
   transfer: { icon: ArrowLeftRight, color: 'text-blue-400', bg: 'bg-blue-500/10' },
   adjustment: { icon: Pencil, color: 'text-amber-400', bg: 'bg-amber-500/10' },
@@ -288,18 +288,18 @@ export default function Dashboard() {
                 <AreaChart data={revenueData}>
                   <defs>
                     <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                      <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#F97316" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#F97316" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
                   <YAxis stroke="#71717a" fontSize={12} tickFormatter={(v) => `$${v / 1000}K`} />
                   <Tooltip content={<CustomTooltip />} />
                   <Area
                     type="monotone"
                     dataKey="revenue"
-                    stroke="#10b981"
+                    stroke="#F97316"
                     strokeWidth={2}
                     fill="url(#revenueGradient)"
                   />
@@ -427,7 +427,7 @@ export default function Dashboard() {
                 const config = movementTypeConfig[movement.type];
                 const MovementIcon = config.icon;
                 return (
-                  <div key={index} className="flex items-center justify-between rounded-[14px] bg-secondary/25 border border-border/40 p-3 hover:border-emerald-500/30 transition-all group">
+                  <div key={index} className="flex items-center justify-between rounded-[14px] bg-secondary/25 border border-border/40 p-3 hover:border-orange-500/30 transition-all group">
                     <div className="flex items-center gap-3">
                       {/* Product Photo Avatar */}
                       <div className="relative h-11 w-11 rounded-[10px] overflow-hidden border border-border/50 bg-black/40 flex-shrink-0">
@@ -447,15 +447,15 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-foreground group-hover:text-emerald-400 transition-colors">{movement.product}</p>
+                        <p className="text-sm font-medium text-foreground group-hover:text-orange-500 transition-colors">{movement.product}</p>
                         <p className="text-xs text-muted-foreground">
-                          {movement.type === 'in' ? '+' : movement.type === 'out' ? '-' : ''}{Math.abs(movement.quantity)} units &middot; <span className="font-mono text-emerald-400/90">{movement.warehouse}</span>
+                          {movement.type === 'in' ? '+' : movement.type === 'out' ? '-' : ''}{Math.abs(movement.quantity)} units &middot; <span className="font-mono text-orange-500">{movement.warehouse}</span>
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
                       <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider ${
-                        movement.type === 'in' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                        movement.type === 'in' ? 'bg-green-500/20 text-green-500 border border-green-500/30' :
                         movement.type === 'out' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
                         movement.type === 'transfer' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
                         'bg-amber-500/20 text-amber-400 border border-amber-500/30'
@@ -492,7 +492,7 @@ export default function Dashboard() {
             <div className="h-[220px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={topProducts} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis type="number" stroke="#71717a" fontSize={12} tickFormatter={(v) => `$${v / 1000}K`} />
                   <YAxis type="category" dataKey="name" stroke="#71717a" fontSize={11} width={140} />
                   <Tooltip
@@ -504,7 +504,7 @@ export default function Dashboard() {
                       ) : null
                     }
                   />
-                  <Bar dataKey="revenue" fill="#10b981" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="revenue" fill="#F97316" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -593,7 +593,7 @@ export default function Dashboard() {
                 </div>
                 <div className="absolute top-3 right-3">
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold backdrop-blur-md text-white ${
-                    wh.capacity > 90 ? 'bg-amber-500/80' : 'bg-emerald-500/80'
+                    wh.capacity > 90 ? 'bg-amber-500/80' : 'bg-orange-500/80'
                   }`}>
                     {wh.status}
                   </span>
@@ -670,7 +670,7 @@ export default function Dashboard() {
                   />
                   <div className="absolute top-1.5 right-1.5">
                     <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold ${
-                      prod.status === 'Low Stock' ? 'bg-rose-500 text-white' : 'bg-emerald-500 text-white'
+                      prod.status === 'Low Stock' ? 'bg-rose-500 text-white' : 'bg-orange-500 text-white'
                     }`}>
                       {prod.status}
                     </span>
@@ -690,7 +690,7 @@ export default function Dashboard() {
                 </div>
                 <div className="text-right">
                   <p className="text-[10px] text-slate-400">In Stock</p>
-                  <p className={`text-xs font-bold font-mono ${prod.stock < 20 ? 'text-rose-500' : 'text-emerald-600'}`}>
+                  <p className={`text-xs font-bold font-mono ${prod.stock < 20 ? 'text-rose-500' : 'text-green-600'}`}>
                     {prod.stock} pcs
                   </p>
                 </div>

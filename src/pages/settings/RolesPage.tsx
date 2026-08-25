@@ -12,7 +12,7 @@ const mockRoles = [
   { id: '1', name: 'Super Admin', description: 'Full system access with all permissions', permissions: 24, users: 1, isSystem: true, color: 'text-red-400 bg-red-500/10' },
   { id: '2', name: 'Admin', description: 'Administrative access to all modules except system settings', permissions: 20, users: 2, isSystem: true, color: 'text-purple-400 bg-purple-500/10' },
   { id: '3', name: 'Manager', description: 'Can manage inventory, CRM, procurement, and sales operations', permissions: 16, users: 3, isSystem: false, color: 'text-blue-400 bg-blue-500/10' },
-  { id: '4', name: 'Staff', description: 'Day-to-day operations: create orders, manage stock, handle customers', permissions: 12, users: 5, isSystem: false, color: 'text-emerald-400 bg-emerald-500/10' },
+  { id: '4', name: 'Staff', description: 'Day-to-day operations: create orders, manage stock, handle customers', permissions: 12, users: 5, isSystem: false, color: 'text-orange-400 bg-orange-500/10' },
   { id: '5', name: 'Viewer', description: 'Read-only access to view data and reports', permissions: 6, users: 2, isSystem: false, color: 'text-gray-400 bg-gray-500/10' },
   { id: '6', name: 'Auditor', description: 'Access to audit logs and financial reports', permissions: 4, users: 1, isSystem: false, color: 'text-amber-400 bg-amber-500/10' },
 ];
@@ -46,6 +46,7 @@ export default function RolesPage() {
       <PageHeader
         title="Roles & Permissions"
         description="Define roles and configure access control for your team"
+        bannerImage="/images/pages/banner-roles.jpg"
       />
 
       {/* Role Cards */}

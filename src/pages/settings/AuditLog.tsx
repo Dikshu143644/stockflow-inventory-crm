@@ -22,7 +22,7 @@ const mockAuditLogs = [
 ];
 
 const actionColors: Record<string, string> = {
-  created: 'bg-emerald-500/20 text-emerald-400',
+  created: 'bg-orange-500/20 text-orange-400',
   updated: 'bg-blue-500/20 text-blue-400',
   deleted: 'bg-red-500/20 text-red-400',
 };
@@ -48,6 +48,7 @@ export default function AuditLogPage() {
       <PageHeader
         title="Audit Log"
         description="Track all changes and actions performed in the system"
+        bannerImage="/images/pages/banner-audit-log.jpg"
       />
 
       {/* Filters */}
@@ -131,7 +132,7 @@ export default function AuditLogPage() {
                     )}
                     {log.details.new_values && (
                       <div>
-                        <p className="text-xs font-medium text-emerald-400 mb-1">New Values:</p>
+                        <p className="text-xs font-medium text-orange-400 mb-1">New Values:</p>
                         <pre className="text-xs text-muted-foreground bg-background/50 rounded-[8px] p-2 overflow-x-auto">
                           {JSON.stringify(log.details.new_values, null, 2)}
                         </pre>

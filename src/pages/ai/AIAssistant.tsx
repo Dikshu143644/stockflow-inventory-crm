@@ -32,7 +32,7 @@ import { supabase } from '@/lib/supabase';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 const agents = [
-  { type: 'inventory' as AgentType, name: 'Inventory', icon: Package, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+  { type: 'inventory' as AgentType, name: 'Inventory', icon: Package, color: 'text-orange-400', bg: 'bg-orange-500/10' },
   { type: 'sales' as AgentType, name: 'Sales & CRM', icon: Users, color: 'text-blue-400', bg: 'bg-blue-500/10' },
   { type: 'procurement' as AgentType, name: 'Procurement', icon: Truck, color: 'text-amber-400', bg: 'bg-amber-500/10' },
   { type: 'finance' as AgentType, name: 'Finance', icon: TrendingUp, color: 'text-purple-400', bg: 'bg-purple-500/10' },
@@ -467,8 +467,8 @@ export default function AIAssistantPage() {
                 className={cn('flex gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}
               >
                 {msg.role === 'assistant' && (
-                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                    <Bot className="h-3.5 w-3.5 text-emerald-400" />
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-orange-500/20">
+                    <Bot className="h-3.5 w-3.5 text-orange-400" />
                   </div>
                 )}
                 <div className={cn('max-w-[75%] space-y-2')}>
@@ -542,8 +542,8 @@ export default function AIAssistantPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                <Bot className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-orange-500/20">
+                <Bot className="h-3.5 w-3.5 text-orange-400" />
               </div>
               <div className="max-w-[75%] space-y-2">
                 {/* Active Tool Calls */}

@@ -39,7 +39,7 @@ const categories: { key: CategoryKey; label: string; icon: typeof BookOpen; colo
   { key: 'all', label: 'All', icon: Layers, color: 'text-gray-400' },
   { key: 'faq', label: 'FAQ', icon: Lightbulb, color: 'text-yellow-400' },
   { key: 'sop', label: 'SOP', icon: FileText, color: 'text-blue-400' },
-  { key: 'product_info', label: 'Product Info', icon: Package, color: 'text-emerald-400' },
+  { key: 'product_info', label: 'Product Info', icon: Package, color: 'text-orange-400' },
   { key: 'policy', label: 'Policy', icon: ShieldCheck, color: 'text-red-400' },
   { key: 'guide', label: 'Guide', icon: BookMarked, color: 'text-purple-400' },
   { key: 'custom', label: 'Custom', icon: Tag, color: 'text-cyan-400' },
@@ -48,7 +48,7 @@ const categories: { key: CategoryKey; label: string; icon: typeof BookOpen; colo
 const categoryColors: Record<string, string> = {
   faq: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
   sop: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  product_info: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  product_info: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
   policy: 'bg-red-500/10 text-red-400 border-red-500/20',
   guide: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
   custom: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',

@@ -20,7 +20,7 @@ export function generateBarcode(value: string, format: BarcodeFormat = 'CODE_128
     const isBar = (charCode + i) % 2 === 0;
     if (isBar) {
       const bw = i % 3 === 0 ? barWidth * 2 : barWidth;
-      bars += `<rect x="${x}" y="10" width="${bw}" height="${height - 30}" fill="white"/>`;
+      bars += `<rect x="${x}" y="10" width="${bw}" height="${height - 30}" fill="#0F172A"/>`;
       x += bw + 1;
     } else {
       x += barWidth + 1;
@@ -28,9 +28,9 @@ export function generateBarcode(value: string, format: BarcodeFormat = 'CODE_128
   }
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
-    <rect width="${width}" height="${height}" fill="#0a0a0a"/>
+    <rect width="${width}" height="${height}" fill="#FFFFFF"/>
     ${bars}
-    <text x="${width / 2}" y="${height - 5}" text-anchor="middle" fill="white" font-size="10" font-family="monospace">${value} (${format})</text>
+    <text x="${width / 2}" y="${height - 5}" text-anchor="middle" fill="#0F172A" font-size="10" font-family="monospace">${value} (${format})</text>
   </svg>`;
 
   return `data:image/svg+xml;base64,${btoa(svg)}`;
@@ -63,7 +63,7 @@ export function generateQRCode(data: string | ProductQRData): string {
       if (isFilled) {
         const x = 10 + col * cellSize;
         const y = 10 + row * cellSize;
-        cells += `<rect x="${x}" y="${y}" width="${cellSize - 1}" height="${cellSize - 1}" fill="white" rx="1"/>`;
+        cells += `<rect x="${x}" y="${y}" width="${cellSize - 1}" height="${cellSize - 1}" fill="#0F172A" rx="1"/>`;
       }
     }
   }
@@ -71,8 +71,8 @@ export function generateQRCode(data: string | ProductQRData): string {
   // Add position detection pattern borders
   const addFinder = (ox: number, oy: number) => {
     const s = cellSize * 7;
-    return `<rect x="${ox}" y="${oy}" width="${s}" height="${s}" fill="none" stroke="#10b981" stroke-width="2" rx="2"/>
-    <rect x="${ox + cellSize * 2}" y="${oy + cellSize * 2}" width="${cellSize * 3}" height="${cellSize * 3}" fill="#10b981" rx="1"/>`;
+    return `<rect x="${ox}" y="${oy}" width="${s}" height="${s}" fill="none" stroke="#F97316" stroke-width="2" rx="2"/>
+    <rect x="${ox + cellSize * 2}" y="${oy + cellSize * 2}" width="${cellSize * 3}" height="${cellSize * 3}" fill="#F97316" rx="1"/>`;
   };
 
   const finders = [
@@ -82,7 +82,7 @@ export function generateQRCode(data: string | ProductQRData): string {
   ].join('');
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
-    <rect width="${size}" height="${size}" fill="#0a0a0a" rx="8"/>
+    <rect width="${size}" height="${size}" fill="#FFFFFF" rx="8"/>
     ${cells}
     ${finders}
   </svg>`;

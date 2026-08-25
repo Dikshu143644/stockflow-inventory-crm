@@ -35,7 +35,7 @@ export function Hero3DCanvas() {
 
     const numNodes = 45;
     const nodes: Node3D[] = [];
-    const colors = ['#10b981', '#06b6d4', '#3b82f6', '#8b5cf6', '#34d399'];
+    const colors = ['#F97316', '#06b6d4', '#3b82f6', '#8b5cf6', '#FB923C'];
 
     for (let i = 0; i < numNodes; i++) {
       nodes.push({

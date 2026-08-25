@@ -132,7 +132,7 @@ const statusConfig: Record<TransferStatus, { color: string; label: string }> = {
   pending: { color: 'bg-amber-500/20 text-amber-400', label: 'Pending' },
   approved: { color: 'bg-blue-500/20 text-blue-400', label: 'Approved' },
   in_transit: { color: 'bg-purple-500/20 text-purple-400', label: 'In Transit' },
-  completed: { color: 'bg-emerald-500/20 text-emerald-400', label: 'Completed' },
+  completed: { color: 'bg-orange-500/20 text-orange-400', label: 'Completed' },
   rejected: { color: 'bg-red-500/20 text-red-400', label: 'Rejected' },
 };
 
@@ -334,6 +334,7 @@ export default function TransfersPage() {
       <PageHeader
         title="Transfers"
         description="Manage stock transfers between warehouses"
+        bannerImage="/images/pages/banner-transfers.jpg"
         actions={
           <Button onClick={handleCreateOpen} className="gap-2">
             <Plus className="h-4 w-4" />
@@ -518,7 +519,7 @@ export default function TransfersPage() {
                   onChange={(e) => setNotes(e.target.value)}
                 />
               </div>
-              <div className="rounded-[12px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] p-4 space-y-2">
+              <div className="rounded-[12px] bg-slate-50 border border-slate-200 p-4 space-y-2">
                 <p className="text-sm text-muted-foreground">
                   <span className="font-medium text-foreground">From:</span>{' '}
                   {warehouses.find((w) => w.id === sourceWarehouse)?.name}
@@ -602,18 +603,18 @@ export default function TransfersPage() {
 
           {/* Transfer Info */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-[12px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-[12px] bg-slate-50 border border-slate-200 p-4">
               <p className="text-xs text-muted-foreground mb-1">Source Warehouse</p>
               <p className="text-sm font-medium">{mockTransferDetail.source_warehouse}</p>
             </div>
-            <div className="rounded-[12px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-[12px] bg-slate-50 border border-slate-200 p-4">
               <p className="text-xs text-muted-foreground mb-1">Destination Warehouse</p>
               <p className="text-sm font-medium">{mockTransferDetail.destination_warehouse}</p>
             </div>
           </div>
 
           {mockTransferDetail.notes && (
-            <div className="rounded-[12px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-[12px] bg-slate-50 border border-slate-200 p-4">
               <p className="text-xs text-muted-foreground mb-1">Notes</p>
               <p className="text-sm">{mockTransferDetail.notes}</p>
             </div>

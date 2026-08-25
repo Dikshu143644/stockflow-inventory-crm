@@ -210,6 +210,7 @@ export default function ReturnsPage() {
       <PageHeader
         title="Returns"
         description="Manage sales returns and stock restoration"
+        bannerImage="/images/pages/banner-returns.jpg"
         actions={
           <Button onClick={() => { setDialogOpen(true); resetForm(); }}>
             <Plus className="mr-2 h-4 w-4" /> New Return

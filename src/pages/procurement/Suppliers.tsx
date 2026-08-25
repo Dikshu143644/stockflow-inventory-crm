@@ -91,6 +91,7 @@ export default function SuppliersPage() {
       <PageHeader
         title="Suppliers"
         description="Manage your supplier directory and vendor relationships"
+        bannerImage="/images/pages/banner-suppliers.jpg"
         actions={
           <Button onClick={() => setDialogOpen(true)}>
             <Plus className="mr-2 h-4 w-4" /> Add Supplier

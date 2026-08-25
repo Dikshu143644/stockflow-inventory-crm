@@ -27,7 +27,7 @@ const roleColors: Record<string, string> = {
   super_admin: 'bg-red-500/20 text-red-400',
   admin: 'bg-purple-500/20 text-purple-400',
   manager: 'bg-blue-500/20 text-blue-400',
-  staff: 'bg-emerald-500/20 text-emerald-400',
+  staff: 'bg-orange-500/20 text-orange-400',
   viewer: 'bg-gray-500/20 text-gray-400',
 };
 
@@ -95,6 +95,7 @@ export default function UsersPage() {
       <PageHeader
         title="Users"
         description="Manage team members and their access levels"
+        bannerImage="/images/pages/banner-users.jpg"
         actions={
           <Button onClick={() => setDialogOpen(true)}>
             <Plus className="mr-2 h-4 w-4" /> Invite User

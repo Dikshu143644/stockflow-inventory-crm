@@ -355,6 +355,7 @@ export default function SalesOrdersPage() {
       <PageHeader
         title="Sales Orders"
         description="Manage customer orders and track fulfillment"
+        bannerImage="/images/pages/banner-sales-orders.jpg"
         actions={
           <div className="flex items-center gap-2">
             <Button variant="outline" onClick={() => setScannerOpen(true)}>

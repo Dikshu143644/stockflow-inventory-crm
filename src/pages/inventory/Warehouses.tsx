@@ -76,7 +76,7 @@ export default function WarehousesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
-              <Card className="hover:border-emerald-500/40 transition-all cursor-pointer glass border border-border overflow-hidden group">
+              <Card className="hover:border-orange-500/40 transition-all cursor-pointer glass border border-border overflow-hidden group">
                 {/* Facility Photographic Banner */}
                 <div className="relative h-44 w-full overflow-hidden bg-black/50">
                   <img
@@ -95,14 +95,14 @@ export default function WarehousesPage() {
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                     <div>
                       <h3 className="font-bold text-base text-white drop-shadow-md">{wh.name}</h3>
-                      <p className="text-xs text-emerald-400 font-mono font-medium">{wh.code}</p>
+                      <p className="text-xs text-orange-500 font-mono font-medium">{wh.code}</p>
                     </div>
                   </div>
                 </div>
 
                 <CardContent className="p-5 space-y-3">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <MapPin className="h-3.5 w-3.5 text-emerald-400" />
+                    <MapPin className="h-3.5 w-3.5 text-orange-500" />
                     {wh.city}, {wh.state}
                   </div>
 

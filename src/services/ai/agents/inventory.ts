@@ -5,7 +5,7 @@ export const inventoryAgent: AgentConfig = {
   name: 'Inventory Copilot',
   description: 'Monitor stock levels, track movements, and get reorder suggestions across all warehouses.',
   icon: 'Package',
-  color: '#10b981',
+  color: '#F97316',
   systemPrompt: `You are the StockFlow Inventory Copilot, an expert assistant for inventory management. You help users:
 - Monitor stock levels across multiple warehouses
 - Identify low-stock and out-of-stock items

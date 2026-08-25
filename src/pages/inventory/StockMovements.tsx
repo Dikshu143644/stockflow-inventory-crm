@@ -25,7 +25,7 @@ const mockMovements = [
 ];
 
 const typeConfig: Record<string, { color: string; icon: typeof ArrowDownLeft; label: string }> = {
-  in: { color: 'bg-emerald-500/20 text-emerald-400', icon: ArrowDownLeft, label: 'Stock In' },
+  in: { color: 'bg-orange-500/20 text-orange-400', icon: ArrowDownLeft, label: 'Stock In' },
   out: { color: 'bg-red-500/20 text-red-400', icon: ArrowUpRight, label: 'Stock Out' },
   transfer: { color: 'bg-blue-500/20 text-blue-400', icon: ArrowLeftRight, label: 'Transfer' },
   adjustment: { color: 'bg-amber-500/20 text-amber-400', icon: Pencil, label: 'Adjustment' },
@@ -82,7 +82,7 @@ export default function StockMovementsPage() {
         const qty = row.quantity as number;
         const type = row.type as string;
         const prefix = type === 'in' ? '+' : type === 'out' ? '-' : '';
-        const color = type === 'in' ? 'text-emerald-400' : type === 'out' ? 'text-red-400' : 'text-foreground';
+        const color = type === 'in' ? 'text-green-500' : type === 'out' ? 'text-red-400' : 'text-foreground';
         return <span className={`font-medium ${color}`}>{prefix}{Math.abs(qty)}</span>;
       },
     },
@@ -100,6 +100,7 @@ export default function StockMovementsPage() {
       <PageHeader
         title="Stock Movements"
         description="Track all inventory movements across warehouses"
+        bannerImage="/images/pages/banner-stock-movements.jpg"
         actions={
           <Button variant="outline" onClick={() => setScannerOpen(true)}>
             <ScanLine className="mr-2 h-4 w-4" /> Scan Product

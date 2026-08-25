@@ -13,7 +13,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { generateAndDownloadExcel, sampleDatasets, type ExcelExportRow } from '@/services/excel/excelService';
 
 const exportTemplates = [
-  { id: 'stock', name: 'Stock Report', description: 'Complete inventory levels across all warehouses with reorder status', icon: Package, color: 'text-emerald-400', datasetKey: 'stock' as const },
+  { id: 'stock', name: 'Stock Report', description: 'Complete inventory levels across all warehouses with reorder status', icon: Package, color: 'text-orange-400', datasetKey: 'stock' as const },
   { id: 'purchase', name: 'Purchase Orders', description: 'All purchase orders with line items, suppliers, and delivery status', icon: FileText, color: 'text-blue-400', datasetKey: 'purchase' as const },
   { id: 'sales', name: 'Sales Summary', description: 'Revenue breakdown by product, customer, and time period', icon: BarChart3, color: 'text-purple-400', datasetKey: 'sales' as const },
   { id: 'customers', name: 'Customer List', description: 'Full customer directory with contact details and account status', icon: Users, color: 'text-amber-400', datasetKey: 'customers' as const },
@@ -133,10 +133,10 @@ export default function ExcelExportPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
-              <Card className="hover:border-emerald-500/40 transition-all h-full glass border border-border">
+              <Card className="hover:border-orange-500/40 transition-all h-full glass border border-border">
                 <CardContent className="p-5 flex flex-col h-full">
                   <div className="flex items-start gap-3 mb-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-emerald-500/10 border border-emerald-500/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-orange-500/10 border border-orange-500/20">
                       <template.icon className={`h-5 w-5 ${template.color}`} />
                     </div>
                     <div className="flex-1">
@@ -148,7 +148,7 @@ export default function ExcelExportPage() {
                     <Button
                       size="sm"
                       onClick={() => handleGenerate(template)}
-                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-md shadow-emerald-500/10 cursor-pointer"
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md shadow-orange-500/10 cursor-pointer"
                     >
                       <Download className="mr-2 h-3.5 w-3.5" /> Generate
                     </Button>
@@ -167,7 +167,7 @@ export default function ExcelExportPage() {
           <CardContent className="p-6">
             <div
               className={`border-2 border-dashed rounded-[16px] p-8 text-center transition-colors cursor-pointer ${
-                isDragging ? 'border-emerald-500 bg-emerald-500/5' : 'border-border/60 hover:border-emerald-500/40'
+                isDragging ? 'border-orange-500 bg-orange-500/5' : 'border-border/60 hover:border-orange-500/40'
               }`}
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
               onDragLeave={() => setIsDragging(false)}
@@ -181,7 +181,7 @@ export default function ExcelExportPage() {
                 accept=".xlsx,.xls,.csv"
                 className="hidden"
               />
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400">
                 {isProcessing ? (
                   <Loader2 className="h-6 w-6 animate-spin" />
                 ) : (
@@ -201,9 +201,9 @@ export default function ExcelExportPage() {
 
             {/* Imported Success Preview Box */}
             {importedSummary && (
-              <div className="mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
+              <div className="mt-4 p-4 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 text-orange-400 shrink-0" />
                   <div>
                     <div className="text-xs font-semibold text-white">{importedSummary.filename}</div>
                     <div className="text-[11px] text-muted-foreground">
@@ -211,7 +211,7 @@ export default function ExcelExportPage() {
                     </div>
                   </div>
                 </div>
-                <Badge className="bg-emerald-500 text-white text-[10px]">Synced</Badge>
+                <Badge className="bg-orange-500 text-white text-[10px]">Synced</Badge>
               </div>
             )}
           </CardContent>
@@ -229,7 +229,7 @@ export default function ExcelExportPage() {
                 className="flex items-center justify-between p-4 hover:bg-muted/40 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-orange-500/10 border border-orange-500/20 text-orange-400">
                     <FileSpreadsheet className="h-4 w-4" />
                   </div>
                   <div>
@@ -252,7 +252,7 @@ export default function ExcelExportPage() {
                     generateAndDownloadExcel(item.name.replace(/\s+/g, '_'), item.template, data);
                     toast.success(`Downloaded ${item.name}`);
                   }}
-                  className="gap-1.5 cursor-pointer hover:border-emerald-500/40"
+                  className="gap-1.5 cursor-pointer hover:border-orange-500/40"
                 >
                   <Download className="h-3.5 w-3.5" /> Download
                 </Button>

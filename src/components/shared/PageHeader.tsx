@@ -24,7 +24,7 @@ export function PageHeader({ title, description, actions, bannerImage }: PageHea
         <div className="relative z-10 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-sm">{title}</h1>
-            {description && <p className="text-sm md:text-base text-emerald-400/90 font-medium mt-1 drop-shadow-sm">{description}</p>}
+            {description && <p className="text-sm md:text-base text-orange-400/90 font-medium mt-1 drop-shadow-sm">{description}</p>}
           </div>
           {actions && <div className="flex items-center gap-2 mt-4 sm:mt-0">{actions}</div>}
         </div>

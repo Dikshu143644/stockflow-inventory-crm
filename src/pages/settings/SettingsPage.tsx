@@ -29,7 +29,7 @@ export default function SettingsPage() {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <PageHeader title="Settings" description="Manage your application preferences and configuration" />
+      <PageHeader title="Settings" description="Manage your application preferences and configuration" bannerImage="/images/pages/banner-settings.jpg" />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
         {/* Navigation */}

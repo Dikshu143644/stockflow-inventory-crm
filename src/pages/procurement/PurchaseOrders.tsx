@@ -87,6 +87,7 @@ export default function PurchaseOrdersPage() {
       <PageHeader
         title="Purchase Orders"
         description="Create and manage purchase orders for your suppliers"
+        bannerImage="/images/pages/banner-purchase-orders.jpg"
         actions={
           <Button onClick={() => { setDialogOpen(true); setStep(1); }}>
             <Plus className="mr-2 h-4 w-4" /> Create PO

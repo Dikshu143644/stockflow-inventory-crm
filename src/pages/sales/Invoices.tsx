@@ -175,6 +175,7 @@ export default function InvoicesPage() {
       <PageHeader
         title="Invoices"
         description="Manage and track customer invoices and payments"
+        bannerImage="/images/pages/banner-invoices.jpg"
       />
 
       {/* Summary Cards */}

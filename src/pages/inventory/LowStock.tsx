@@ -225,6 +225,7 @@ export default function LowStockPage() {
       <PageHeader
         title="Low Stock Alerts"
         description="Monitor products below reorder point and take action"
+        bannerImage="/images/pages/banner-low-stock.jpg"
       />
 
       {/* KPI Summary */}
@@ -300,13 +301,13 @@ export default function LowStockPage() {
                   "relative overflow-hidden rounded-[24px] border glass transition-all duration-300 group hover:shadow-xl",
                   severity === 'out_of_stock' ? "border-red-500/30 hover:border-red-500/60" :
                   severity === 'critical' ? "border-amber-500/30 hover:border-amber-500/60" :
-                  "border-emerald-500/30 hover:border-emerald-500/60"
+                  "border-orange-500/30 hover:border-orange-500/60"
                 )}>
                   {/* Subtle Background Glow Vignette */}
                   <div className={cn(
                     "absolute -right-16 -top-16 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-20",
                     severity === 'out_of_stock' ? "bg-red-500" :
-                    severity === 'critical' ? "bg-amber-500" : "bg-emerald-500"
+                    severity === 'critical' ? "bg-amber-500" : "bg-orange-500"
                   )} />
 
                   <div className="flex flex-col sm:flex-row items-stretch gap-5 p-5 relative z-10">
@@ -323,7 +324,7 @@ export default function LowStockPage() {
                       
                       {/* Warehouse Badge */}
                       <div className="absolute bottom-2.5 left-2.5 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-md">
-                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="h-2 w-2 rounded-full bg-orange-400 animate-pulse" />
                         <span className="text-[11px] font-mono font-medium text-white">{product.warehouse}</span>
                       </div>
                     </div>
@@ -334,7 +335,7 @@ export default function LowStockPage() {
                         {/* Title & Severity Badge */}
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <h3 className="font-bold text-base text-foreground group-hover:text-emerald-400 transition-colors leading-tight">
+                            <h3 className="font-bold text-base text-foreground group-hover:text-orange-500 transition-colors leading-tight">
                               {product.product_name}
                             </h3>
                             <p className="text-xs font-mono text-muted-foreground mt-0.5">{product.sku}</p>
@@ -360,7 +361,7 @@ export default function LowStockPage() {
                           </div>
                           <div className="bg-secondary/40 border border-border/50 rounded-[12px] p-2.5">
                             <p className="text-[11px] text-muted-foreground">Reorder Val</p>
-                            <p className="text-sm font-bold text-emerald-400 mt-1">
+                            <p className="text-sm font-bold text-orange-400 mt-1">
                               ₹{(estimatedValue / 1000).toFixed(0)}K
                             </p>
                           </div>
@@ -380,7 +381,7 @@ export default function LowStockPage() {
                       <div className="flex items-center gap-2 pt-1">
                         <Button
                           size="sm"
-                          className="flex-1 gap-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-md shadow-emerald-500/20"
+                          className="flex-1 gap-1.5 bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-md shadow-orange-500/20"
                           onClick={() => handleCreatePO(product.product_name)}
                         >
                           <ShoppingCart className="h-3.5 w-3.5" />

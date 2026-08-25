@@ -69,7 +69,7 @@ const stageColors: Record<DealStage, string> = {
   needs_analysis: 'border-l-blue-400',
   proposal: 'border-l-amber-400',
   negotiation: 'border-l-orange-400',
-  closed_won: 'border-l-emerald-400',
+  closed_won: 'border-l-green-400',
   closed_lost: 'border-l-red-400',
 };
 
@@ -153,8 +153,7 @@ function DealDetailPanel({ deal, onClose }: { deal: Deal; onClose: () => void })
               <div
                 className={`h-2 w-full rounded-full ${
                   idx <= stageIndex && stageIndex < 4
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500'
-                    : 'bg-secondary'
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-500'                    : 'bg-secondary'
                 }`}
               />
               <span className="text-[10px] text-muted-foreground">{stageLabels[stage].split(' ')[0]}</span>
@@ -324,7 +323,7 @@ export default function DealsPage() {
       <PageHeader
         title="CRM Deals Pipeline"
         description="Track enterprise revenue opportunities, stage probabilities, and active contract negotiations"
-        bannerImage="/images/backgrounds/ocean-sunset.jpg"
+        bannerImage="/images/pages/banner-deals.jpg"
         actions={
           <div className="flex items-center gap-2">
             <div className="flex rounded-[12px] border border-border overflow-hidden">
@@ -341,7 +340,7 @@ export default function DealsPage() {
                 <List className="h-4 w-4" />
               </button>
             </div>
-            <Button onClick={() => setDialogOpen(true)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium">
+            <Button onClick={() => setDialogOpen(true)} className="bg-orange-500 hover:bg-orange-600 text-white font-medium">
               <Plus className="mr-2 h-4 w-4" /> Add Deal
             </Button>
           </div>
@@ -371,7 +370,7 @@ export default function DealsPage() {
               .map((stage) => (
                 <div
                   key={stage.stage}
-                  className="bg-gradient-to-r from-emerald-500 to-teal-500 opacity-80 hover:opacity-100 transition-opacity relative group"
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 opacity-80 hover:opacity-100 transition-opacity relative group"
                   style={{
                     width: `${(stage.total_value / pipelineValue.total_value) * 100}%`,
                   }}
