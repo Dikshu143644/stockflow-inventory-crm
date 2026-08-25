@@ -6,9 +6,9 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const tabs = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
-  { label: 'Inventory', icon: Package, path: '/inventory' },
-  { label: 'CRM', icon: Users, path: '/crm' },
-  { label: 'Sales', icon: ShoppingCart, path: '/sales' },
+  { label: 'Inventory', icon: Package, path: '/inventory/products' },
+  { label: 'CRM', icon: Users, path: '/crm/customers' },
+  { label: 'Sales', icon: ShoppingCart, path: '/sales/orders' },
   { label: 'AI', icon: Bot, path: '/ai' },
 ];
 
