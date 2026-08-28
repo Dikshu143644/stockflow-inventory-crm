@@ -148,7 +148,9 @@ function resolveRoleName(name: string | null | undefined): UserRole {
   if (lower === 'admin') return 'admin';
   if (lower === 'manager') return 'manager';
   if (lower === 'staff') return 'staff';
-  if (lower === 'client') return 'client';
+  // Pure-CRM mode: 'client' role is not granted (internal-staff-only app); such
+  // accounts fall through to the read-only 'viewer' role. Restore by un-commenting.
+  // if (lower === 'client') return 'client';
   return 'viewer';
 }
 
@@ -221,7 +223,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const loginDemo = useCallback((role: UserRole = 'admin') => {
-    const demo = DEMO_PROFILES[role] || DEMO_PROFILES.admin;
+    // Pure-CRM mode: client login is disabled. A pure CRM is internal-staff-only,
+    // so any attempt to authenticate as a "client" is downgraded to the read-only
+    // "viewer" role. The client DEMO_PROFILE and role type are kept in the codebase
+    // so client access can be restored later by removing this guard.
+    const effectiveRole: UserRole = role === 'client' ? 'viewer' : role;
+    const demo = DEMO_PROFILES[effectiveRole] || DEMO_PROFILES.admin;
     const mockUser = {
       id: demo.user.id,
       email: demo.user.email,
@@ -362,10 +369,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
           loginDemo('staff');
           return;
         }
-        if (lower.includes('client') || lower === 'client@stockflow.com') {
-          loginDemo('client');
-          return;
-        }
+        // Pure-CRM mode: client login shortcut is disabled (internal-staff-only app).
+        // Kept here, commented out, so it can be restored later.
+        // if (lower.includes('client') || lower === 'client@stockflow.com') {
+        //   loginDemo('client');
+        //   return;
+        // }
         if (lower.includes('demo') || lower === 'demo@stockflow.com') {
           loginDemo('admin');
           return;

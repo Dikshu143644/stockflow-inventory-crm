@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Package, Users, ShoppingCart, Bot } from 'lucide-react';
+import { LayoutDashboard, Users, UserPlus, Handshake, Bot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
+// Pure-CRM mode: the ERP tabs (Inventory -> /inventory, Sales -> /sales) were
+// replaced with CRM destinations that point to valid, visible routes so there
+// are no 404s. Restore the ERP tabs alongside the ERP navigation if needed.
 const tabs = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
-  { label: 'Inventory', icon: Package, path: '/inventory' },
-  { label: 'CRM', icon: Users, path: '/crm' },
-  { label: 'Sales', icon: ShoppingCart, path: '/sales' },
+  { label: 'Customers', icon: Users, path: '/crm/customers' },
+  { label: 'Leads', icon: UserPlus, path: '/crm/leads' },
+  { label: 'Deals', icon: Handshake, path: '/crm/deals' },
   { label: 'AI', icon: Bot, path: '/ai' },
 ];
 
