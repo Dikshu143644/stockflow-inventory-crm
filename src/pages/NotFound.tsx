@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, LayoutDashboard, Package, Users, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, LayoutDashboard, Users, UserPlus, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
+// Pure-CRM mode: suggestions point only to visible CRM routes (no ERP links).
 const suggestions = [
   { label: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { label: 'Inventory', href: '/inventory/products', icon: Package },
   { label: 'Customers', href: '/crm/customers', icon: Users },
-  { label: 'Sales', href: '/sales/orders', icon: ShoppingCart },
+  { label: 'Leads', href: '/crm/leads', icon: UserPlus },
+  { label: 'Deals', href: '/crm/deals', icon: Handshake },
 ];
 
 export default function NotFoundPage() {

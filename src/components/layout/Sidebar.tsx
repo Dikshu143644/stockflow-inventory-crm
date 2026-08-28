@@ -2,18 +2,10 @@ import { useMemo } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
-  Package,
-  Warehouse,
-  ArrowRightLeft,
-  FolderTree,
   Users,
   UserPlus,
   Handshake,
   Activity,
-  Truck,
-  ClipboardList,
-  ShoppingCart,
-  FileText,
   BarChart3,
   FileSpreadsheet,
   Bot,
@@ -23,16 +15,14 @@ import {
   ScrollText,
   PanelLeftClose,
   PanelLeftOpen,
-  Repeat2,
-  PackageCheck,
-  SlidersHorizontal,
-  AlertTriangle,
   CalendarClock,
   Filter,
-  RotateCcw,
-  CreditCard,
-  Building2,
 } from 'lucide-react';
+// NOTE: icons for the hidden ERP sections (Package, Warehouse, ArrowRightLeft,
+// FolderTree, Truck, ClipboardList, ShoppingCart, FileText, Repeat2, PackageCheck,
+// SlidersHorizontal, AlertTriangle, RotateCcw, CreditCard, Building2) were removed
+// from the import above to keep the build clean. Re-add them if the ERP sections
+// are restored.
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -45,24 +35,30 @@ import { useAuth } from '@/hooks/useAuth';
 import type { NavSection } from '@/types';
 import type { UserRole } from '@/contexts/AuthContext';
 
+// NOTE: ERP sections (Inventory, Procurement, Sales) and the multi-warehouse
+// "Branches" settings item are intentionally HIDDEN so the deployed app presents
+// as a pure CRM. The code and page files are kept in the repo so these features
+// can be restored later — simply un-comment the sections below (and the matching
+// routes in App.tsx / MobileNav.tsx) to bring them back.
 const navSections: NavSection[] = [
   {
     title: 'Main',
     items: [{ title: 'Dashboard', href: '/', icon: LayoutDashboard }],
   },
-  {
-    title: 'Inventory',
-    items: [
-      { title: 'Products', href: '/inventory/products', icon: Package },
-      { title: 'Warehouses', href: '/inventory/warehouses', icon: Warehouse },
-      { title: 'Stock Movements', href: '/inventory/movements', icon: ArrowRightLeft },
-      { title: 'Categories', href: '/inventory/categories', icon: FolderTree },
-      { title: 'Transfers', href: '/inventory/transfers', icon: Repeat2 },
-      { title: 'Receiving', href: '/inventory/receiving', icon: PackageCheck },
-      { title: 'Adjustments', href: '/inventory/adjustments', icon: SlidersHorizontal },
-      { title: 'Low Stock', href: '/inventory/low-stock', icon: AlertTriangle },
-    ],
-  },
+  // --- HIDDEN (ERP): Inventory ---
+  // {
+  //   title: 'Inventory',
+  //   items: [
+  //     { title: 'Products', href: '/inventory/products', icon: Package },
+  //     { title: 'Warehouses', href: '/inventory/warehouses', icon: Warehouse },
+  //     { title: 'Stock Movements', href: '/inventory/movements', icon: ArrowRightLeft },
+  //     { title: 'Categories', href: '/inventory/categories', icon: FolderTree },
+  //     { title: 'Transfers', href: '/inventory/transfers', icon: Repeat2 },
+  //     { title: 'Receiving', href: '/inventory/receiving', icon: PackageCheck },
+  //     { title: 'Adjustments', href: '/inventory/adjustments', icon: SlidersHorizontal },
+  //     { title: 'Low Stock', href: '/inventory/low-stock', icon: AlertTriangle },
+  //   ],
+  // },
   {
     title: 'CRM',
     items: [
@@ -74,22 +70,24 @@ const navSections: NavSection[] = [
       { title: 'Funnel', href: '/crm/funnel', icon: Filter },
     ],
   },
-  {
-    title: 'Procurement',
-    items: [
-      { title: 'Suppliers', href: '/procurement/suppliers', icon: Truck },
-      { title: 'Purchase Orders', href: '/procurement/orders', icon: ClipboardList },
-    ],
-  },
-  {
-    title: 'Sales',
-    items: [
-      { title: 'Sales Orders', href: '/sales/orders', icon: ShoppingCart },
-      { title: 'Invoices', href: '/sales/invoices', icon: FileText },
-      { title: 'Returns', href: '/sales/returns', icon: RotateCcw },
-      { title: 'Payments', href: '/sales/payments', icon: CreditCard },
-    ],
-  },
+  // --- HIDDEN (ERP): Procurement ---
+  // {
+  //   title: 'Procurement',
+  //   items: [
+  //     { title: 'Suppliers', href: '/procurement/suppliers', icon: Truck },
+  //     { title: 'Purchase Orders', href: '/procurement/orders', icon: ClipboardList },
+  //   ],
+  // },
+  // --- HIDDEN (ERP): Sales ---
+  // {
+  //   title: 'Sales',
+  //   items: [
+  //     { title: 'Sales Orders', href: '/sales/orders', icon: ShoppingCart },
+  //     { title: 'Invoices', href: '/sales/invoices', icon: FileText },
+  //     { title: 'Returns', href: '/sales/returns', icon: RotateCcw },
+  //     { title: 'Payments', href: '/sales/payments', icon: CreditCard },
+  //   ],
+  // },
   {
     title: 'Reports',
     items: [
@@ -110,23 +108,25 @@ const navSections: NavSection[] = [
       { title: 'Settings', href: '/settings', icon: Settings },
       { title: 'Users', href: '/settings/users', icon: Users },
       { title: 'Roles', href: '/settings/roles', icon: Shield },
-      { title: 'Branches', href: '/settings/branches', icon: Building2 },
+      // --- HIDDEN (ERP): Branches (multi-warehouse) ---
+      // { title: 'Branches', href: '/settings/branches', icon: Building2 },
       { title: 'Audit Log', href: '/settings/audit-log', icon: ScrollText },
     ],
   },
 ];
 
-// Sections visible by role:
-// viewer/client: Main, Sales, AI
-// staff: Main, Inventory, CRM, Procurement, Sales, Reports, AI
-// manager: Main, Inventory, CRM, Procurement, Sales, Reports, AI
-// admin: All sections (including Settings)
+// Sections visible by role (pure-CRM mode — ERP sections Inventory/Procurement/Sales
+// are hidden from every role; they remain in navSections above, commented out, so
+// they can be restored later):
+// viewer/client: Main, CRM, AI
+// staff/manager: Main, CRM, Reports, AI
+// admin: All CRM sections (including Settings)
 const sectionsByRole: Record<UserRole, string[]> = {
-  viewer: ['Main', 'Sales', 'AI'],
-  client: ['Main', 'Sales', 'AI'],
-  staff: ['Main', 'Inventory', 'CRM', 'Procurement', 'Sales', 'Reports', 'AI'],
-  manager: ['Main', 'Inventory', 'CRM', 'Procurement', 'Sales', 'Reports', 'AI'],
-  admin: ['Main', 'Inventory', 'CRM', 'Procurement', 'Sales', 'Reports', 'AI', 'Settings'],
+  viewer: ['Main', 'CRM', 'AI'],
+  client: ['Main', 'CRM', 'AI'],
+  staff: ['Main', 'CRM', 'Reports', 'AI'],
+  manager: ['Main', 'CRM', 'Reports', 'AI'],
+  admin: ['Main', 'CRM', 'Reports', 'AI', 'Settings'],
 };
 
 function getFilteredSections(role: UserRole): NavSection[] {

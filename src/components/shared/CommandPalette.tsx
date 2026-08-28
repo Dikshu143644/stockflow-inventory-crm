@@ -2,18 +2,10 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
-  Package,
-  Warehouse,
-  ArrowRightLeft,
-  FolderTree,
   Users,
   UserPlus,
   Handshake,
   Activity,
-  Truck,
-  ClipboardList,
-  ShoppingCart,
-  FileText,
   BarChart3,
   FileSpreadsheet,
   Bot,
@@ -21,6 +13,9 @@ import {
   Shield,
   ScrollText,
 } from 'lucide-react';
+// NOTE: ERP icons (Package, Warehouse, ArrowRightLeft, FolderTree, Truck,
+// ClipboardList, ShoppingCart, FileText) were removed from this import because
+// the corresponding ERP command-palette entries are hidden in pure-CRM mode.
 import {
   CommandDialog,
   CommandEmpty,
@@ -31,20 +26,15 @@ import {
   CommandSeparator,
 } from '@/components/ui/command';
 
+// Pure-CRM mode: ERP command entries (Inventory, Procurement, Sales groups) are
+// hidden so the palette never surfaces routes that redirect away. Restore those
+// entries (and their icon imports) to bring ERP navigation back.
 const navigationItems = [
   { title: 'Dashboard', href: '/', icon: LayoutDashboard, group: 'Navigation' },
-  { title: 'Products', href: '/inventory/products', icon: Package, group: 'Inventory' },
-  { title: 'Warehouses', href: '/inventory/warehouses', icon: Warehouse, group: 'Inventory' },
-  { title: 'Stock Movements', href: '/inventory/movements', icon: ArrowRightLeft, group: 'Inventory' },
-  { title: 'Categories', href: '/inventory/categories', icon: FolderTree, group: 'Inventory' },
   { title: 'Customers', href: '/crm/customers', icon: Users, group: 'CRM' },
   { title: 'Leads', href: '/crm/leads', icon: UserPlus, group: 'CRM' },
   { title: 'Deals', href: '/crm/deals', icon: Handshake, group: 'CRM' },
   { title: 'Activities', href: '/crm/activities', icon: Activity, group: 'CRM' },
-  { title: 'Suppliers', href: '/procurement/suppliers', icon: Truck, group: 'Procurement' },
-  { title: 'Purchase Orders', href: '/procurement/orders', icon: ClipboardList, group: 'Procurement' },
-  { title: 'Sales Orders', href: '/sales/orders', icon: ShoppingCart, group: 'Sales' },
-  { title: 'Invoices', href: '/sales/invoices', icon: FileText, group: 'Sales' },
   { title: 'Analytics', href: '/reports/analytics', icon: BarChart3, group: 'Reports' },
   { title: 'Excel Export', href: '/reports/export', icon: FileSpreadsheet, group: 'Reports' },
   { title: 'AI Assistant', href: '/ai', icon: Bot, group: 'AI' },

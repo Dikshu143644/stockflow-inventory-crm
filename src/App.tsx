@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 // AuthGuard disabled during development — login bypassed
 // import { AuthGuard } from '@/components/auth/AuthGuard';
@@ -8,27 +8,35 @@ import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
 
 // Lazy-loaded pages
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
-const Products = lazy(() => import('@/pages/inventory/Products'));
-const ProductDetail = lazy(() => import('@/pages/inventory/ProductDetail'));
-const Warehouses = lazy(() => import('@/pages/inventory/Warehouses'));
-const StockMovements = lazy(() => import('@/pages/inventory/StockMovements'));
-const Categories = lazy(() => import('@/pages/inventory/Categories'));
-const Transfers = lazy(() => import('@/pages/inventory/Transfers'));
-const Receiving = lazy(() => import('@/pages/inventory/Receiving'));
-const Adjustments = lazy(() => import('@/pages/inventory/Adjustments'));
-const LowStock = lazy(() => import('@/pages/inventory/LowStock'));
+// --- HIDDEN (ERP): Inventory pages ---
+// The page files remain in the repo (src/pages/inventory/*) so they can be
+// restored later. They are not routed in pure-CRM mode; the /inventory/* routes
+// below redirect to the dashboard instead. Un-comment these imports and the
+// matching routes to bring inventory back.
+// const Products = lazy(() => import('@/pages/inventory/Products'));
+// const ProductDetail = lazy(() => import('@/pages/inventory/ProductDetail'));
+// const Warehouses = lazy(() => import('@/pages/inventory/Warehouses'));
+// const StockMovements = lazy(() => import('@/pages/inventory/StockMovements'));
+// const Categories = lazy(() => import('@/pages/inventory/Categories'));
+// const Transfers = lazy(() => import('@/pages/inventory/Transfers'));
+// const Receiving = lazy(() => import('@/pages/inventory/Receiving'));
+// const Adjustments = lazy(() => import('@/pages/inventory/Adjustments'));
+// const LowStock = lazy(() => import('@/pages/inventory/LowStock'));
 const Customers = lazy(() => import('@/pages/crm/Customers'));
 const Leads = lazy(() => import('@/pages/crm/Leads'));
 const Deals = lazy(() => import('@/pages/crm/Deals'));
 const Activities = lazy(() => import('@/pages/crm/Activities'));
 const FollowUps = lazy(() => import('@/pages/crm/FollowUps'));
 const ConversionFunnel = lazy(() => import('@/pages/crm/ConversionFunnel'));
-const Suppliers = lazy(() => import('@/pages/procurement/Suppliers'));
-const PurchaseOrders = lazy(() => import('@/pages/procurement/PurchaseOrders'));
-const SalesOrders = lazy(() => import('@/pages/sales/SalesOrders'));
-const Invoices = lazy(() => import('@/pages/sales/Invoices'));
-const Returns = lazy(() => import('@/pages/sales/Returns'));
-const Payments = lazy(() => import('@/pages/sales/Payments'));
+// --- HIDDEN (ERP): Procurement & Sales pages ---
+// Page files remain in the repo (src/pages/procurement/*, src/pages/sales/*).
+// Their routes redirect to the dashboard in pure-CRM mode.
+// const Suppliers = lazy(() => import('@/pages/procurement/Suppliers'));
+// const PurchaseOrders = lazy(() => import('@/pages/procurement/PurchaseOrders'));
+// const SalesOrders = lazy(() => import('@/pages/sales/SalesOrders'));
+// const Invoices = lazy(() => import('@/pages/sales/Invoices'));
+// const Returns = lazy(() => import('@/pages/sales/Returns'));
+// const Payments = lazy(() => import('@/pages/sales/Payments'));
 const Analytics = lazy(() => import('@/pages/reports/Analytics'));
 const ExcelExport = lazy(() => import('@/pages/reports/ExcelExport'));
 const AIAssistant = lazy(() => import('@/pages/ai/AIAssistant'));
@@ -37,7 +45,9 @@ const SettingsPage = lazy(() => import('@/pages/settings/SettingsPage'));
 const UsersPage = lazy(() => import('@/pages/settings/UsersPage'));
 const RolesPage = lazy(() => import('@/pages/settings/RolesPage'));
 const AuditLog = lazy(() => import('@/pages/settings/AuditLog'));
-const Branches = lazy(() => import('@/pages/settings/Branches'));
+// --- HIDDEN (ERP): Branches page (multi-warehouse). File kept at
+// src/pages/settings/Branches.tsx; route redirects to dashboard. ---
+// const Branches = lazy(() => import('@/pages/settings/Branches'));
 const Login = lazy(() => import('@/pages/auth/Login'));
 const Landing = lazy(() => import('@/pages/Landing'));
 const Register = lazy(() => import('@/pages/auth/Register'));
@@ -59,27 +69,19 @@ function App() {
         {/* All routes accessible without auth during development */}
         <Route element={<AppShell />}>
           <Route index element={<ErrorBoundary><Dashboard /></ErrorBoundary>} />
-          <Route path="inventory/products" element={<ErrorBoundary><Products /></ErrorBoundary>} />
-          <Route path="inventory/products/:id" element={<ErrorBoundary><ProductDetail /></ErrorBoundary>} />
-          <Route path="inventory/warehouses" element={<ErrorBoundary><Warehouses /></ErrorBoundary>} />
-          <Route path="inventory/movements" element={<ErrorBoundary><StockMovements /></ErrorBoundary>} />
-          <Route path="inventory/categories" element={<ErrorBoundary><Categories /></ErrorBoundary>} />
-          <Route path="inventory/transfers" element={<ErrorBoundary><Transfers /></ErrorBoundary>} />
-          <Route path="inventory/receiving" element={<ErrorBoundary><Receiving /></ErrorBoundary>} />
-          <Route path="inventory/adjustments" element={<ErrorBoundary><Adjustments /></ErrorBoundary>} />
-          <Route path="inventory/low-stock" element={<ErrorBoundary><LowStock /></ErrorBoundary>} />
+          {/* --- HIDDEN (ERP): Inventory routes redirect to the dashboard so nobody
+              lands on an inventory page by typing the URL. Restore the original
+              element routes to bring inventory back. --- */}
+          <Route path="inventory/*" element={<Navigate to="/" replace />} />
           <Route path="crm/customers" element={<ErrorBoundary><Customers /></ErrorBoundary>} />
           <Route path="crm/leads" element={<ErrorBoundary><Leads /></ErrorBoundary>} />
           <Route path="crm/deals" element={<ErrorBoundary><Deals /></ErrorBoundary>} />
           <Route path="crm/activities" element={<ErrorBoundary><Activities /></ErrorBoundary>} />
           <Route path="crm/follow-ups" element={<ErrorBoundary><FollowUps /></ErrorBoundary>} />
           <Route path="crm/funnel" element={<ErrorBoundary><ConversionFunnel /></ErrorBoundary>} />
-          <Route path="procurement/suppliers" element={<ErrorBoundary><Suppliers /></ErrorBoundary>} />
-          <Route path="procurement/orders" element={<ErrorBoundary><PurchaseOrders /></ErrorBoundary>} />
-          <Route path="sales/orders" element={<ErrorBoundary><SalesOrders /></ErrorBoundary>} />
-          <Route path="sales/invoices" element={<ErrorBoundary><Invoices /></ErrorBoundary>} />
-          <Route path="sales/returns" element={<ErrorBoundary><Returns /></ErrorBoundary>} />
-          <Route path="sales/payments" element={<ErrorBoundary><Payments /></ErrorBoundary>} />
+          {/* --- HIDDEN (ERP): Procurement & Sales routes redirect to the dashboard. --- */}
+          <Route path="procurement/*" element={<Navigate to="/" replace />} />
+          <Route path="sales/*" element={<Navigate to="/" replace />} />
           <Route path="reports/analytics" element={<ErrorBoundary><Analytics /></ErrorBoundary>} />
           <Route path="reports/export" element={<ErrorBoundary><ExcelExport /></ErrorBoundary>} />
           <Route path="ai" element={<ErrorBoundary><AIAssistant /></ErrorBoundary>} />
@@ -88,7 +90,8 @@ function App() {
           <Route path="settings/users" element={<ErrorBoundary><UsersPage /></ErrorBoundary>} />
           <Route path="settings/roles" element={<ErrorBoundary><RolesPage /></ErrorBoundary>} />
           <Route path="settings/audit-log" element={<ErrorBoundary><AuditLog /></ErrorBoundary>} />
-          <Route path="settings/branches" element={<ErrorBoundary><Branches /></ErrorBoundary>} />
+          {/* --- HIDDEN (ERP): Branches route redirects to the dashboard. --- */}
+          <Route path="settings/branches" element={<Navigate to="/" replace />} />
         </Route>
 
         {/* 404 */}
